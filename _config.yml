@@ -7,7 +7,7 @@
 # server process.
 
 # Basic Site Settings
-locale                   : "en-US"
+locale                   : "ko-KR"
 site_theme               : "default" # Currently available options are "default", "air"
 title                    : "takealook@data"
 title_separator          : "-"
