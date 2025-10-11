@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "고객성공매니저의 메모"
+title: "고객 성공 매니저의 메모"
 author_profile: true
 redirect_from: 
   - /about/
