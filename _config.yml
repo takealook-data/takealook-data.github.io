@@ -8,7 +8,7 @@
 
 # Basic Site Settings
 locale                   : "ko-KR"
-site_theme               : "default" # Currently available options are "default", "air"
+site_theme               : "air" # Currently available options are "default", "air"
 title                    : "takealook@data"
 title_separator          : "-"
 name                     : &name "Your Name"
