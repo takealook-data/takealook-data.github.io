@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "데이터를 분석(分析)해 의미있는 정보를 이끌어냅니다."
+title: "성공 매니저의 메모"
 author_profile: true
 redirect_from: 
   - /about/
