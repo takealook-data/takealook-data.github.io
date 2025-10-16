@@ -218,7 +218,7 @@ kramdown:
 
 # These settings control the types of collections used by the template
 collections:
-  read:
+  reading:
     output: true
     permalink: /:collection/:path/
   publications:
@@ -252,10 +252,10 @@ defaults:
     values:
       layout: single
       author_profile: true
-  # _read
+  # _reading
   - scope:
       path: ""
-      type: read
+      type: reading
     values:
       layout: single
       author_profile: true
