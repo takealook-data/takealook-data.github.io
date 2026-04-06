@@ -12,7 +12,7 @@ site_theme               : "air" # Currently available options are "default", "a
 title                    : "takealook@data"
 title_separator          : "-"
 name                     : &name "Your Name"
-description              : &description "Your Name's academic portfolio"   # Update this with a general description of your site, this is the default if not overridden by a page
+description              : &description "기술, 독서, 그리고 일상의 생각을 기록하는 개인 블로그"
 url                      : "https://takealook-data.github.io" # The base hostname & protocol for your site e.g. "https://[your GitHub username].github.io",
                                                            # or if you already have some other page hosted on Github then use "https://[your GitHub username].github.io/[Your Repo Name]"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
@@ -30,7 +30,7 @@ author:
   location         : "Seoul"
   employer         : "AB180"
   uri              : # URL
-  email            : "dnsco987@gmail.com" 
+  email            : # Removed for privacy 
 
   # Academic websites
   academia         : # URL
@@ -223,11 +223,8 @@ collections:
     permalink: /:collection/:path/
   publications:
     output: true
-    permalink: /:collection/:path/
+    permalink: /essays/:path/
   portfolio:
-    output: true
-    permalink: /:collection/:path/
-  talks:
     output: true
     permalink: /:collection/:path/
 
@@ -279,14 +276,6 @@ defaults:
       author_profile: true
       share: true
       comment: true
-  # _talks
-  - scope:
-      path: ""
-      type: talks
-    values:
-      layout: talk
-      author_profile: true
-      share: true
 
 
 # Sass/SCSS

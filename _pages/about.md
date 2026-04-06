@@ -1,15 +1,22 @@
 ---
-permalink: /
-title: "고객 성공 매니저의 메모"
+permalink: /about/
+title: "소개"
 author_profile: true
-redirect_from: 
-  - /about/
-  - /about.html
+redirect_from:
+  - /
 ---
 
-요약
+안녕하세요. 데이터를 톺아보고 생각을 기록하는 걸 좋아하는 사람입니다.
 
-# A data-driven personal website
+## 이 블로그에 대하여
 
-## For more info
-More info about me can be found in [Linked-in](https://www.linkedin.com/in/unchae-jeong-a88149179/)
+이곳은 제가 경험하고 배운 것들을 정리하는 공간입니다. 주로 다음과 같은 내용을 다룹니다:
+
+- **블로그**: 기술, 데이터 분석, 개발 관련 글
+- **생각**: 일상의 생각, 에세이, 회고
+- **독서**: 읽은 책에 대한 노트와 서평
+- **포트폴리오**: 진행했던 프로젝트들
+
+## 연락
+
+궁금한 점이나 함께 이야기하고 싶은 주제가 있다면 언제든 연락주세요.

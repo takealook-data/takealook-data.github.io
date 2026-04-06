@@ -1,0 +1,30 @@
+/* Custom styles for Korean blog */
+
+/* Korean font stack */
+body {
+  font-family: -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "맑은 고딕", sans-serif;
+}
+
+/* Improved readability */
+.page__content {
+  line-height: 1.8;
+
+  p {
+    margin-bottom: 1.3em;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "맑은 고딕", sans-serif;
+    font-weight: 700;
+  }
+}
+
+/* Archive item spacing */
+.archive__item {
+  margin-bottom: 2em;
+}
+
+/* Author bio Korean font */
+.author__bio {
+  font-family: -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "맑은 고딕", sans-serif;
+}
