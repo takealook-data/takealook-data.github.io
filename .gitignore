@@ -18,3 +18,29 @@ package-lock.json
 
 # Ignore folders related to IDEs
 .vscode/
+
+# Obsidian - 개인 설정 (커밋 제외)
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/hotkeys.json
+.obsidian/app.json
+.obsidian/appearance.json
+.obsidian/graph.json
+.obsidian/core-plugins-migration.json
+
+# Obsidian - 공유 설정 (커밋 포함, 주석 처리)
+# .obsidian/core-plugins.json
+# .obsidian/community-plugins.json
+# .obsidian/plugins/
+
+# Google Drive 동기화 아티팩트
+*Conflict*.md
+*.tmp
+~$*
+desktop.ini
+.dropbox
+.dropbox.attr
+Icon?
+
+# macOS
+.DS_Store
