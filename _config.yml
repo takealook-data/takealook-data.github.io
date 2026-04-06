@@ -189,6 +189,8 @@ exclude:
   - README
   - tmp
   - vendor
+  - docs  # Obsidian 프로젝트 관리 문서
+  - scripts  # 자동화 스크립트
 keep_files:
   - .git
   - .svn
