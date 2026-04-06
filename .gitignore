@@ -44,3 +44,7 @@ Icon?
 
 # macOS
 .DS_Store
+
+# Obsidian 프로젝트 관리 문서 (개인 작업 로그, 경로 정보 등)
+docs/
+scripts/
