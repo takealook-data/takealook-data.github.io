@@ -170,10 +170,14 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+.author__urls li,
 .author__urls a {
-  font-size: 0.875rem !important;    /* Unified author social links (14px) */
-  padding: 4px 0 !important;
+  font-size: 0.8125rem !important;    /* Unified 13px size for social links and info */
   color: #4e5968 !important;
+}
+
+.author__urls a {
+  padding: 4px 0 !important;
   transition: color 0.15s ease !important;
 
   &:hover {
