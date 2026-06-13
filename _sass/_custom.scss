@@ -170,19 +170,48 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-.author__urls li,
-.author__urls a {
-  font-size: 0.8125rem !important;    /* Unified 13px size for social links and info */
-  color: #4e5968 !important;
-}
+.author__urls {
+  list-style: none !important;
+  margin: 15px 0 0 0 !important;
+  padding: 0 !important;
 
-.author__urls a {
-  padding: 4px 0 !important;
-  transition: color 0.15s ease !important;
+  li {
+    display: flex !important;
+    align-items: center !important;
+    margin-bottom: 8px !important;
+    font-size: 0.8125rem !important; /* 13px */
+    color: #4e5968 !important;
+    line-height: 1.4 !important;
+  }
 
-  &:hover {
-    transform: none !important;
-    color: #191f28 !important;
+  a, span {
+    font-size: 0.8125rem !important; /* 13px */
+    color: #4e5968 !important;
+  }
+
+  a {
+    display: inline-flex !important;
+    align-items: center !important;
+    padding: 0 !important;
+    transition: color 0.15s ease !important;
+    text-decoration: none !important;
+
+    &:hover {
+      transform: none !important;
+      color: #191f28 !important;
+      text-decoration: none !important;
+    }
+  }
+
+  i {
+    font-size: 0.875rem !important; /* 14px icon size */
+    color: #8b95a1 !important; /* Toss soft grey icon color */
+    width: 16px !important;
+    text-align: center !important;
+    margin-right: 8px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 }
 
@@ -265,13 +294,17 @@ a, button, input, select, textarea {
   overflow: hidden !important;
   margin-bottom: 16px !important;
   display: block !important;
+  height: 160px !important; /* Smaller, more elegant thumbnail height */
+  background-color: #F9F6F0 !important; /* Matches Anthropic style image background */
   
   img {
     transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
     width: 100% !important;
-    height: auto !important;
-    object-fit: cover !important;
+    height: 100% !important;
+    object-fit: contain !important; /* Keep the simple symbols centered and uncropped */
     display: block !important;
+    padding: 24px !important; /* Add breathing room around the centered symbol */
+    box-sizing: border-box !important;
   }
   
   &:hover img {
