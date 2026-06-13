@@ -301,10 +301,8 @@ a, button, input, select, textarea {
     transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
     width: 100% !important;
     height: 100% !important;
-    object-fit: contain !important; /* Keep the simple symbols centered and uncropped */
+    object-fit: cover !important; /* Cover the container completely to remove square boundaries */
     display: block !important;
-    padding: 24px !important; /* Add breathing room around the centered symbol */
-    box-sizing: border-box !important;
   }
   
   &:hover img {
