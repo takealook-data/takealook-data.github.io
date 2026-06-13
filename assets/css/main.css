@@ -14335,218 +14335,204 @@ readers do not read off random characters that represent icons */
 }
 
 /* ==========================================================================
-   takealook@data Blog Premium UI/UX Custom Facelift
+   takealook@data Blog Minimal UI/UX Custom Facelift (toss.tech Style)
    ========================================================================== */
-/* 1. Global Typography & Clean Layout */
+/* 1. Global Reset & Typography */
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", Pretendard, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px !important;
+  line-height: 1.6 !important;
+  color: #333d4b !important;
+  background-color: #ffffff !important;
+}
+
+#main {
+  background-color: #ffffff !important;
+  max-width: 960px !important; /* Compact column width for wide margins and legibility */
+  padding: 0 40px !important;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", Pretendard, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: #191f28 !important;
   font-weight: 700;
   letter-spacing: -0.5px;
-  color: var(--global-text-color, #222831);
 }
 
 .page__content {
-  font-size: 1.05rem;
-  line-height: 1.85;
-  color: var(--global-text-color, #222831);
+  font-size: 16px !important;
+  line-height: 1.6 !important;
+  color: #333d4b !important;
 }
 .page__content p {
-  margin-bottom: 1.5em;
+  margin-bottom: 1.3em !important;
 }
 .page__content a {
-  transition: color 0.2s ease, border-color 0.2s ease;
+  color: #0050ff !important;
+  text-decoration: none;
+}
+.page__content a:hover {
+  text-decoration: underline;
 }
 
-/* 2. Sticky Glassmorphic Header (Masthead) */
+/* 2. Static & Transparent Navigation (Header) */
 .masthead {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  /* Blend background with transparent using CSS color-mix */
-  background: color-mix(in srgb, var(--global-bg-color, #eeeeee) 80%, transparent) !important;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid color-mix(in srgb, var(--global-text-color, #222831) 8%, transparent) !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
-  transition: all 0.3s ease;
+  position: static !important; /* Moves with scroll */
+  background: transparent !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
 }
 
 .masthead__inner {
-  padding-top: 10px !important;
-  padding-bottom: 10px !important;
+  padding-top: 24px !important;
+  padding-bottom: 24px !important;
 }
 
 .site-title {
   font-weight: 800 !important;
-  letter-spacing: -1px;
-  background: linear-gradient(135deg, var(--global-text-color, #111), var(--global-link-color, #393e46));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  transition: all 0.3s ease;
+  font-size: 1.3rem !important;
+  color: #191f28 !important;
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  -webkit-text-fill-color: initial !important;
+  letter-spacing: -0.8px;
+  text-decoration: none !important;
 }
 
-.site-title:hover {
-  opacity: 0.8;
-}
-
-/* Menu Items Underline Animation */
 .masthead__menu-item a {
-  position: relative;
-  padding-bottom: 6px;
-  font-weight: 600 !important;
+  font-weight: 500 !important;
   font-size: 0.95rem !important;
-  transition: color 0.2s ease;
-  opacity: 0.85;
-}
-.masthead__menu-item a:hover {
-  opacity: 1;
-  color: var(--global-link-color, #393e46) !important;
+  color: #4e5968 !important;
+  opacity: 1 !important;
+  text-decoration: none !important;
+  transition: color 0.15s ease;
 }
 .masthead__menu-item a::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  transform: scaleX(0);
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  background-color: var(--global-link-color, #393e46);
-  transform-origin: bottom right;
-  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  display: none !important; /* Remove underline animation */
 }
-.masthead__menu-item a:hover::after {
-  transform: scaleX(1);
-  transform-origin: bottom left;
+.masthead__menu-item a:hover {
+  color: #191f28 !important;
 }
 
-/* 3. Refined Author Profile Sidebar */
+/* 3. Flat Author Profile Sidebar (No Cards/Borders) */
 .sidebar {
-  background: color-mix(in srgb, var(--global-bg-color, #eee) 40%, #fff);
-  border: 1px solid color-mix(in srgb, var(--global-text-color, #222) 6%, transparent);
-  border-radius: 14px;
-  padding: 24px !important;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
-  transition: all 0.3s ease;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  box-shadow: none !important;
 }
 
 .author__avatar img {
   border-radius: 50% !important;
-  border: 3px solid #fff;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+  border: none !important;
+  box-shadow: none !important;
+  transition: none !important;
 }
-
 .author__avatar img:hover {
-  transform: scale(1.05) rotate(2deg);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+  transform: none !important;
 }
 
 .author__name {
-  font-size: 1.28rem !important;
-  font-weight: 800 !important;
-  letter-spacing: -0.5px;
-  margin-top: 15px !important;
-  color: var(--global-text-color, #111) !important;
+  font-size: 1.2rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.3px;
+  margin-top: 12px !important;
+  color: #191f28 !important;
 }
 
 .author__bio {
-  font-size: 0.88rem !important;
+  font-size: 0.85rem !important;
   line-height: 1.5 !important;
-  color: color-mix(in srgb, var(--global-text-color, #222) 75%, transparent) !important;
+  color: #4e5968 !important;
 }
 
 .author__urls-wrapper button {
-  border-radius: 30px !important;
-  font-weight: 600;
-  font-size: 0.85rem !important;
-  background-color: var(--global-link-color, #393e46) !important;
-  border-color: var(--global-link-color, #393e46) !important;
+  border-radius: 6px !important;
+  font-weight: 500;
+  font-size: 0.8rem !important;
+  background-color: #191f28 !important;
+  border-color: #191f28 !important;
 }
 
 .author__urls a {
-  font-size: 0.86rem !important;
-  padding: 5px 0 !important;
-  color: color-mix(in srgb, var(--global-text-color, #222) 75%, transparent) !important;
-  transition: transform 0.2s ease, color 0.2s ease !important;
+  font-size: 0.85rem !important;
+  padding: 4px 0 !important;
+  color: #4e5968 !important;
+  transition: color 0.15s ease !important;
 }
 .author__urls a:hover {
-  transform: translateX(4px);
-  color: var(--global-link-color, #393e46) !important;
+  transform: none !important;
+  color: #191f28 !important;
 }
 
-/* 4. Card-Based Post Archive Items */
+/* 4. Flat Post Archive Items with Wide Spacing */
 .archive__item {
-  background: color-mix(in srgb, var(--global-bg-color, #eee) 10%, #fff);
-  border: 1px solid color-mix(in srgb, var(--global-text-color, #222) 6%, transparent);
-  border-radius: 14px;
-  padding: 28px;
-  margin-bottom: 25px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01);
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  margin-bottom: 56px !important; /* Very wide margins between articles */
+  box-shadow: none !important;
+  transition: none !important;
 }
 .archive__item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.05);
-  border-color: color-mix(in srgb, var(--global-text-color, #222) 12%, transparent);
+  transform: none !important;
+  box-shadow: none !important;
 }
 
 .archive__item-title {
-  font-size: 1.28rem !important;
+  font-size: 1.35rem !important;
   font-weight: 700 !important;
   margin-top: 0 !important;
-  margin-bottom: 10px !important;
+  margin-bottom: 12px !important;
   line-height: 1.4 !important;
-  color: var(--global-text-color, #111) !important;
-  letter-spacing: -0.3px;
+  color: #191f28 !important;
+  letter-spacing: -0.4px !important;
 }
 .archive__item-title a {
   color: inherit !important;
   text-decoration: none !important;
-  background: linear-gradient(180deg, transparent 70%, color-mix(in srgb, var(--global-link-color, #393e46) 15%, transparent) 0);
-  transition: background-color 0.2s ease;
+  background: none !important;
+  transition: color 0.15s ease;
 }
 .archive__item-title a:hover {
-  color: var(--global-link-color, #393e46) !important;
+  color: #0050ff !important; /* Toss Blue Accent on Hover */
+  text-decoration: underline !important;
 }
 
 .archive__item-excerpt {
-  font-size: 0.95rem !important;
-  line-height: 1.65 !important;
-  color: color-mix(in srgb, var(--global-text-color, #222) 70%, transparent) !important;
-  margin-bottom: 15px !important;
+  font-size: 16px !important;
+  line-height: 1.6 !important;
+  color: #4e5968 !important;
+  margin-bottom: 12px !important;
 }
 
 .archive__item-meta {
-  font-size: 0.8rem !important;
-  color: color-mix(in srgb, var(--global-text-color, #222) 45%, transparent) !important;
+  font-size: 0.85rem !important;
+  color: #8b95a1 !important;
   display: flex;
   align-items: center;
   gap: 12px;
-  border-top: 1px solid color-mix(in srgb, var(--global-text-color, #222) 6%, transparent);
-  padding-top: 12px;
-  margin-top: 15px;
+  border-top: none !important; /* Remove top border line */
+  padding-top: 0 !important;
+  margin-top: 10px !important;
 }
 
-/* 5. Global Transition Micro-animations */
+/* 5. Clean Global Interactive Elements */
 a, button, input, select, textarea {
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
 }
 
 .btn, #goog-wm-sb {
-  border-radius: 30px !important;
-  font-weight: 600 !important;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  border-radius: 6px !important;
+  font-weight: 500 !important;
+  box-shadow: none !important;
+  transition: none !important;
 }
 .btn:hover, #goog-wm-sb:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  transform: none !important;
+  box-shadow: none !important;
 }
 
 /*# sourceMappingURL=main.css.map */
