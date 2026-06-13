@@ -2,8 +2,6 @@
 permalink: /about/
 title: "소개"
 author_profile: true
-redirect_from:
-  - /
 ---
 
 안녕하세요. 데이터를 톺아보고 생각을 기록하는 걸 좋아하는 사람입니다.

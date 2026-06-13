@@ -9,16 +9,16 @@
 
 main:
   - title: "블로그"
-    url: /blog/
+    url: /#blog
 
   - title: "생각"
-    url: /essays/
+    url: /#essays
 
   - title: "독서"
-    url: /reading/
+    url: /#reading
 
   - title: "포트폴리오"
-    url: /portfolio/
+    url: /#portfolio
 
   - title: "소개"
-    url: /about/
+    url: /#about

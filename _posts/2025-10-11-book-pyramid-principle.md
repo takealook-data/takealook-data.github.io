@@ -6,6 +6,8 @@ tags:
   - book-challenge
   - 바바라민토
   - 논리의기술
+header:
+  teaser: sql_analysis.png
 ---
 
 요약
