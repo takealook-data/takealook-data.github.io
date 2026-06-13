@@ -6,7 +6,7 @@
   <title>takealook@data - UI/UX 개선 프리뷰</title>
   
   <!-- Load Compiled Blog CSS (Facelift Styles Included) -->
-  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/main.css?v=3">
   
   <!-- Load Fonts and Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
@@ -29,19 +29,8 @@
     
     /* Layout adjustments to match Jekyll container */
     #main {
-      max-width: 1280px;
-      margin: 40px auto;
-      padding: 0 20px;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 40px;
-      box-sizing: border-box;
-    }
-    
-    @media (min-width: 1024px) {
-      #main {
-        grid-template-columns: 280px 1fr;
-      }
+      margin-top: 40px !important;
+      margin-bottom: 40px !important;
     }
     
     .section-title {
