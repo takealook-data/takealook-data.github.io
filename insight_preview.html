@@ -3,68 +3,194 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>인사이트 아카이브 - 로컬 프리뷰</title>
+  <title>takealook@data - UI/UX 개선 프리뷰</title>
+  
+  <!-- Load Compiled Blog CSS (Facelift Styles Included) -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+  
+  <!-- Load Insight CSS -->
   <link rel="stylesheet" href="/assets/css/insight.css">
-  <script src="/assets/js/insight.js" defer></script>
+  
+  <!-- Load Fonts and Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
   <style>
-    /* Add minimal body padding and global background to simulate theme container */
-    body {
-      background: #fafafa;
-      margin: 0;
-      padding: 20px;
-    }
-    .preview-nav {
-      max-width: 1200px;
-      margin: 0 auto 20px auto;
-      padding: 10px;
-      background: #fff;
-      border: 1px solid #eaeaea;
-      border-radius: 8px;
+    /* Preview Guide banner */
+    .preview-banner {
+      background: #1d1d1f;
+      color: #fff;
+      padding: 12px 20px;
+      text-align: center;
       font-family: -apple-system, sans-serif;
       font-size: 0.9rem;
-      color: #666;
+      position: relative;
+      z-index: 10001;
+    }
+    .preview-banner a {
+      color: #5ac8fa;
+      text-decoration: underline;
+    }
+    
+    /* Layout adjustments to match Jekyll container */
+    #main {
+      max-width: 1280px;
+      margin: 40px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      box-sizing: border-box;
+    }
+    
+    @media (min-width: 1024px) {
+      #main {
+        grid-template-columns: 280px 1fr;
+      }
+    }
+    
+    .section-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid color-mix(in srgb, var(--global-text-color, #222) 8%, transparent);
     }
   </style>
 </head>
-<body>
-  <div class="preview-nav">
-    ⚠️ <strong>Jekyll 빌드 전 로컬 프리뷰 모드</strong> | 실제 사이트에는 상단 메뉴 GNB가 적용되며 이 안내선은 보이지 않습니다.
+<body class="layout--default">
+
+  <!-- Preview Guide -->
+  <div class="preview-banner">
+    🎨 <strong>Jekyll UI/UX 개편 로컬 프리뷰</strong> | <strong>스티키 글래스모피즘 헤더</strong>와 <strong>카드형 글 목록</strong>, <strong>프로필 사이드바</strong> 디자인이 적용되었습니다.
   </div>
 
-  <div class="insight-wrapper">
-    <header class="insight-header">
-      <h1 class="insight-title">인사이트 아카이브</h1>
-      <p class="insight-subtitle">마케팅 테크(MMP-PA-CRM), 데이터 분석 칼럼, 그리고 실시간 대기업 마케터 채용 정보를 한곳에 집계합니다.</p>
-    </header>
-
-    <div class="insight-toolbar">
-      <div class="insight-tabs">
-        <button class="insight-tab-btn active" data-tab="all">전체</button>
-        <button class="insight-tab-btn" data-tab="job">채용공고</button>
-        <button class="insight-tab-btn" data-tab="article">아티클</button>
-        <button class="insight-tab-btn" data-tab="report">보고서</button>
+  <!-- 1. Sticky Glassmorphic Header -->
+  <div class="masthead">
+    <div class="masthead__inner">
+      <div class="masthead__menu" style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; box-sizing: border-box;">
+        <a class="site-title" href="#">takealook@data</a>
+        <ul class="visible-links" style="display: flex; gap: 24px; list-style: none; margin: 0; padding: 0;">
+          <li class="masthead__menu-item"><a href="#">블로그</a></li>
+          <li class="masthead__menu-item"><a href="#">생각</a></li>
+          <li class="masthead__menu-item"><a href="#">독서</a></li>
+          <li class="masthead__menu-item"><a href="#">포트폴리오</a></li>
+          <li class="masthead__menu-item"><a href="#" class="active" style="color: var(--global-link-color, #393e46); font-weight: 700;">인사이트</a></li>
+          <li class="masthead__menu-item"><a href="#">소개</a></li>
+        </ul>
       </div>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <div id="main" role="main">
+    
+    <!-- 2. Refined Author Sidebar -->
+    <div class="sidebar sticky">
+      <div itemscope itemtype="http://schema.org/Person">
+        <div class="author__avatar">
+          <!-- Dummy Avatar Placeholder -->
+          <img src="https://avatars.githubusercontent.com/u/100000000?v=4" alt="jjefff" itemprop="image" style="width: 100%; max-width: 150px; display: block; margin: 0 auto;">
+        </div>
+        <div class="author__content">
+          <h3 class="author__name" itemprop="name">jjefff</h3>
+          <p class="author__bio" itemprop="description">데이터를 톺아보는 걸 좋아합니다.</p>
+        </div>
+        <div class="author__urls-wrapper">
+          <button class="btn btn--inverse">연락처 & 채널</button>
+          <ul class="author__urls social-icons" style="list-style: none; margin: 15px 0 0 0; padding: 0;">
+            <li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place">
+              <i class="fa-solid fa-location-dot" style="margin-right: 8px;"></i>
+              <span itemprop="name">Seoul</span>
+            </li>
+            <li>
+              <i class="fa-solid fa-briefcase" style="margin-right: 8px;"></i>
+              <span>AB180</span>
+            </li>
+            <li>
+              <a href="https://github.com/takealook-data" itemprop="sameAs">
+                <i class="fa-brands fa-github" style="margin-right: 8px;"></i>
+                <span>GitHub</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content Area -->
+    <div class="archive">
       
-      <div class="insight-search-wrapper">
-        <svg class="insight-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="11" cy="11" r="8"></circle>
-          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-        </svg>
-        <input type="text" id="insight-search" class="insight-search-input" placeholder="기업명, 직무, 키워드 검색...">
-      </div>
-    </div>
+      <!-- 3. Post Cards Archiving (Facetlift Showcase) -->
+      <section style="margin-bottom: 50px;">
+        <h2 class="section-title">최근 블로그 글 (카드형 리스트 개선안)</h2>
+        <div class="archive-list">
+          
+          <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+            <h2 class="archive__item-title" itemprop="headline">
+              <a href="#">Braze와 Amplitude 식별자 매핑 및 코호트 동기화 가이드</a>
+            </h2>
+            <p class="archive__item-excerpt" itemprop="description">
+              유저 유실을 방지하고 효과적인 개인화 캠페인을 수행하기 위해 MMP(Airbridge)의 user.id와 PA(Amplitude)의 user_id, 그리고 CRM(Braze)의 external_id를 매핑하는 구조와 코호트 동기화 핵심 원칙을 정리합니다.
+            </p>
+            <div class="archive__item-meta">
+              <span><i class="fa-regular fa-calendar-days" style="margin-right: 6px;"></i>2026-06-13</span>
+              <span><i class="fa-regular fa-clock" style="margin-right: 6px;"></i>5 min read</span>
+              <span><i class="fa-solid fa-folder-open" style="margin-right: 6px;"></i>마케팅 테크</span>
+            </div>
+          </article>
 
-    <div class="insight-grid" id="insight-grid">
-      <div class="insight-empty">
-        <div class="insight-empty-icon">⏳</div>
-        <div class="insight-empty-title">아카이브를 로드하고 있습니다</div>
-        <p>잠시만 기다려 주세요...</p>
-      </div>
-    </div>
+          <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+            <h2 class="archive__item-title" itemprop="headline">
+              <a href="#">마케터로서 SQL과 BigQuery 입문하기</a>
+            </h2>
+            <p class="archive__item-excerpt" itemprop="description">
+              단순히 대시보드를 보는 것을 넘어 마케터가 직접 DB에서 원시 데이터를 추출하고 가공하는 필수 쿼리문 예시와 빅쿼리(BigQuery) 환경에서 마케팅 성과 지표(ROI, Churn Rate)를 산출하는 실무 코칭 가이드입니다.
+            </p>
+            <div class="archive__item-meta">
+              <span><i class="fa-regular fa-calendar-days" style="margin-right: 6px;"></i>2026-06-05</span>
+              <span><i class="fa-regular fa-clock" style="margin-right: 6px;"></i>8 min read</span>
+              <span><i class="fa-solid fa-folder-open" style="margin-right: 6px;"></i>데이터 분석</span>
+            </div>
+          </article>
+          
+        </div>
+      </section>
 
-    <div class="insight-pagination" id="insight-pagination">
-      <!-- Rendered dynamically -->
+      <!-- 4. The Interactive Insight Board -->
+      <section>
+        <h2 class="section-title">아티클 & 채용 정보 아카이브</h2>
+        
+        <div class="insight-wrapper" style="padding: 0;">
+          <div class="insight-toolbar" style="margin-top: 0;">
+            <div class="insight-tabs">
+              <button class="insight-tab-btn active" data-tab="all">전체</button>
+              <button class="insight-tab-btn" data-tab="job">채용공고</button>
+              <button class="insight-tab-btn" data-tab="article">아티클</button>
+              <button class="insight-tab-btn" data-tab="report">보고서</button>
+            </div>
+            
+            <div class="insight-search-wrapper">
+              <svg class="insight-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="text" id="insight-search" class="insight-search-input" placeholder="기업명, 직무, 키워드 검색...">
+            </div>
+          </div>
+
+          <div class="insight-grid" id="insight-grid">
+            <!-- Rendered dynamically -->
+          </div>
+
+          <div class="insight-pagination" id="insight-pagination">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+      </section>
+
     </div>
   </div>
+
+  <!-- Load Scripts -->
+  <script src="/assets/js/insight.js" defer></script>
 </body>
 </html>

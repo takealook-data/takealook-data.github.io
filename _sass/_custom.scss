@@ -1,30 +1,229 @@
-/* Custom styles for Korean blog */
+/* ==========================================================================
+   takealook@data Blog Premium UI/UX Custom Facelift
+   ========================================================================== */
 
-/* Korean font stack */
+/* 1. Global Typography & Clean Layout */
 body {
-  font-family: -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "맑은 고딕", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", Pretendard, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Improved readability */
+h1, h2, h3, h4, h5, h6 {
+  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", Pretendard, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--global-text-color, #222831);
+}
+
 .page__content {
-  line-height: 1.8;
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--global-text-color, #222831);
 
   p {
-    margin-bottom: 1.3em;
+    margin-bottom: 1.5em;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "맑은 고딕", sans-serif;
-    font-weight: 700;
+  a {
+    transition: color 0.2s ease, border-color 0.2s ease;
   }
 }
 
-/* Archive item spacing */
-.archive__item {
-  margin-bottom: 2em;
+/* 2. Sticky Glassmorphic Header (Masthead) */
+.masthead {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  /* Blend background with transparent using CSS color-mix */
+  background: color-mix(in srgb, var(--global-bg-color, #eeeeee) 80%, transparent) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid color-mix(in srgb, var(--global-text-color, #222831) 8%, transparent) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+  transition: all 0.3s ease;
 }
 
-/* Author bio Korean font */
+.masthead__inner {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+}
+
+.site-title {
+  font-weight: 800 !important;
+  letter-spacing: -1px;
+  background: linear-gradient(135deg, var(--global-text-color, #111), var(--global-link-color, #393e46));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.3s ease;
+}
+
+.site-title:hover {
+  opacity: 0.8;
+}
+
+/* Menu Items Underline Animation */
+.masthead__menu-item {
+  a {
+    position: relative;
+    padding-bottom: 6px;
+    font-weight: 600 !important;
+    font-size: 0.95rem !important;
+    transition: color 0.2s ease;
+    opacity: 0.85;
+  }
+
+  a:hover {
+    opacity: 1;
+    color: var(--global-link-color, #393e46) !important;
+  }
+
+  a::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--global-link-color, #393e46);
+    transform-origin: bottom right;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+}
+
+/* 3. Refined Author Profile Sidebar */
+.sidebar {
+  background: color-mix(in srgb, var(--global-bg-color, #eee) 40%, #fff);
+  border: 1px solid color-mix(in srgb, var(--global-text-color, #222) 6%, transparent);
+  border-radius: 14px;
+  padding: 24px !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+  transition: all 0.3s ease;
+}
+
+.author__avatar img {
+  border-radius: 50% !important;
+  border: 3px solid #fff;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+}
+
+.author__avatar img:hover {
+  transform: scale(1.05) rotate(2deg);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.author__name {
+  font-size: 1.28rem !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.5px;
+  margin-top: 15px !important;
+  color: var(--global-text-color, #111) !important;
+}
+
 .author__bio {
-  font-family: -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "맑은 고딕", sans-serif;
+  font-size: 0.88rem !important;
+  line-height: 1.5 !important;
+  color: color-mix(in srgb, var(--global-text-color, #222) 75%, transparent) !important;
+}
+
+.author__urls-wrapper {
+  button {
+    border-radius: 30px !important;
+    font-weight: 600;
+    font-size: 0.85rem !important;
+    background-color: var(--global-link-color, #393e46) !important;
+    border-color: var(--global-link-color, #393e46) !important;
+  }
+}
+
+.author__urls a {
+  font-size: 0.86rem !important;
+  padding: 5px 0 !important;
+  color: color-mix(in srgb, var(--global-text-color, #222) 75%, transparent) !important;
+  transition: transform 0.2s ease, color 0.2s ease !important;
+
+  &:hover {
+    transform: translateX(4px);
+    color: var(--global-link-color, #393e46) !important;
+  }
+}
+
+/* 4. Card-Based Post Archive Items */
+.archive__item {
+  background: color-mix(in srgb, var(--global-bg-color, #eee) 10%, #fff);
+  border: 1px solid color-mix(in srgb, var(--global-text-color, #222) 6%, transparent);
+  border-radius: 14px;
+  padding: 28px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.05);
+    border-color: color-mix(in srgb, var(--global-text-color, #222) 12%, transparent);
+  }
+}
+
+.archive__item-title {
+  font-size: 1.28rem !important;
+  font-weight: 700 !important;
+  margin-top: 0 !important;
+  margin-bottom: 10px !important;
+  line-height: 1.4 !important;
+  color: var(--global-text-color, #111) !important;
+  letter-spacing: -0.3px;
+
+  a {
+    color: inherit !important;
+    text-decoration: none !important;
+    background: linear-gradient(180deg, transparent 70%, color-mix(in srgb, var(--global-link-color, #393e46) 15%, transparent) 0);
+    transition: background-color 0.2s ease;
+  }
+
+  a:hover {
+    color: var(--global-link-color, #393e46) !important;
+  }
+}
+
+.archive__item-excerpt {
+  font-size: 0.95rem !important;
+  line-height: 1.65 !important;
+  color: color-mix(in srgb, var(--global-text-color, #222) 70%, transparent) !important;
+  margin-bottom: 15px !important;
+}
+
+.archive__item-meta {
+  font-size: 0.8rem !important;
+  color: color-mix(in srgb, var(--global-text-color, #222) 45%, transparent) !important;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-top: 1px solid color-mix(in srgb, var(--global-text-color, #222) 6%, transparent);
+  padding-top: 12px;
+  margin-top: 15px;
+}
+
+/* 5. Global Transition Micro-animations */
+a, button, input, select, textarea {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn {
+  border-radius: 30px !important;
+  font-weight: 600 !important;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  }
 }
