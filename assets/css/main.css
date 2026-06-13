@@ -14344,6 +14344,10 @@ body {
   line-height: 1.6 !important;
   color: #333d4b !important;
   background-color: #ffffff !important;
+  letter-spacing: -0.03em !important; /* Toss Product Sans/Pretendard optimization */
+  word-break: keep-all !important; /* Natural Korean wrap */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
 #main {
@@ -14412,12 +14416,15 @@ h1, h2, h3, h4, h5, h6 {
   color: #4e5968 !important;
   opacity: 1 !important;
   text-decoration: none !important;
-  transition: color 0.15s ease;
+  padding: 6px 12px !important; /* Pill shape dimensions */
+  border-radius: 20px !important; /* Pill shape border radius */
+  transition: background-color 0.2s ease, color 0.2s ease !important;
 }
 .masthead__menu-item a::after {
   display: none !important; /* Remove underline animation */
 }
 .masthead__menu-item a:hover {
+  background-color: #f2f4f6 !important; /* Toss Grey 10 Hover Background */
   color: #191f28 !important;
 }
 
@@ -14561,6 +14568,24 @@ a, button, input, select, textarea {
 .btn:hover, #goog-wm-sb:hover {
   transform: none !important;
   box-shadow: none !important;
+}
+
+/* 6. Archive Item Teaser Image Zoom & Rounding */
+.archive__item-teaser {
+  border-radius: 14px !important;
+  overflow: hidden !important;
+  margin-bottom: 16px !important;
+  display: block !important;
+}
+.archive__item-teaser img {
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+  width: 100% !important;
+  height: auto !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+.archive__item-teaser:hover img {
+  transform: scale(1.03) !important; /* Toss Style Zoom */
 }
 
 /*# sourceMappingURL=main.css.map */
