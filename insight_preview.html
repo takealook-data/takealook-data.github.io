@@ -8,9 +8,6 @@
   <!-- Load Compiled Blog CSS (Facelift Styles Included) -->
   <link rel="stylesheet" href="/assets/css/main.css">
   
-  <!-- Load Insight CSS -->
-  <link rel="stylesheet" href="/assets/css/insight.css">
-  
   <!-- Load Fonts and Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
   <style>
@@ -69,11 +66,10 @@
       <div class="masthead__menu" style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; box-sizing: border-box;">
         <a class="site-title" href="#">takealook@data</a>
         <ul class="visible-links" style="display: flex; gap: 24px; list-style: none; margin: 0; padding: 0;">
-          <li class="masthead__menu-item"><a href="#">블로그</a></li>
+          <li class="masthead__menu-item"><a href="#" class="active" style="color: var(--global-link-color, #393e46); font-weight: 700;">블로그</a></li>
           <li class="masthead__menu-item"><a href="#">생각</a></li>
           <li class="masthead__menu-item"><a href="#">독서</a></li>
           <li class="masthead__menu-item"><a href="#">포트폴리오</a></li>
-          <li class="masthead__menu-item"><a href="#" class="active" style="color: var(--global-link-color, #393e46); font-weight: 700;">인사이트</a></li>
           <li class="masthead__menu-item"><a href="#">소개</a></li>
         </ul>
       </div>
@@ -155,42 +151,8 @@
         </div>
       </section>
 
-      <!-- 4. The Interactive Insight Board -->
-      <section>
-        <h2 class="section-title">아티클 & 채용 정보 아카이브</h2>
-        
-        <div class="insight-wrapper" style="padding: 0;">
-          <div class="insight-toolbar" style="margin-top: 0;">
-            <div class="insight-tabs">
-              <button class="insight-tab-btn active" data-tab="all">전체</button>
-              <button class="insight-tab-btn" data-tab="job">채용공고</button>
-              <button class="insight-tab-btn" data-tab="article">아티클</button>
-              <button class="insight-tab-btn" data-tab="report">보고서</button>
-            </div>
-            
-            <div class="insight-search-wrapper">
-              <svg class="insight-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-              </svg>
-              <input type="text" id="insight-search" class="insight-search-input" placeholder="기업명, 직무, 키워드 검색...">
-            </div>
-          </div>
-
-          <div class="insight-grid" id="insight-grid">
-            <!-- Rendered dynamically -->
-          </div>
-
-          <div class="insight-pagination" id="insight-pagination">
-            <!-- Rendered dynamically -->
-          </div>
-        </div>
-      </section>
-
     </div>
   </div>
 
-  <!-- Load Scripts -->
-  <script src="/assets/js/insight.js" defer></script>
 </body>
 </html>
