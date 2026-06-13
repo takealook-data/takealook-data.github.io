@@ -14427,6 +14427,11 @@ h1, h2, h3, h4, h5, h6 {
   background-color: #f2f4f6 !important; /* Toss Grey 10 Hover Background */
   color: #191f28 !important;
 }
+.masthead__menu-item a.active {
+  font-weight: 700 !important;
+  color: #191f28 !important;
+  background-color: #f2f4f6 !important; /* Keep pill background visible for active item */
+}
 
 /* 3. Flat Author Profile Sidebar (No Cards/Borders) */
 .sidebar {
