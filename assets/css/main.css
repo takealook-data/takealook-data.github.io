@@ -14401,7 +14401,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .site-title {
   font-weight: 800 !important;
-  font-size: 1.3rem !important;
+  font-size: 1.25rem !important; /* Unified header site-title size (20px) */
   color: #191f28 !important;
   background: none !important;
   -webkit-background-clip: initial !important;
@@ -14412,7 +14412,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .masthead__menu-item a {
   font-weight: 500 !important;
-  font-size: 0.95rem !important;
+  font-size: 0.875rem !important; /* Unified GNB menu link size (14px) */
   color: #4e5968 !important;
   opacity: 1 !important;
   text-decoration: none !important;
@@ -14474,7 +14474,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .author__name {
-  font-size: 1.2rem !important;
+  font-size: 1.125rem !important; /* Unified author name size (18px) */
   font-weight: 700 !important;
   letter-spacing: -0.3px;
   margin-top: 12px !important;
@@ -14482,7 +14482,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .author__bio {
-  font-size: 0.85rem !important;
+  font-size: 0.875rem !important; /* Unified author bio size (14px) */
   line-height: 1.5 !important;
   color: #4e5968 !important;
 }
@@ -14496,7 +14496,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .author__urls a {
-  font-size: 0.85rem !important;
+  font-size: 0.875rem !important; /* Unified author social links (14px) */
   padding: 4px 0 !important;
   color: #4e5968 !important;
   transition: color 0.15s ease !important;
@@ -14522,7 +14522,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .archive__item-title {
-  font-size: 1.35rem !important;
+  font-size: 1.375rem !important; /* Unified archive title size (22px) */
   font-weight: 700 !important;
   margin-top: 0 !important;
   margin-bottom: 12px !important;
@@ -14549,7 +14549,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .archive__item-meta {
-  font-size: 0.85rem !important;
+  font-size: 0.875rem !important; /* Unified post meta size (14px) */
   color: #8b95a1 !important;
   display: flex;
   align-items: center;
