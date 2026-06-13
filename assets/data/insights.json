@@ -1,0 +1,1459 @@
+[
+  {
+    "id": "art-1",
+    "type": "article",
+    "company": "takealook@data",
+    "title": "Amplitude와 Braze를 활용한 풀퍼널 마케팅 데이터 아키텍처 설계",
+    "career": "전문 칼럼",
+    "platform": "Brunch",
+    "date": "2026-06-12",
+    "deadline": "칼럼",
+    "url": "https://takealook-data.github.io/about/",
+    "tags": [
+      "Amplitude",
+      "Braze",
+      "데이터 아키텍처"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_4.9a0666c5.png"
+  },
+  {
+    "id": "rep-1",
+    "type": "report",
+    "company": "AB180",
+    "title": "2026 글로벌 마케팅 테크놀로지 및 MMP 도입 트렌드 보고서",
+    "career": "산업 리포트",
+    "platform": "PDF",
+    "date": "2026-06-01",
+    "deadline": "리포트",
+    "url": "https://takealook-data.github.io/about/",
+    "tags": [
+      "MMP",
+      "Airbridge",
+      "마케팅 트렌드"
+    ],
+    "image": "https://d1x2xr0zrd54e1.cloudfront.net/companies/logos/1315cbdb-0199-48d2-b245-972f508e08d0.png"
+  },
+  {
+    "id": "b58985be-1198-4fbe-8ff8-c96e74c7fa23",
+    "type": "job",
+    "company": "어센트에이아이",
+    "title": "인텐트 마케팅 컨설턴트_신입",
+    "career": "경력무관",
+    "platform": "그룹바이",
+    "date": "2026-06-13",
+    "deadline": "상시채용",
+    "url": "https://zighang.com/recruitment/b58985be-1198-4fbe-8ff8-c96e74c7fa23",
+    "tags": [
+      "콘텐츠마케팅",
+      "마케팅기획_전략"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_4.0d019d08.jpg"
+  },
+  {
+    "id": "85089198-ba75-4cf8-9542-e5cb4f26a710",
+    "type": "job",
+    "company": "어센트에이아이",
+    "title": "미국(US) 마켓팅 담당",
+    "career": "2~7년",
+    "platform": "그룹바이",
+    "date": "2026-06-13",
+    "deadline": "상시채용",
+    "url": "https://zighang.com/recruitment/85089198-ba75-4cf8-9542-e5cb4f26a710",
+    "tags": [
+      "콘텐츠마케팅",
+      "마케팅기획_전략",
+      "글로벌마케팅"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_4.0d019d08.jpg"
+  },
+  {
+    "id": "f315dfd6-eabf-4d32-9fa5-ee92bf43d675",
+    "type": "job",
+    "company": "CJENM",
+    "title": "[CJ ENM] Mnet Plus User Writer (일본 Localization Owner)",
+    "career": "3년 이상",
+    "platform": "V1",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/f315dfd6-eabf-4d32-9fa5-ee92bf43d675",
+    "tags": [
+      "UXUI_프로덕트",
+      "글로벌마케팅"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_5.6e8f5df8.jpg"
+  },
+  {
+    "id": "f97af522-1e33-474f-86f5-e6a8d3a06798",
+    "type": "job",
+    "company": "CJENM",
+    "title": "[CJ ENM] Mnet Plus B2B마케팅_경력채용",
+    "career": "5년 이상",
+    "platform": "V1",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/f97af522-1e33-474f-86f5-e6a8d3a06798",
+    "tags": [
+      "마케팅기획_전략",
+      "광고기획_AE",
+      "전시_행사마케팅"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_5.6e8f5df8.jpg"
+  },
+  {
+    "id": "78bb7a9f-b0a0-43f4-a3c7-ba30705f9ef5",
+    "type": "job",
+    "company": "LG전자",
+    "title": "[MS본부] 글로벌 MPR(Marketing PR) Leader_팀장급 채용",
+    "career": "5년 이상",
+    "platform": "V1",
+    "date": "2026-06-13",
+    "deadline": "2026-06-21",
+    "url": "https://zighang.com/recruitment/78bb7a9f-b0a0-43f4-a3c7-ba30705f9ef5",
+    "tags": [
+      "홍보_PR",
+      "글로벌마케팅"
+    ],
+    "image": "https://d1x2xr0zrd54e1.cloudfront.net/companies/logos/38626220-a088-4f0c-84a9-6cd4a0f95476.png"
+  },
+  {
+    "id": "ab9a1294-4a39-47c8-a265-9f7fc0ac2806",
+    "type": "job",
+    "company": "CJENM",
+    "title": "CJ ENM 커머스부문 [퍼포먼스 마케터] 경력사원 채용",
+    "career": "1년 이상",
+    "platform": "V1",
+    "date": "2026-06-13",
+    "deadline": "2026-06-21",
+    "url": "https://zighang.com/recruitment/ab9a1294-4a39-47c8-a265-9f7fc0ac2806",
+    "tags": [
+      "퍼포먼스마케팅"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_5.6e8f5df8.jpg"
+  },
+  {
+    "id": "4a7b0c82-27e4-4486-81ef-2b0e27377015",
+    "type": "job",
+    "company": "현대백화점",
+    "title": "EQL팀 마케팅파트 경력채용 (4-8년)",
+    "career": "4~8년",
+    "platform": "V1",
+    "date": "2026-06-13",
+    "deadline": "상시채용",
+    "url": "https://zighang.com/recruitment/4a7b0c82-27e4-4486-81ef-2b0e27377015",
+    "tags": [
+      "홍보_PR"
+    ],
+    "image": "https://d2juy7qzamcf56.cloudfront.net/2024-09-19/fb1b33c6-60ee-4644-914c-ff93ed530561.png"
+  },
+  {
+    "id": "ea3e3439-1247-4db4-a69d-c1cd2ef53cab",
+    "type": "job",
+    "company": "현대백화점",
+    "title": "글로벌지원팀 경력채용 (3년~7년)",
+    "career": "3~7년",
+    "platform": "V1",
+    "date": "2026-06-13",
+    "deadline": "상시채용",
+    "url": "https://zighang.com/recruitment/ea3e3439-1247-4db4-a69d-c1cd2ef53cab",
+    "tags": [
+      "글로벌마케팅"
+    ],
+    "image": "https://d2juy7qzamcf56.cloudfront.net/2024-09-19/fb1b33c6-60ee-4644-914c-ff93ed530561.png"
+  },
+  {
+    "id": "488765b4-f61b-413c-9426-a6f747a336c3",
+    "type": "job",
+    "company": "CJENM",
+    "title": "CJ ENM 커머스부문 [브랜드 마케팅(패션/뷰티)] 경력사원 채용",
+    "career": "3년 이상",
+    "platform": "V1",
+    "date": "2026-06-13",
+    "deadline": "2026-06-14",
+    "url": "https://zighang.com/recruitment/488765b4-f61b-413c-9426-a6f747a336c3",
+    "tags": [
+      "브랜드마케팅",
+      "마케팅기획_전략"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_5.6e8f5df8.jpg"
+  },
+  {
+    "id": "d0c74f8a-f3e7-42de-9b9c-1b8cb12937f1",
+    "type": "job",
+    "company": "CJENM",
+    "title": "CJ ENM 커머스부문 [홍보] 경력사원 채용",
+    "career": "4~10년",
+    "platform": "V1",
+    "date": "2026-06-13",
+    "deadline": "2026-06-25",
+    "url": "https://zighang.com/recruitment/d0c74f8a-f3e7-42de-9b9c-1b8cb12937f1",
+    "tags": [
+      "홍보_PR"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_5.6e8f5df8.jpg"
+  },
+  {
+    "id": "04735665-7cc7-431e-8fe0-7771b409859e",
+    "type": "job",
+    "company": "LG생활건강",
+    "title": "[LG생활건강] 상시 인재 Pool(경력)",
+    "career": "2년 이상",
+    "platform": "V1",
+    "date": "2026-06-13",
+    "deadline": "상시채용",
+    "url": "https://zighang.com/recruitment/04735665-7cc7-431e-8fe0-7771b409859e",
+    "tags": [
+      "브랜드마케팅",
+      "상품기획"
+    ],
+    "image": "https://d1x2xr0zrd54e1.cloudfront.net/companies/logos/a046e36d-f2e6-429d-8463-1aafab374678.png"
+  },
+  {
+    "id": "ae3b2bf5-7fa9-4ae0-8f79-cbb77dce2910",
+    "type": "job",
+    "company": "CJ올리브영",
+    "title": "상품 프로모션 마케터 경력 채용",
+    "career": "5~10년",
+    "platform": "V1",
+    "date": "2026-06-13",
+    "deadline": "상시채용",
+    "url": "https://zighang.com/recruitment/ae3b2bf5-7fa9-4ae0-8f79-cbb77dce2910",
+    "tags": [
+      "퍼포먼스마케팅"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_4.9a0666c5.png"
+  },
+  {
+    "id": "e240a3eb-dc0f-4bcf-a806-777e9692130e",
+    "type": "job",
+    "company": "우아한형제들",
+    "title": "전략 브랜드 제휴 담당자 (Account Manager) 모집 (7년 이상)",
+    "career": "7~10년",
+    "platform": "V1",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/e240a3eb-dc0f-4bcf-a806-777e9692130e",
+    "tags": [
+      "마케팅기획_전략",
+      "B2B영업"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_5.8f75d757.jpg"
+  },
+  {
+    "id": "2e4bb998-9ebf-477c-bb8e-1e4852d5fcdb",
+    "type": "job",
+    "company": "CJENM",
+    "title": "[CJ ENM] Mnet Plus 수익화/IP 마케팅_경력채용",
+    "career": "3년 이상",
+    "platform": "V1",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/2e4bb998-9ebf-477c-bb8e-1e4852d5fcdb",
+    "tags": [
+      "퍼포먼스마케팅",
+      "마케팅기획_전략"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_5.6e8f5df8.jpg"
+  },
+  {
+    "id": "0f261b9e-4d04-4ab1-b511-6db1c6bc3e7d",
+    "type": "job",
+    "company": "투믹스",
+    "title": "(주)투믹스 콘텐츠 마케터(Content Marketer) 채용",
+    "career": "3년 이상",
+    "platform": "V1",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/0f261b9e-4d04-4ab1-b511-6db1c6bc3e7d",
+    "tags": [
+      "SNS마케팅",
+      "콘텐츠마케팅",
+      "글로벌마케팅"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_4.7df5496b.png"
+  },
+  {
+    "id": "0613f421-1436-46d5-a483-101d2644dbef",
+    "type": "job",
+    "company": "현대백화점",
+    "title": "E-영업팀 마케팅파트 경력채용 (4~8년)",
+    "career": "4년 이상",
+    "platform": "V1",
+    "date": "2026-06-13",
+    "deadline": "상시채용",
+    "url": "https://zighang.com/recruitment/0613f421-1436-46d5-a483-101d2644dbef",
+    "tags": [
+      "마케팅기획_전략"
+    ],
+    "image": "https://d2juy7qzamcf56.cloudfront.net/2024-09-19/fb1b33c6-60ee-4644-914c-ff93ed530561.png"
+  },
+  {
+    "id": "f24e93f0-2b8e-479c-ae95-3714397385dc",
+    "type": "job",
+    "company": "우아한형제들",
+    "title": "[배달의민족] 퍼포먼스 마케팅 경력직 영입",
+    "career": "5년 이상",
+    "platform": "V1",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/f24e93f0-2b8e-479c-ae95-3714397385dc",
+    "tags": [
+      "퍼포먼스마케팅",
+      "글로벌마케팅"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_5.8f75d757.jpg"
+  },
+  {
+    "id": "e3aa1e24-67c1-4ee0-9dcb-9f7a39677dc4",
+    "type": "job",
+    "company": "현대백화점",
+    "title": "고객케어팀 계약직 채용",
+    "career": "경력무관",
+    "platform": "V1",
+    "date": "2026-06-13",
+    "deadline": "상시채용",
+    "url": "https://zighang.com/recruitment/e3aa1e24-67c1-4ee0-9dcb-9f7a39677dc4",
+    "tags": [
+      "CRM마케팅"
+    ],
+    "image": "https://d2juy7qzamcf56.cloudfront.net/2024-09-19/fb1b33c6-60ee-4644-914c-ff93ed530561.png"
+  },
+  {
+    "id": "879fe8ae-7516-41af-a7fc-86555414a180",
+    "type": "job",
+    "company": "우아한형제들",
+    "title": "[B마트] 마케팅 프로모션 기획 / 편성 (신입/경력, 기간제)",
+    "career": "경력무관",
+    "platform": "V1",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/879fe8ae-7516-41af-a7fc-86555414a180",
+    "tags": [
+      "마케팅기획_전략",
+      "CRM마케팅"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_5.8f75d757.jpg"
+  },
+  {
+    "id": "5ca01b35-b2bb-4ae6-b0cd-36852e569776",
+    "type": "job",
+    "company": "우아한형제들",
+    "title": "사업 기획 (7년 이상)",
+    "career": "7년 이상",
+    "platform": "V1",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/5ca01b35-b2bb-4ae6-b0cd-36852e569776",
+    "tags": [
+      "사업_전략기획",
+      "마케팅기획_전략"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_5.8f75d757.jpg"
+  },
+  {
+    "id": "cf2f7842-e3d0-4171-9597-30f1bc6e08f7",
+    "type": "job",
+    "company": "하이브",
+    "title": "[HYBE] 글로벌 오디션 IMC 마케팅",
+    "career": "5~11년",
+    "platform": "원티드",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/cf2f7842-e3d0-4171-9597-30f1bc6e08f7",
+    "tags": [
+      "퍼포먼스마케팅",
+      "마케팅기획_전략",
+      "글로벌마케팅"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_5.b254aafa.jpg"
+  },
+  {
+    "id": "1d500a58-61b8-4aca-9bfe-0d60166846d2",
+    "type": "job",
+    "company": "CJ푸드빌",
+    "title": "[CJ푸드빌] 언론홍보 담당자 모집 (계약직/경력)",
+    "career": "3~7년",
+    "platform": "V1",
+    "date": "2026-06-13",
+    "deadline": "2026-06-25",
+    "url": "https://zighang.com/recruitment/1d500a58-61b8-4aca-9bfe-0d60166846d2",
+    "tags": [
+      "홍보_PR"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_4.70953de5.jpg"
+  },
+  {
+    "id": "918c84bd-9725-4dc8-b9cf-71f83a4003f0",
+    "type": "job",
+    "company": "현대백화점",
+    "title": "비주얼브랜딩팀 경력채용 (3~6년)",
+    "career": "3년 이상",
+    "platform": "V1",
+    "date": "2026-06-13",
+    "deadline": "상시채용",
+    "url": "https://zighang.com/recruitment/918c84bd-9725-4dc8-b9cf-71f83a4003f0",
+    "tags": [
+      "브랜드마케팅",
+      "SNS마케팅",
+      "콘텐츠마케팅"
+    ],
+    "image": "https://d2juy7qzamcf56.cloudfront.net/2024-09-19/fb1b33c6-60ee-4644-914c-ff93ed530561.png"
+  },
+  {
+    "id": "37519db8-d429-4096-b594-ae2eeb59dfb7",
+    "type": "job",
+    "company": "W컨셉",
+    "title": "인플루언서 마케터",
+    "career": "3~7년",
+    "platform": "원티드",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/37519db8-d429-4096-b594-ae2eeb59dfb7",
+    "tags": [
+      "SNS마케팅",
+      "콘텐츠마케팅"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_5.268320bf.jpg"
+  },
+  {
+    "id": "abdaa4d4-8636-41d5-b74a-ae300d39fd35",
+    "type": "job",
+    "company": "NH농협캐피탈",
+    "title": "시너지 RM 지사장 (계약직) 범 농협 시너지 마케팅 업무 담당자 채용 [근무지: 수도권 및 경상도 권역]",
+    "career": "4~10년",
+    "platform": "V1",
+    "date": "2026-06-13",
+    "deadline": "상시채용",
+    "url": "https://zighang.com/recruitment/abdaa4d4-8636-41d5-b74a-ae300d39fd35",
+    "tags": [
+      "캐피탈",
+      "마케팅기획_전략"
+    ],
+    "image": "https://d1x2xr0zrd54e1.cloudfront.net/companies/logos/6d92ef1d-7d99-484f-bad8-520c6355bd1f.png"
+  },
+  {
+    "id": "2394c05e-9450-416f-99d3-d5a14a86d7bb",
+    "type": "job",
+    "company": "쿠팡",
+    "title": "[쿠팡] 쿠팡 이츠 전략 파트너십 사업 개발 전문가 (Eats Strategic Partnership) (5년 이상)",
+    "career": "5년 이상",
+    "platform": "V1",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/2394c05e-9450-416f-99d3-d5a14a86d7bb",
+    "tags": [
+      "마케팅기획_전략",
+      "사업개발_분석"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/256_5_logo_coupang.png"
+  },
+  {
+    "id": "beb8a85c-1293-40d0-a525-4b23504505f3",
+    "type": "job",
+    "company": "아임웹",
+    "title": "Growth Marketer",
+    "career": "6~13년",
+    "platform": "원티드",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/beb8a85c-1293-40d0-a525-4b23504505f3",
+    "tags": [
+      "퍼포먼스마케팅",
+      "CRM마케팅"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_5.06a182ce.png"
+  },
+  {
+    "id": "175ed208-55a0-4e68-b0fe-3b17f18492b0",
+    "type": "job",
+    "company": "하이브",
+    "title": "HYBE 뮤직그룹 APAC 브랜딩/마케팅 (경력 5년 이상)",
+    "career": "5년 이상",
+    "platform": "그리팅",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/175ed208-55a0-4e68-b0fe-3b17f18492b0",
+    "tags": [
+      "마케팅기획_전략"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_5.b254aafa.jpg"
+  },
+  {
+    "id": "308ccf6a-9773-4cb4-a3d4-e31f9d9226ce",
+    "type": "job",
+    "company": "CJ올리브영",
+    "title": "리테일미디어 광고 사업 담당자",
+    "career": "4~10년",
+    "platform": "원티드",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/308ccf6a-9773-4cb4-a3d4-e31f9d9226ce",
+    "tags": [
+      "마케팅기획_전략",
+      "광고기획_AE"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_4.9a0666c5.png"
+  },
+  {
+    "id": "d4eb7461-d02e-4772-b439-2900fcecd1b3",
+    "type": "job",
+    "company": "W컨셉",
+    "title": "라이브커머스 담당자",
+    "career": "5~10년",
+    "platform": "원티드",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/d4eb7461-d02e-4772-b439-2900fcecd1b3",
+    "tags": [
+      "콘텐츠마케팅",
+      "전시_행사마케팅"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_5.268320bf.jpg"
+  },
+  {
+    "id": "02b6b3f4-0cbe-46b6-b587-8ee6c26fe08f",
+    "type": "job",
+    "company": "하이브",
+    "title": "뮤직그룹 마케팅 전략",
+    "career": "5년 이상",
+    "platform": "원티드",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/02b6b3f4-0cbe-46b6-b587-8ee6c26fe08f",
+    "tags": [
+      "브랜드마케팅",
+      "마케팅기획_전략"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_5.b254aafa.jpg"
+  },
+  {
+    "id": "a5c89e3b-3e60-42bd-9ca1-ad6284ae7240",
+    "type": "job",
+    "company": "투믹스",
+    "title": "글로벌 퍼포먼스 마케터",
+    "career": "5년 이상",
+    "platform": "원티드",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/a5c89e3b-3e60-42bd-9ca1-ad6284ae7240",
+    "tags": [
+      "퍼포먼스마케팅",
+      "글로벌마케팅"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_4.7df5496b.png"
+  },
+  {
+    "id": "ebcc0aae-5169-4d1f-b012-f3f48b35b7ac",
+    "type": "job",
+    "company": "우아한형제들",
+    "title": "광고사업기획",
+    "career": "5년 이상",
+    "platform": "원티드",
+    "date": "2026-06-13",
+    "deadline": "상시채용",
+    "url": "https://zighang.com/recruitment/ebcc0aae-5169-4d1f-b012-f3f48b35b7ac",
+    "tags": [
+      "광고기획_AE"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_5.8f75d757.jpg"
+  },
+  {
+    "id": "e6db9ae3-84f5-4a97-9430-ada0b64a5760",
+    "type": "job",
+    "company": "현대백화점",
+    "title": "E-영업팀 마케팅파트 (계약직)",
+    "career": "1년 이상",
+    "platform": "V1",
+    "date": "2026-06-13",
+    "deadline": "상시채용",
+    "url": "https://zighang.com/recruitment/e6db9ae3-84f5-4a97-9430-ada0b64a5760",
+    "tags": [
+      "CRM마케팅"
+    ],
+    "image": "https://d2juy7qzamcf56.cloudfront.net/2024-09-19/fb1b33c6-60ee-4644-914c-ff93ed530561.png"
+  },
+  {
+    "id": "8aafada8-dcda-4518-9bf7-a3c90c353580",
+    "type": "job",
+    "company": "쿠팡",
+    "title": "Principal Product Management ( Offsite Ads )",
+    "career": "7년 이상",
+    "platform": "V1",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/8aafada8-dcda-4518-9bf7-a3c90c353580",
+    "tags": [
+      "광고기획_AE"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/256_5_logo_coupang.png"
+  },
+  {
+    "id": "96ece261-4158-424f-9492-1cfb4fcfb721",
+    "type": "job",
+    "company": "우아한형제들",
+    "title": "프로모션마케팅",
+    "career": "3~8년",
+    "platform": "원티드",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/96ece261-4158-424f-9492-1cfb4fcfb721",
+    "tags": [
+      "퍼포먼스마케팅",
+      "콘텐츠마케팅",
+      "마케팅기획_전략"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_5.8f75d757.jpg"
+  },
+  {
+    "id": "90c4ec4d-d8ac-4eb5-b2f2-39556dd0020c",
+    "type": "job",
+    "company": "하이브",
+    "title": "[HYBE Media Studio] 미디어 솔루션 Sr.",
+    "career": "7~14년",
+    "platform": "원티드",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/90c4ec4d-d8ac-4eb5-b2f2-39556dd0020c",
+    "tags": [
+      "콘텐츠마케팅",
+      "마케팅기획_전략",
+      "광고기획_AE"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_5.b254aafa.jpg"
+  },
+  {
+    "id": "b04f9c70-0b2c-4330-ae00-f9fb1669a032",
+    "type": "job",
+    "company": "어센트에이아이",
+    "title": "미국(US) 마켓팅 담당",
+    "career": "2년 이상",
+    "platform": "원티드",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/b04f9c70-0b2c-4330-ae00-f9fb1669a032",
+    "tags": [
+      "콘텐츠마케팅",
+      "마케팅기획_전략",
+      "글로벌마케팅"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_4.0d019d08.jpg"
+  },
+  {
+    "id": "3d50839e-d8ff-4074-b554-d11a24b9cf1c",
+    "type": "job",
+    "company": "투믹스",
+    "title": "(주)투믹스 대만(Taiwan) 마케터 채용",
+    "career": "1년 이상",
+    "platform": "V1",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/3d50839e-d8ff-4074-b554-d11a24b9cf1c",
+    "tags": [
+      "퍼포먼스마케팅",
+      "글로벌마케팅"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_4.7df5496b.png"
+  },
+  {
+    "id": "d9188855-3fcb-4966-8586-3bf1536d83f4",
+    "type": "job",
+    "company": "현대백화점",
+    "title": "고객케어팀 경력채용 (계약직)",
+    "career": "3~8년",
+    "platform": "V1",
+    "date": "2026-06-13",
+    "deadline": "상시채용",
+    "url": "https://zighang.com/recruitment/d9188855-3fcb-4966-8586-3bf1536d83f4",
+    "tags": [
+      "전시_행사마케팅",
+      "CRM마케팅"
+    ],
+    "image": "https://d2juy7qzamcf56.cloudfront.net/2024-09-19/fb1b33c6-60ee-4644-914c-ff93ed530561.png"
+  },
+  {
+    "id": "d36293a8-bada-4e94-b8f2-366c4d923fe9",
+    "type": "job",
+    "company": "CJENM",
+    "title": "[Mnet Plus] 수익화/IP 마케팅",
+    "career": "3~8년",
+    "platform": "원티드",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/d36293a8-bada-4e94-b8f2-366c4d923fe9",
+    "tags": [
+      "퍼포먼스마케팅",
+      "마케팅기획_전략"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_5.6e8f5df8.jpg"
+  },
+  {
+    "id": "e4cb20fc-6113-4390-98ae-3df478ebfa34",
+    "type": "job",
+    "company": "하이브",
+    "title": "[HYBE NEB] 콘텐츠 마케팅",
+    "career": "3~8년",
+    "platform": "원티드",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/e4cb20fc-6113-4390-98ae-3df478ebfa34",
+    "tags": [
+      "브랜드마케팅",
+      "콘텐츠마케팅",
+      "글로벌마케팅"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_5.b254aafa.jpg"
+  },
+  {
+    "id": "886641c8-fca5-475f-aa34-eeb36d90cd7f",
+    "type": "job",
+    "company": "삼양식품",
+    "title": "[삼양식품] Samyang 글로벌 마케팅 BM (삼양1963 브랜드)",
+    "career": "5~7년",
+    "platform": "원티드",
+    "date": "2026-06-13",
+    "deadline": "상시채용",
+    "url": "https://zighang.com/recruitment/886641c8-fca5-475f-aa34-eeb36d90cd7f",
+    "tags": [
+      "브랜드마케팅",
+      "글로벌마케팅"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_4.937aa491.png"
+  },
+  {
+    "id": "38dd40b1-6c52-429d-957a-e4f318a85023",
+    "type": "job",
+    "company": "삼양식품",
+    "title": "[삼양식품] Digital Marketing팀 불닭닷컴 담당",
+    "career": "5~10년",
+    "platform": "원티드",
+    "date": "2026-06-13",
+    "deadline": "상시채용",
+    "url": "https://zighang.com/recruitment/38dd40b1-6c52-429d-957a-e4f318a85023",
+    "tags": [
+      "브랜드마케팅",
+      "콘텐츠마케팅",
+      "글로벌마케팅"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_4.937aa491.png"
+  },
+  {
+    "id": "b57a434f-89d3-4738-a323-7da1cc1a9b1b",
+    "type": "job",
+    "company": "하이브",
+    "title": "[HYBE Label Service] 음원/음반 M&P",
+    "career": "5년 이상",
+    "platform": "그리팅",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/b57a434f-89d3-4738-a323-7da1cc1a9b1b",
+    "tags": [
+      "유통관리",
+      "마케팅기획_전략",
+      "글로벌마케팅"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_5.b254aafa.jpg"
+  },
+  {
+    "id": "04fe6b59-cd76-4c49-9844-38f714b64b93",
+    "type": "job",
+    "company": "하이브",
+    "title": "[BIGHIT MUSIC] 아티스트 마케팅",
+    "career": "5년 이상",
+    "platform": "그리팅",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/04fe6b59-cd76-4c49-9844-38f714b64b93",
+    "tags": [
+      "브랜드마케팅",
+      "콘텐츠마케팅",
+      "마케팅기획_전략"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_5.b254aafa.jpg"
+  },
+  {
+    "id": "63b9bf96-96e3-4d39-81f4-357bc21437c4",
+    "type": "job",
+    "company": "하이브",
+    "title": "[HYBE] 글로벌 오디션 IMC 마케팅",
+    "career": "4년 이상",
+    "platform": "그리팅",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/63b9bf96-96e3-4d39-81f4-357bc21437c4",
+    "tags": [
+      "퍼포먼스마케팅",
+      "마케팅기획_전략",
+      "글로벌마케팅"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_5.b254aafa.jpg"
+  },
+  {
+    "id": "a4329ce6-8f5c-47f2-867b-cea9acccbd20",
+    "type": "job",
+    "company": "하이브",
+    "title": "[HYBE] 아티스트 PR",
+    "career": "5년 이상",
+    "platform": "그리팅",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/a4329ce6-8f5c-47f2-867b-cea9acccbd20",
+    "tags": [
+      "홍보_PR"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_5.b254aafa.jpg"
+  },
+  {
+    "id": "9a205095-5d03-4fb9-95fc-3611b213cad1",
+    "type": "job",
+    "company": "하이브",
+    "title": "[HYBE] 글로벌기업PR",
+    "career": "1~6년",
+    "platform": "그리팅",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/9a205095-5d03-4fb9-95fc-3611b213cad1",
+    "tags": [
+      "홍보_PR",
+      "글로벌마케팅"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_5.b254aafa.jpg"
+  },
+  {
+    "id": "5a71256b-3d8e-42ad-bb65-b44c78d076da",
+    "type": "job",
+    "company": "하이브",
+    "title": "아티스트마케팅 Sr.",
+    "career": "7년 이상",
+    "platform": "그리팅",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/5a71256b-3d8e-42ad-bb65-b44c78d076da",
+    "tags": [
+      "브랜드마케팅"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_5.b254aafa.jpg"
+  },
+  {
+    "id": "e8b0a499-bf4f-49e6-b8cc-968aa3bc59c7",
+    "type": "job",
+    "company": "하이브",
+    "title": "[KOZ Entertainment] 아티스트마케팅",
+    "career": "3년 이상",
+    "platform": "그리팅",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/e8b0a499-bf4f-49e6-b8cc-968aa3bc59c7",
+    "tags": [
+      "브랜드마케팅",
+      "콘텐츠마케팅",
+      "마케팅기획_전략"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_5.b254aafa.jpg"
+  },
+  {
+    "id": "d82b703f-afff-420d-a1f5-09442d2c55bc",
+    "type": "job",
+    "company": "하이브",
+    "title": "[HYBE Media Studio] 미디어 솔루션 Sr.",
+    "career": "7년 이상",
+    "platform": "그리팅",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/d82b703f-afff-420d-a1f5-09442d2c55bc",
+    "tags": [
+      "콘텐츠마케팅",
+      "마케팅기획_전략",
+      "광고기획_AE"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_5.b254aafa.jpg"
+  },
+  {
+    "id": "15946e19-7020-4a17-80ce-bdb865853016",
+    "type": "job",
+    "company": "하이브",
+    "title": "[BIGHIT MUSIC] Senior Artist Marketer (앨범 & 브랜드 전략)(BTS 담당)",
+    "career": "7년 이상",
+    "platform": "그리팅",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/15946e19-7020-4a17-80ce-bdb865853016",
+    "tags": [
+      "브랜드마케팅",
+      "마케팅기획_전략",
+      "글로벌마케팅"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_5.b254aafa.jpg"
+  },
+  {
+    "id": "ccbcd770-eaaf-403c-aa82-3338cd41adfa",
+    "type": "job",
+    "company": "하이브",
+    "title": "[BELIFT LAB] 레이블 인사이트 전략",
+    "career": "5년 이상",
+    "platform": "그리팅",
+    "date": "2026-06-13",
+    "deadline": "상시채용",
+    "url": "https://zighang.com/recruitment/ccbcd770-eaaf-403c-aa82-3338cd41adfa",
+    "tags": [
+      "브랜드마케팅",
+      "마케팅기획_전략",
+      "글로벌마케팅"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_5.b254aafa.jpg"
+  },
+  {
+    "id": "59d5c2a9-bcd2-4203-a3c1-1b9874cd9b01",
+    "type": "job",
+    "company": "하이브",
+    "title": "[HYBE NEB] 스토리 IP 콘텐츠 마케팅",
+    "career": "3년 이상",
+    "platform": "그리팅",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/59d5c2a9-bcd2-4203-a3c1-1b9874cd9b01",
+    "tags": [
+      "콘텐츠마케팅",
+      "마케팅기획_전략",
+      "글로벌마케팅"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_5.b254aafa.jpg"
+  },
+  {
+    "id": "d2160def-7846-415a-bdbd-e5129383ac0c",
+    "type": "job",
+    "company": "하이브",
+    "title": "[HYBE] 아티스트마케팅 Sr.",
+    "career": "7년 이상",
+    "platform": "그리팅",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/d2160def-7846-415a-bdbd-e5129383ac0c",
+    "tags": [
+      "브랜드마케팅",
+      "콘텐츠마케팅",
+      "마케팅기획_전략"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_5.b254aafa.jpg"
+  },
+  {
+    "id": "937e0146-a870-4948-9748-4dcc37841580",
+    "type": "job",
+    "company": "하이브",
+    "title": "[PLEDIS Entertainment] 아티스트마케팅",
+    "career": "5년 이상",
+    "platform": "그리팅",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/937e0146-a870-4948-9748-4dcc37841580",
+    "tags": [
+      "브랜드마케팅",
+      "마케팅기획_전략",
+      "글로벌마케팅"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_5.b254aafa.jpg"
+  },
+  {
+    "id": "1ac72287-db81-48c8-8bac-a422459798b6",
+    "type": "job",
+    "company": "하이브",
+    "title": "[HYBE] 아티스트콘텐츠 마케팅 Jr.",
+    "career": "3년 이상",
+    "platform": "그리팅",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/1ac72287-db81-48c8-8bac-a422459798b6",
+    "tags": [
+      "SNS마케팅",
+      "콘텐츠마케팅",
+      "영상편집"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_5.b254aafa.jpg"
+  },
+  {
+    "id": "98049c3e-44c0-45be-9de5-fa05fc90502c",
+    "type": "job",
+    "company": "하이브",
+    "title": "[HYBE] 중국 사업 운영 지원(공연이벤트)",
+    "career": "1년 이상",
+    "platform": "그리팅",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/98049c3e-44c0-45be-9de5-fa05fc90502c",
+    "tags": [
+      "홍보_PR",
+      "글로벌마케팅",
+      "전시_행사마케팅"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_5.b254aafa.jpg"
+  },
+  {
+    "id": "dc28739f-c2ee-44e4-8866-b4de17577145",
+    "type": "job",
+    "company": "아임웹",
+    "title": "Performance Marketer",
+    "career": "3~8년",
+    "platform": "원티드",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/dc28739f-c2ee-44e4-8866-b4de17577145",
+    "tags": [
+      "퍼포먼스마케팅",
+      "광고기획_AE"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_5.06a182ce.png"
+  },
+  {
+    "id": "c9a691b5-0b86-4963-9b81-ac8216069ce3",
+    "type": "job",
+    "company": "하이브",
+    "title": "[HYBE] 브랜드공간경험 기획/운영",
+    "career": "3년 이상",
+    "platform": "그리팅",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/c9a691b5-0b86-4963-9b81-ac8216069ce3",
+    "tags": [
+      "브랜드마케팅",
+      "전시_행사마케팅"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_5.b254aafa.jpg"
+  },
+  {
+    "id": "174f5931-513f-4e18-afec-c6bb27728df1",
+    "type": "job",
+    "company": "야나두",
+    "title": "디지털 마케터",
+    "career": "5~10년",
+    "platform": "로켓펀치",
+    "date": "2026-06-13",
+    "deadline": "상시채용",
+    "url": "https://zighang.com/recruitment/174f5931-513f-4e18-afec-c6bb27728df1",
+    "tags": [
+      "퍼포먼스마케팅"
+    ],
+    "image": "https://cdn.rallit.com/image/2023-06-07/6aaMAhBqva55FrbhorEMA.png?f=avif&w=420"
+  },
+  {
+    "id": "c2650cc8-9420-4600-b5de-548b70520a6b",
+    "type": "job",
+    "company": "하이브",
+    "title": "[PLEDIS Entertainment] 아티스트마케팅",
+    "career": "1년 이상",
+    "platform": "그리팅",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/c2650cc8-9420-4600-b5de-548b70520a6b",
+    "tags": [
+      "브랜드마케팅",
+      "SNS마케팅",
+      "콘텐츠마케팅"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_5.b254aafa.jpg"
+  },
+  {
+    "id": "9ec662ea-d472-4517-9486-2ff861cb423b",
+    "type": "job",
+    "company": "우아한형제들",
+    "title": "마케팅 테크(MarTech)",
+    "career": "7~14년",
+    "platform": "원티드",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/9ec662ea-d472-4517-9486-2ff861cb423b",
+    "tags": [
+      "퍼포먼스마케팅",
+      "마케팅기획_전략",
+      "CRM마케팅"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_5.8f75d757.jpg"
+  },
+  {
+    "id": "fe272b48-96fc-4915-a042-44c6c0bcd17f",
+    "type": "job",
+    "company": "우아한형제들",
+    "title": "마케팅기획(배민클럽)",
+    "career": "5~15년",
+    "platform": "원티드",
+    "date": "2026-06-13",
+    "deadline": "상시채용",
+    "url": "https://zighang.com/recruitment/fe272b48-96fc-4915-a042-44c6c0bcd17f",
+    "tags": [
+      "마케팅기획_전략",
+      "CRM마케팅"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_5.8f75d757.jpg"
+  },
+  {
+    "id": "4196a393-3ef7-43f2-a1e6-01fed8eae7a1",
+    "type": "job",
+    "company": "하이브",
+    "title": "[HYBE] 브랜드공간경험 기획/운영",
+    "career": "3년 이상",
+    "platform": "원티드",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/4196a393-3ef7-43f2-a1e6-01fed8eae7a1",
+    "tags": [
+      "브랜드마케팅",
+      "전시_행사마케팅"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_5.b254aafa.jpg"
+  },
+  {
+    "id": "e969dd1f-efc0-4739-b3f7-4955d0beeca0",
+    "type": "job",
+    "company": "하이브",
+    "title": "[BELIFT LAB] 아티스트마케팅 Jr.",
+    "career": "4년 이상",
+    "platform": "그리팅",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/e969dd1f-efc0-4739-b3f7-4955d0beeca0",
+    "tags": [
+      "브랜드마케팅",
+      "마케팅기획_전략"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_5.b254aafa.jpg"
+  },
+  {
+    "id": "573a536c-ed72-49c9-9be6-b3ff5bfddf7a",
+    "type": "job",
+    "company": "하이브",
+    "title": "[KOZ Entertainment] 솔로 아티스트 마케팅 담당",
+    "career": "2년 이상",
+    "platform": "그리팅",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/573a536c-ed72-49c9-9be6-b3ff5bfddf7a",
+    "tags": [
+      "브랜드마케팅",
+      "마케팅기획_전략"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_5.b254aafa.jpg"
+  },
+  {
+    "id": "f9d9093c-bfc6-4c55-88c3-ee9966461894",
+    "type": "job",
+    "company": "SM엔터테인먼트",
+    "title": "중국 마케팅 PM 담당자 채용 (경력)",
+    "career": "3년 이상",
+    "platform": "그리팅",
+    "date": "2026-06-13",
+    "deadline": "2026-06-21",
+    "url": "https://zighang.com/recruitment/f9d9093c-bfc6-4c55-88c3-ee9966461894",
+    "tags": [
+      "마케팅기획_전략",
+      "글로벌마케팅"
+    ],
+    "image": "https://d2juy7qzamcf56.cloudfront.net/2024-10-24/f77c542c-7fa9-46ff-9316-e3048806000e.png"
+  },
+  {
+    "id": "8d9d4500-daac-4ec2-887d-c027831c6f05",
+    "type": "job",
+    "company": "LF",
+    "title": "[아떼뷰티] 브랜드마케팅 담당자",
+    "career": "7~10년",
+    "platform": "그리팅",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/8d9d4500-daac-4ec2-887d-c027831c6f05",
+    "tags": [
+      "브랜드마케팅",
+      "뷰티MD",
+      "상품기획"
+    ],
+    "image": "https://d1x2xr0zrd54e1.cloudfront.net/companies/logos/3068144d-b261-474c-aa44-8756e51f9af7.png"
+  },
+  {
+    "id": "7d030e58-ac9c-41e8-aafa-661563001a0c",
+    "type": "job",
+    "company": "하이브",
+    "title": "[BELIFT LAB] 마케팅 콘텐츠기획(영상콘텐츠제작)*",
+    "career": "3년 이상",
+    "platform": "그리팅",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/7d030e58-ac9c-41e8-aafa-661563001a0c",
+    "tags": [
+      "콘텐츠마케팅",
+      "콘텐츠기획_에디터",
+      "영상편집"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_5.b254aafa.jpg"
+  },
+  {
+    "id": "67b43467-bba3-49d1-b21a-2b9b754999d4",
+    "type": "job",
+    "company": "하이브",
+    "title": "[HYBE Label Service] 음원/음반 마케팅&프로모션",
+    "career": "5년 이상",
+    "platform": "원티드",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/67b43467-bba3-49d1-b21a-2b9b754999d4",
+    "tags": [
+      "유통관리",
+      "마케팅기획_전략",
+      "글로벌마케팅"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_5.b254aafa.jpg"
+  },
+  {
+    "id": "32d86edc-048e-44cf-9354-2c5110246533",
+    "type": "job",
+    "company": "NH투자증권",
+    "title": "[경력직 수시 채용] 디지털 사업부 디지털 프로덕트 본부 (디지털 마케팅 전략)",
+    "career": "3년 이상",
+    "platform": "리크루터_V2",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/32d86edc-048e-44cf-9354-2c5110246533",
+    "tags": [
+      "퍼포먼스마케팅",
+      "CRM마케팅"
+    ],
+    "image": "https://d1x2xr0zrd54e1.cloudfront.net/companies/logos/4c452632-b6e7-4e35-8b9a-1c79b8613b10.png"
+  },
+  {
+    "id": "6b4cd973-8e21-4845-b616-df4e48389ccd",
+    "type": "job",
+    "company": "삼양식품",
+    "title": "[삼양식품] 불닭 Buldak noodle 글로벌 마케팅 PM",
+    "career": "7년 이상",
+    "platform": "원티드",
+    "date": "2026-06-13",
+    "deadline": "상시채용",
+    "url": "https://zighang.com/recruitment/6b4cd973-8e21-4845-b616-df4e48389ccd",
+    "tags": [
+      "브랜드마케팅",
+      "상품기획",
+      "글로벌마케팅"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_4.937aa491.png"
+  },
+  {
+    "id": "33f01b62-442f-4e60-b30c-3c2f7122cbb2",
+    "type": "job",
+    "company": "KT",
+    "title": "[ kt nasmedia ] 2026 년 6 월 kt nasmedia 채용 ( 채용시 마감 )",
+    "career": "경력무관",
+    "platform": "리크루터_V2",
+    "date": "2026-06-13",
+    "deadline": "2026-06-30",
+    "url": "https://zighang.com/recruitment/33f01b62-442f-4e60-b30c-3c2f7122cbb2",
+    "tags": [
+      "SNS마케팅",
+      "퍼포먼스마케팅",
+      "글로벌마케팅"
+    ],
+    "image": "https://d2juy7qzamcf56.cloudfront.net/2024-10-26/0e207d3b-3c3f-420e-993f-5bf0d62dc158.png"
+  },
+  {
+    "id": "033d1697-74c9-4a84-a14d-38b66bec6be2",
+    "type": "job",
+    "company": "삼양식품",
+    "title": "[삼양식품] 커머셜 마케팅 데이터 분석 파트장/매니저 (7년 이상)",
+    "career": "7년 이상",
+    "platform": "원티드",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/033d1697-74c9-4a84-a14d-38b66bec6be2",
+    "tags": [
+      "퍼포먼스마케팅",
+      "데이터분석가",
+      "마케팅기획_전략"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_4.937aa491.png"
+  },
+  {
+    "id": "9c156eae-8bff-4ba2-913e-da6df489875b",
+    "type": "job",
+    "company": "에고이즘",
+    "title": "[feura] 바이오 기능성 기초 화장품 마케터",
+    "career": "0~15년",
+    "platform": "원티드",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/9c156eae-8bff-4ba2-913e-da6df489875b",
+    "tags": [
+      "브랜드마케팅",
+      "SNS마케팅"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_5.a6a1da7c.jpg"
+  },
+  {
+    "id": "527a0186-c1bb-43ad-a488-b7223fe60f80",
+    "type": "job",
+    "company": "CJENM",
+    "title": "[Mnet Plus] CRM마케팅",
+    "career": "3~8년",
+    "platform": "원티드",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/527a0186-c1bb-43ad-a488-b7223fe60f80",
+    "tags": [
+      "CRM마케팅"
+    ],
+    "image": "https://static.wanted.co.kr/images/wdes/0_5.6e8f5df8.jpg"
+  },
+  {
+    "id": "edc8a9e3-f862-4ab4-ba6e-cab87d655d9f",
+    "type": "job",
+    "company": "LF",
+    "title": "온라인마케팅_LFmall, SNS 컨텐츠기획",
+    "career": "5년 이상",
+    "platform": "그리팅",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/edc8a9e3-f862-4ab4-ba6e-cab87d655d9f",
+    "tags": [
+      "SNS마케팅",
+      "콘텐츠마케팅"
+    ],
+    "image": "https://d1x2xr0zrd54e1.cloudfront.net/companies/logos/3068144d-b261-474c-aa44-8756e51f9af7.png"
+  },
+  {
+    "id": "6c2f3728-c1f1-45cc-abc4-371bbcae5e03",
+    "type": "job",
+    "company": "하나카드",
+    "title": "2026년 하나카드 스포츠 마케팅 계약직 수시채용",
+    "career": "경력무관",
+    "platform": "V1",
+    "date": "2026-06-13",
+    "deadline": "2026-06-16",
+    "url": "https://zighang.com/recruitment/6c2f3728-c1f1-45cc-abc4-371bbcae5e03",
+    "tags": [
+      "마케팅기획_전략",
+      "전시_행사마케팅"
+    ],
+    "image": "https://d2juy7qzamcf56.cloudfront.net/2024-09-06/ea60181d-97eb-4bae-8263-113ccc71e0d8.png"
+  },
+  {
+    "id": "64805581-6b94-41ea-b955-cbb6514522db",
+    "type": "job",
+    "company": "현대자동차",
+    "title": "브랜드 체험 공간 기획 및 컨텐츠 운영(Team Lead)",
+    "career": "3~10년",
+    "platform": "아트모아",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/64805581-6b94-41ea-b955-cbb6514522db",
+    "tags": [
+      "전시_행사마케팅"
+    ],
+    "image": "https://d1x2xr0zrd54e1.cloudfront.net/companies/logos/b2ede003-4e2c-4c9b-9269-5d089257e3c0.png"
+  },
+  {
+    "id": "d47f91d4-1a73-4b5d-b786-f9fbabb18a82",
+    "type": "job",
+    "company": "한국투자증권",
+    "title": "[한국투자증권] PB전략부 CRM 경력직 채용",
+    "career": "3년 이상",
+    "platform": "금융투자협회",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/d47f91d4-1a73-4b5d-b786-f9fbabb18a82",
+    "tags": [
+      "CRM마케팅"
+    ],
+    "image": "https://d2juy7qzamcf56.cloudfront.net/2024-08-27/ee717edf-a111-42b8-bba7-9d1075869637.png"
+  },
+  {
+    "id": "83e371f7-dc8b-424b-83b2-4aa99e0f0828",
+    "type": "job",
+    "company": "한국투자증권",
+    "title": "[한국투자증권] eBiz고객부 파생전문 마케팅 경력직 채용",
+    "career": "3년 이상",
+    "platform": "금융투자협회",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/83e371f7-dc8b-424b-83b2-4aa99e0f0828",
+    "tags": [
+      "콘텐츠마케팅",
+      "금융_보험영업",
+      "CRM마케팅"
+    ],
+    "image": "https://d2juy7qzamcf56.cloudfront.net/2024-08-27/ee717edf-a111-42b8-bba7-9d1075869637.png"
+  },
+  {
+    "id": "34bea688-1ba9-439d-a929-d71bbf765b48",
+    "type": "job",
+    "company": "한국투자증권",
+    "title": "[한국투자증권] eBiz전략부 경력직 채용",
+    "career": "3년 이상",
+    "platform": "금융투자협회",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/34bea688-1ba9-439d-a929-d71bbf765b48",
+    "tags": [
+      "퍼포먼스마케팅",
+      "마케팅기획_전략",
+      "CRM마케팅"
+    ],
+    "image": "https://d2juy7qzamcf56.cloudfront.net/2024-08-27/ee717edf-a111-42b8-bba7-9d1075869637.png"
+  },
+  {
+    "id": "28fb95f6-ec3e-42e8-92ec-465e3ae579f7",
+    "type": "job",
+    "company": "NHAmundi자산운용",
+    "title": "[NH-Amundi자산운용] 마케팅부문 디지털마케팅실 경력직원(계약직) 채용공고",
+    "career": "1년 이상",
+    "platform": "금융투자협회",
+    "date": "2026-06-13",
+    "deadline": "2026-06-24",
+    "url": "https://zighang.com/recruitment/28fb95f6-ec3e-42e8-92ec-465e3ae579f7",
+    "tags": [
+      "SNS마케팅",
+      "콘텐츠마케팅"
+    ],
+    "image": "https://d1x2xr0zrd54e1.cloudfront.net/companies/logos/d9136784-eb48-481e-ac27-d0c46d4fd42a.png"
+  },
+  {
+    "id": "9021f357-ccfe-4498-9fc5-fa28b89deab3",
+    "type": "job",
+    "company": "키움증권",
+    "title": "[키움증권] 자산관리부문 연금사업팀 경력직 채용",
+    "career": "3년 이상",
+    "platform": "금융투자협회",
+    "date": "2026-06-13",
+    "deadline": "채용시마감",
+    "url": "https://zighang.com/recruitment/9021f357-ccfe-4498-9fc5-fa28b89deab3",
+    "tags": [
+      "금융상품개발_영업",
+      "운용_트레이딩",
+      "마케팅기획_전략"
+    ],
+    "image": "https://d1x2xr0zrd54e1.cloudfront.net/companies/logos/6decfb92-ffce-4fe8-adf5-b2bd9af8d966.png"
+  },
+  {
+    "id": "5ec7a146-05fc-47ea-ae85-92485877fc3e",
+    "type": "job",
+    "company": "이노션",
+    "title": "CRM 마케팅 운영",
+    "career": "2년 이상",
+    "platform": "V1",
+    "date": "2026-06-13",
+    "deadline": "2026-06-21",
+    "url": "https://zighang.com/recruitment/5ec7a146-05fc-47ea-ae85-92485877fc3e",
+    "tags": [
+      "CRM마케팅"
+    ],
+    "image": "https://d2juy7qzamcf56.cloudfront.net/2024-08-13/1a36c3db-0c6b-4542-afc7-10f92f846bea.png"
+  },
+  {
+    "id": "c69c303a-be4d-477c-ab75-254d1b415379",
+    "type": "job",
+    "company": "두산건설",
+    "title": "2026년 두산건설 경력직(정규직/계약직) 채용(상품마케팅·영업·분양마케팅)",
+    "career": "3년 이상",
+    "platform": "V1",
+    "date": "2026-06-13",
+    "deadline": "2026-06-30",
+    "url": "https://zighang.com/recruitment/c69c303a-be4d-477c-ab75-254d1b415379",
+    "tags": [
+      "상품기획",
+      "마케팅기획_전략",
+      "B2B영업"
+    ],
+    "image": "https://d2juy7qzamcf56.cloudfront.net/2024-10-20/9d47f5ec-25dd-4374-a6e3-b9e0d13c38da.png"
+  }
+]

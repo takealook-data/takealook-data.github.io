@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>인사이트 아카이브 - 로컬 프리뷰</title>
+  <link rel="stylesheet" href="/assets/css/insight.css">
+  <script src="/assets/js/insight.js" defer></script>
+  <style>
+    /* Add minimal body padding and global background to simulate theme container */
+    body {
+      background: #fafafa;
+      margin: 0;
+      padding: 20px;
+    }
+    .preview-nav {
+      max-width: 1200px;
+      margin: 0 auto 20px auto;
+      padding: 10px;
+      background: #fff;
+      border: 1px solid #eaeaea;
+      border-radius: 8px;
+      font-family: -apple-system, sans-serif;
+      font-size: 0.9rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="preview-nav">
+    ⚠️ <strong>Jekyll 빌드 전 로컬 프리뷰 모드</strong> | 실제 사이트에는 상단 메뉴 GNB가 적용되며 이 안내선은 보이지 않습니다.
+  </div>
+
+  <div class="insight-wrapper">
+    <header class="insight-header">
+      <h1 class="insight-title">인사이트 아카이브</h1>
+      <p class="insight-subtitle">마케팅 테크(MMP-PA-CRM), 데이터 분석 칼럼, 그리고 실시간 대기업 마케터 채용 정보를 한곳에 집계합니다.</p>
+    </header>
+
+    <div class="insight-toolbar">
+      <div class="insight-tabs">
+        <button class="insight-tab-btn active" data-tab="all">전체</button>
+        <button class="insight-tab-btn" data-tab="job">채용공고</button>
+        <button class="insight-tab-btn" data-tab="article">아티클</button>
+        <button class="insight-tab-btn" data-tab="report">보고서</button>
+      </div>
+      
+      <div class="insight-search-wrapper">
+        <svg class="insight-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" id="insight-search" class="insight-search-input" placeholder="기업명, 직무, 키워드 검색...">
+      </div>
+    </div>
+
+    <div class="insight-grid" id="insight-grid">
+      <div class="insight-empty">
+        <div class="insight-empty-icon">⏳</div>
+        <div class="insight-empty-title">아카이브를 로드하고 있습니다</div>
+        <p>잠시만 기다려 주세요...</p>
+      </div>
+    </div>
+
+    <div class="insight-pagination" id="insight-pagination">
+      <!-- Rendered dynamically -->
+    </div>
+  </div>
+</body>
+</html>

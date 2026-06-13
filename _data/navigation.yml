@@ -20,5 +20,8 @@ main:
   - title: "포트폴리오"
     url: /portfolio/
 
+  - title: "인사이트"
+    url: /insight/
+
   - title: "소개"
     url: /about/
