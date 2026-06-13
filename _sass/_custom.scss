@@ -93,6 +93,14 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 0 !important;
   padding: 0 !important;
   box-shadow: none !important;
+
+  @media screen and (min-width: 1024px) {
+    position: sticky !important;
+    top: 2.5em !important;
+    height: auto !important;
+    overflow-y: visible !important;
+    padding-top: 0 !important;
+  }
 }
 
 .author__avatar img {
