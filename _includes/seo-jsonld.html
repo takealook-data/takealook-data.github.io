@@ -1,0 +1,100 @@
+{% comment %}
+  ============================================================================
+  Structured data (JSON-LD) for SEO + GEO (Generative Engine Optimization).
+  Emitted in <head> after the theme's seo.html. Search engines and AI answer
+  engines (Perplexity, ChatGPT, Google AI Overviews) read these graphs to
+  understand the site, its author, and each article.
+  ============================================================================
+{% endcomment %}
+
+{%- assign _site_url = site.url | append: site.baseurl -%}
+{%- assign _page_url = page.url | replace: "index.html", "" | prepend: _site_url -%}
+
+{%- comment -%} Resolve a description from the most specific source available. {%- endcomment -%}
+{%- assign _desc = page.description | default: page.excerpt | default: site.description -%}
+{%- assign _desc = _desc | markdownify | strip_html | strip_newlines | escape_once -%}
+
+{%- comment -%} Resolve a share/hero image, always as an absolute URL. {%- endcomment -%}
+{%- if page.header.teaser -%}
+  {%- assign _img_raw = page.header.teaser -%}
+{%- elsif page.header.image -%}
+  {%- assign _img_raw = page.header.image -%}
+{%- elsif page.header.og_image -%}
+  {%- assign _img_raw = page.header.og_image -%}
+{%- else -%}
+  {%- assign _img_raw = site.og_image -%}
+{%- endif -%}
+{%- if _img_raw contains "://" -%}
+  {%- assign _img = _img_raw -%}
+{%- elsif _img_raw -%}
+  {%- assign _img = _img_raw | prepend: "/images/" | prepend: site.baseurl | prepend: site.url -%}
+{%- endif -%}
+
+{%- comment -%} Author + publisher identity. {%- endcomment -%}
+{%- assign _author_name = page.author.name | default: site.author.name | default: site.title -%}
+
+<!-- begin JSON-LD structured data (SEO/GEO) -->
+{%- if page.date -%}
+{%- comment -%} ----- Article / BlogPosting for posts ----- {%- endcomment -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": { "@type": "WebPage", "@id": {{ _page_url | jsonify }} },
+  "headline": {{ page.title | markdownify | strip_html | strip_newlines | escape_once | jsonify }},
+  "description": {{ _desc | jsonify }},
+  {% if _img %}"image": [{{ _img | jsonify }}],{% endif %}
+  "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
+  "dateModified": {{ page.last_modified_at | default: page.date | date_to_xmlschema | jsonify }},
+  "inLanguage": {{ site.locale | default: "ko-KR" | jsonify }},
+  "author": {
+    "@type": "Person",
+    "name": {{ _author_name | jsonify }}{% if site.author.uri %},
+    "url": {{ site.author.uri | jsonify }}{% endif %}{% if site.author.employer %},
+    "worksFor": { "@type": "Organization", "name": {{ site.author.employer | jsonify }} }{% endif %}
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": {{ site.title | jsonify }},
+    "logo": {
+      "@type": "ImageObject",
+      "url": {{ "/images/favicon-512x512.png" | prepend: site.baseurl | prepend: site.url | jsonify }}
+    }
+  },
+  "url": {{ _page_url | jsonify }}{% if page.tags %},
+  "keywords": {{ page.tags | join: ", " | jsonify }}{% elsif page.categories %},
+  "keywords": {{ page.categories | join: ", " | jsonify }}{% endif %}
+}
+</script>
+{%- endif -%}
+
+{%- comment -%} ----- WebSite (every page) ----- {%- endcomment -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": {{ site.title | jsonify }},
+  "url": {{ _site_url | jsonify }},
+  "description": {{ site.description | strip_html | strip_newlines | escape_once | jsonify }},
+  "inLanguage": {{ site.locale | default: "ko-KR" | jsonify }},
+  "author": {
+    "@type": "Person",
+    "name": {{ site.author.name | default: site.title | jsonify }}
+  }
+}
+</script>
+
+{%- comment -%} ----- BreadcrumbList for posts (navigation context for engines) ----- {%- endcomment -%}
+{%- if page.date -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": {{ _site_url | append: "/" | jsonify }} },
+    { "@type": "ListItem", "position": 2, "name": {{ page.title | markdownify | strip_html | strip_newlines | escape_once | jsonify }}, "item": {{ _page_url | jsonify }} }
+  ]
+}
+</script>
+{%- endif -%}
+<!-- end JSON-LD structured data -->

@@ -17,14 +17,38 @@ body {
 
 #main {
   background-color: #ffffff !important;
-  max-width: 960px !important; /* Compact column width for wide margins and legibility */
-  padding: 0 40px !important;
+  max-width: 1080px !important; /* Wide single column (toss.tech style) */
+  padding: 0 20px !important;   /* Mobile-first: tighter gutters on small screens */
+  margin: 0 auto !important;
+  display: block !important;
+  box-sizing: border-box !important;
+
+  @media screen and (min-width: 768px) {
+    padding: 0 32px !important;
+  }
 
   @media screen and (min-width: 1024px) {
-    display: flex !important;
-    align-items: flex-start !important;
-    gap: 40px !important;
+    padding: 0 40px !important;
   }
+}
+
+/* Neutralize Susy grid on .page/.archive/.splash so the toss-style single column
+   actually fills #main instead of being clipped to span(10 of 12) of $large container. */
+.page, .archive, .splash {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  float: none !important;
+}
+
+.page__related {
+  width: 100% !important;
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+  float: none !important;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -79,23 +103,46 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .masthead__menu {
-  max-width: 960px !important; /* Align with main column content width */
+  max-width: 1080px !important; /* Align with #main content width */
   margin: 0 auto !important;
   display: flex !important;
   justify-content: space-between !important;
   align-items: center !important;
-  padding: 0 40px !important; /* Equal padding with #main */
+  gap: 12px !important;
+  padding: 0 20px !important; /* Equal padding with #main (mobile-first) */
   box-sizing: border-box !important;
   float: none !important;
   width: 100% !important;
+
+  @media screen and (min-width: 768px) {
+    padding: 0 32px !important;
+  }
+
+  @media screen and (min-width: 1024px) {
+    padding: 0 40px !important;
+  }
 }
 
 .visible-links {
   display: flex !important;
-  gap: 16px !important; /* Tight clean gap for GNB items */
+  gap: 8px !important; /* Tight clean gap for GNB items */
   list-style: none !important;
   margin: 0 !important;
   padding: 0 !important;
+  flex-wrap: nowrap !important;
+  overflow-x: auto !important;            /* Horizontal scroll instead of wrap on small screens */
+  -webkit-overflow-scrolling: touch !important;
+  scrollbar-width: none !important;       /* Firefox: hide scrollbar */
+
+  &::-webkit-scrollbar { display: none !important; } /* WebKit: hide scrollbar */
+
+  @media screen and (min-width: 600px) {
+    gap: 16px !important;
+  }
+}
+
+.masthead__menu-item a {
+  white-space: nowrap !important; /* Prevent menu labels from breaking mid-word */
 }
 
 .site-title {
@@ -140,34 +187,12 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* 3. Flat Author Profile Sidebar (No Cards/Borders) */
-.sidebar {
-  background: transparent !important;
-  border: none !important;
-  border-radius: 0 !important;
-  padding: 0 !important;
-  box-shadow: none !important;
-
-  @media screen and (min-width: 1024px) {
-    position: sticky !important;
-    top: 2.5em !important;
-    flex: 0 0 200px !important; /* Fixed width on desktop to prevent resizing/overlap */
-    width: 200px !important;
-    float: none !important;
-    margin-right: 0 !important;
-    height: auto !important;
-    overflow-y: visible !important;
-    padding-top: 0 !important;
-  }
-}
-
-@media screen and (min-width: 1024px) {
-  .page, .archive, .splash {
-    flex: 1 !important;
-    float: none !important;
-    width: auto !important;
-    margin: 0 !important;
-  }
+/* 3. Sidebar removed — toss.tech style is a single wide column */
+.sidebar,
+.author__avatar,
+.author__content,
+.author__urls-wrapper {
+  display: none !important;
 }
 
 .author__avatar img {
@@ -250,6 +275,23 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* 4-0. Responsive card grid for the index preview lists (toss-style) */
+.archive-list {
+  display: grid !important;
+  grid-template-columns: 1fr !important;   /* Single column on mobile */
+  gap: 32px !important;
+
+  @media screen and (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr) !important; /* Two columns on tablet+ */
+    gap: 40px !important;
+  }
+
+  /* Inside a grid, cards no longer need bottom margin */
+  .archive__item {
+    margin-bottom: 0 !important;
+  }
+}
+
 /* 4. Flat Post Archive Items with Wide Spacing */
 .archive__item {
   background: transparent !important;
@@ -329,9 +371,10 @@ a, button, input, select, textarea {
   overflow: hidden !important;
   margin-bottom: 16px !important;
   display: block !important;
-  height: 160px !important; /* Smaller, more elegant thumbnail height */
+  aspect-ratio: 16 / 9 !important; /* Toss-style card ratio */
+  height: auto !important;
   background-color: #F9F6F0 !important; /* Matches Anthropic style image background */
-  
+
   img {
     transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
     width: 100% !important;
@@ -339,8 +382,121 @@ a, button, input, select, textarea {
     object-fit: cover !important; /* Cover the container completely to remove square boundaries */
     display: block !important;
   }
-  
+
   &:hover img {
     transform: scale(1.03) !important; /* Toss Style Zoom */
   }
+}
+
+/* 7. Toss-style post detail headline + content polish */
+.page__title {
+  font-size: 1.625rem !important;  /* 26px headline on mobile */
+  line-height: 1.35 !important;
+  letter-spacing: -0.5px !important;
+  margin-bottom: 16px !important;
+  color: #191f28 !important;
+  word-break: keep-all !important;
+
+  @media screen and (min-width: 600px) {
+    font-size: 1.875rem !important; /* 30px */
+  }
+
+  @media screen and (min-width: 1024px) {
+    font-size: 2.25rem !important;  /* 36px on desktop */
+    letter-spacing: -0.6px !important;
+  }
+}
+
+.page__content {
+  h2 {
+    border-bottom: none !important; /* Toss avoids hairline rules under H2 */
+    padding-bottom: 0 !important;
+    margin-top: 2em !important;
+    font-size: 1.5rem !important;
+    letter-spacing: -0.4px !important;
+  }
+
+  h3 {
+    font-size: 1.25rem !important;
+    margin-top: 1.6em !important;
+    letter-spacing: -0.3px !important;
+  }
+
+  img {
+    border-radius: 12px !important;
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  blockquote {
+    border-left: 3px solid #0050ff !important;
+    background: #f9fafb !important;
+    padding: 12px 18px !important;
+    border-radius: 0 8px 8px 0 !important;
+    color: #4e5968 !important;
+  }
+
+  /* Prevent wide tables / code / embeds from overflowing on mobile */
+  .table-wrapper,
+  table {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  pre,
+  pre > code {
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    white-space: pre !important;
+    word-wrap: normal !important;
+  }
+
+  /* Inline code should wrap rather than push layout wide */
+  :not(pre) > code {
+    word-break: break-word !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  iframe,
+  embed,
+  object,
+  video {
+    max-width: 100% !important;
+  }
+
+  /* Long URLs / unbroken strings */
+  a {
+    overflow-wrap: anywhere !important;
+  }
+}
+
+/* Toss-style responsive body type: comfortable on phones, larger on desktop */
+@media screen and (max-width: 599px) {
+  body { font-size: 15px !important; }
+  .page__content,
+  .page__content p,
+  .page__content li {
+    font-size: 16px !important;
+    line-height: 1.7 !important;
+  }
+  .archive__item-title { font-size: 1.1875rem !important; } /* 19px */
+  .masthead__inner {
+    padding-top: 16px !important;
+    padding-bottom: 16px !important;
+  }
+  .site-title { font-size: 1.0625rem !important; } /* 17px */
+}
+
+.page__meta {
+  color: #8b95a1 !important;
+  font-size: 0.875rem !important;
+  border-top: none !important;
+}
+
+.page__date {
+  color: #8b95a1 !important;
+  font-size: 0.875rem !important;
 }

@@ -18,4 +18,26 @@
 <link rel="icon" href="/images/favicon.ico"/>
 <meta name="theme-color" content="#ffffff"/>
 
+<!-- Open Graph image + article metadata (complements theme seo.html OG tags) -->
+{% assign og_img_raw = page.header.teaser | default: page.header.image | default: page.header.og_image | default: site.og_image %}
+{% if og_img_raw %}
+  {% if og_img_raw contains "://" %}
+    {% assign og_img = og_img_raw %}
+  {% else %}
+    {% assign og_img = og_img_raw | prepend: "/images/" | prepend: site.baseurl | prepend: site.url %}
+  {% endif %}
+  <meta property="og:image" content="{{ og_img }}">
+  <meta property="og:image:alt" content="{{ page.title | default: site.title | markdownify | strip_html | strip_newlines | escape_once }}">
+  <meta name="twitter:image" content="{{ og_img }}">
+{% endif %}
+{% if page.date %}
+  {% comment %} article:published_time is already emitted by the theme's seo.html — don't duplicate it. {% endcomment %}
+  {% if page.last_modified_at %}<meta property="article:modified_time" content="{{ page.last_modified_at | date_to_xmlschema }}">{% endif %}
+  <meta property="article:author" content="{{ page.author.name | default: site.author.name | default: site.title }}">
+  {% if page.categories.first %}<meta property="article:section" content="{{ page.categories | first }}">{% endif %}
+  {% for tag in page.tags %}<meta property="article:tag" content="{{ tag }}">
+  {% endfor %}
+{% endif %}
+{% unless site.twitter.username %}<meta name="twitter:card" content="summary_large_image">{% endunless %}
+
 <!-- end custom head snippets -->
