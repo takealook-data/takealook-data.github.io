@@ -35,12 +35,24 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .page__content {
-  font-size: 16px !important;
-  line-height: 1.6 !important;
+  font-size: 17px !important;
+  line-height: 1.75 !important;
   color: #333d4b !important;
 
-  p {
+  @media screen and (min-width: 768px) {
+    font-size: 18px !important;
+    line-height: 1.8 !important;
+  }
+
+  p, li, dl, ul, ol {
+    font-size: 17px !important;
+    line-height: 1.75 !important;
     margin-bottom: 1.3em !important;
+
+    @media screen and (min-width: 768px) {
+      font-size: 18px !important;
+      line-height: 1.8 !important;
+    }
   }
 
   a {

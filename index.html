@@ -156,13 +156,23 @@ permalink: /
         }
       });
 
-      // 3. Update active state in GNB
+      // 3. Update active state in GNB using robust URL-based matching
       document.querySelectorAll('.masthead__menu-item a').forEach(link => {
-        const href = link.getAttribute('href');
-        if (href && href.endsWith(hash)) {
-          link.classList.add('active');
-        } else {
-          link.classList.remove('active');
+        try {
+          const url = new URL(link.href, window.location.href);
+          if (url.hash === hash) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        } catch (e) {
+          // Fallback if URL parsing fails
+          const href = link.getAttribute('href');
+          if (href && href.endsWith(hash)) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
         }
       });
     }
@@ -172,6 +182,26 @@ permalink: /
     window.addEventListener('DOMContentLoaded', updateTabs);
     if (document.readyState === 'complete' || document.readyState === 'interactive') {
       updateTabs();
+    }
+
+    // Add click listener for smooth tab transition on homepage
+    // This prevents standard link redirection if the section exists on the current page
+    if (document.querySelector('.preview-section')) {
+      document.querySelectorAll('.masthead__menu-item a').forEach(link => {
+        link.addEventListener('click', (e) => {
+          const href = link.getAttribute('href');
+          if (href) {
+            const hashIdx = href.indexOf('#');
+            if (hashIdx !== -1) {
+              const targetHash = href.substring(hashIdx);
+              if (tabMap[targetHash]) {
+                e.preventDefault();
+                window.location.hash = targetHash;
+              }
+            }
+          }
+        });
+      });
     }
   })();
 </script>
