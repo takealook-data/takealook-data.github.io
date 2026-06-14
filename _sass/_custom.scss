@@ -66,6 +66,26 @@ h1, h2, h3, h4, h5, h6 {
   padding-bottom: 24px !important;
 }
 
+.masthead__menu {
+  max-width: 960px !important; /* Align with main column content width */
+  margin: 0 auto !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 0 40px !important; /* Equal padding with #main */
+  box-sizing: border-box !important;
+  float: none !important;
+  width: 100% !important;
+}
+
+.visible-links {
+  display: flex !important;
+  gap: 16px !important; /* Tight clean gap for GNB items */
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
 .site-title {
   font-weight: 800 !important;
   font-size: 1.25rem !important; /* Unified header site-title size (20px) */
@@ -78,6 +98,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .masthead__menu-item {
+  list-style: none !important;
+  margin: 0 !important;
+
   a {
     font-weight: 500 !important;
     font-size: 0.875rem !important;   /* Unified GNB menu link size (14px) */
