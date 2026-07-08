@@ -35,7 +35,8 @@ permalink: /
         <div class="archive__item-meta">
           <span><i class="fa-regular fa-calendar-days" style="margin-right: 6px;"></i>{{ post.date | date: "%Y-%m-%d" }}</span>
           {% if post.read_time %}
-            <span><i class="fa-regular fa-clock" style="margin-right: 6px;"></i>{{ post.read_time }} min read</span>
+            {% assign words = post.content | strip_html | number_of_words %}
+            <span><i class="fa-regular fa-clock" style="margin-right: 6px;"></i>{{ words | divided_by: site.words_per_minute | at_least: 1 }} min read</span>
           {% endif %}
           {% if post.categories.size > 0 %}
             <span><i class="fa-solid fa-folder-open" style="margin-right: 6px;"></i>{{ post.categories | join: ", " }}</span>
