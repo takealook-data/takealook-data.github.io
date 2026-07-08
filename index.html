@@ -45,6 +45,7 @@ permalink: /
       </article>
     {% endfor %}
   </div>
+  <a class="section-more" href="{{ base_path }}/blog/">블로그 전체 보기 →</a>
 </section>
 
 <!-- 2. Thoughts section -->
@@ -73,6 +74,7 @@ permalink: /
       <p style="color: #8b95a1; text-align: center; padding: 40px 0;">등록된 생각이 없습니다.</p>
     {% endif %}
   </div>
+  <a class="section-more" href="{{ base_path }}/essays/">생각 전체 보기 →</a>
 </section>
 
 <!-- 3. Reading section -->
@@ -101,6 +103,7 @@ permalink: /
       <p style="color: #8b95a1; text-align: center; padding: 40px 0;">등록된 독서 기록이 없습니다.</p>
     {% endif %}
   </div>
+  <a class="section-more" href="{{ base_path }}/reading/">독서 전체 보기 →</a>
 </section>
 
 <!-- 4. Portfolio section -->
@@ -129,6 +132,7 @@ permalink: /
       <p style="color: #8b95a1; text-align: center; padding: 40px 0;">등록된 포트폴리오 프로젝트가 없습니다.</p>
     {% endif %}
   </div>
+  <a class="section-more" href="{{ base_path }}/portfolio/">포트폴리오 전체 보기 →</a>
 </section>
 
 <!-- 5. About section -->
@@ -138,6 +142,7 @@ permalink: /
       {{ p.content | markdownify }}
     {% endif %}
   {% endfor %}
+  <a class="section-more" href="{{ base_path }}/about/">소개 페이지로 보기 →</a>
 </section>
 
 <!-- 6. Client Router Script -->

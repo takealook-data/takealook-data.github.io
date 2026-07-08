@@ -588,3 +588,36 @@ a, button, input, select, textarea {
     background: #e5e8eb;
   }
 }
+
+/* ==========================================================================
+   섹션 "전체 보기" 링크 + 푸터 섹션 내비게이션
+   ========================================================================== */
+
+.section-more {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 0.9em;
+  font-weight: 600;
+  color: #8b95a1 !important;
+  text-decoration: none;
+
+  &:hover {
+    color: #0050ff !important;
+    text-decoration: none;
+  }
+}
+
+.footer-sections {
+  margin-bottom: 12px;
+  font-size: 0.9em;
+
+  a {
+    color: #8b95a1 !important;
+    text-decoration: none;
+    margin-right: 12px;
+
+    &:hover {
+      color: #0050ff !important;
+    }
+  }
+}
