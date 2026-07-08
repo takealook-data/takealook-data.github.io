@@ -12,7 +12,7 @@ site_theme               : "air" # Currently available options are "default", "a
 title                    : "takealook@data"
 title_separator          : "-"
 name                     : &name "takealook@data"
-description              : &description "데이터를 톺아보는 CSM — martech 데이터 · B2B SaaS 고객 성공 · AI 자동화를 기록합니다"
+description              : &description "데이터를 톺아보는 CSM — 유입부터 전환·리텐션까지, 풀퍼널 마케팅 측정을 기록합니다"
 url                      : "https://takealook-data.github.io" # The base hostname & protocol for your site e.g. "https://[your GitHub username].github.io",
                                                            # or if you already have some other page hosted on Github then use "https://[your GitHub username].github.io/[Your Repo Name]"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
@@ -26,7 +26,7 @@ author:
   avatar           : "profile.png"
   name             : "Unchae Jeong"
   pronouns         : "he/him"
-  bio              : "데이터를 톺아보는 CSM. martech 데이터와 AI 자동화로 고객 성공을 만듭니다."
+  bio              : "데이터를 톺아보는 CSM. 풀퍼널 마케팅 측정의 간극을 메웁니다."
   location         : "Seoul"
   employer         : "AB180"
   uri              : # URL
@@ -132,7 +132,7 @@ facebook:
   app_id                 :
   publisher              :
 og_image                 : "og-default.png" # Default share image (1200x630)
-og_description           : "데이터를 톺아보는 CSM — martech 데이터 · B2B SaaS 고객 성공 · AI 자동화를 기록합니다"
+og_description           : "데이터를 톺아보는 CSM — 유입부터 전환·리텐션까지, 풀퍼널 마케팅 측정을 기록합니다"
 # For specifying social profiles
 # - https://developers.google.com/structured-data/customize/social-profiles
 social:
