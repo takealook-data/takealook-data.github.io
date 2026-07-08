@@ -500,3 +500,91 @@ a, button, input, select, textarea {
   color: #8b95a1 !important;
   font-size: 0.875rem !important;
 }
+
+/* 7. Home Hero (모든 탭 공통 — index.html 최상단) */
+.home-hero {
+  padding: 40px 0 44px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid #f2f4f6;
+
+  @media screen and (min-width: 768px) {
+    padding: 56px 0 60px;
+    margin-bottom: 48px;
+  }
+}
+
+.home-hero__eyebrow {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #8b95a1;
+  margin: 0 0 10px;
+  letter-spacing: -0.2px;
+}
+
+.home-hero__title {
+  font-size: 1.75rem;   /* 28px mobile */
+  font-weight: 700;
+  color: #191f28;
+  letter-spacing: -0.6px;
+  line-height: 1.3;
+  margin: 0 0 12px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 2.25rem; /* 36px desktop */
+  }
+}
+
+.home-hero__desc {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: #4e5968;
+  margin: 0 0 24px;
+  max-width: 620px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 1.0625rem; /* 17px */
+  }
+}
+
+.home-hero__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  @media screen and (min-width: 600px) {
+    flex-direction: row;
+    gap: 12px;
+  }
+}
+
+.home-hero__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 20px;
+  border-radius: 8px;
+  font-size: 0.9375rem; /* 15px */
+  font-weight: 600;
+  letter-spacing: -0.2px;
+  text-decoration: none !important;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.home-hero__btn--primary {
+  background: #0050ff; /* Toss Blue — 사이트 액센트와 통일 */
+  color: #fff !important;
+
+  &:hover {
+    background: #0040d6;
+    color: #fff !important;
+  }
+}
+
+.home-hero__btn--ghost {
+  background: #f2f4f6;
+  color: #333d4b !important;
+
+  &:hover {
+    background: #e5e8eb;
+  }
+}
