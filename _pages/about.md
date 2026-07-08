@@ -1,6 +1,7 @@
 ---
 permalink: /about/
 title: "소개"
+description: "AB180 Customer Success Manager Unchae Jeong — 광고 유입부터 전환·리텐션까지 풀퍼널 마케팅 측정, 어트리뷰션 트러블슈팅, B2B SaaS 고객 성공을 다룹니다."
 ---
 
 **Unchae Jeong** · Customer Success Manager @ AB180

@@ -40,4 +40,27 @@
 {% endif %}
 {% unless site.twitter.username %}<meta name="twitter:card" content="summary_large_image">{% endunless %}
 
+{% if page.permalink == '/about/' %}
+<!-- ProfilePage structured data — 검색엔진·LLM이 저자를 사실로 확정하는 근거 (GEO) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "mainEntity": {
+    "@type": "Person",
+    "name": "Unchae Jeong",
+    "jobTitle": "Customer Success Manager",
+    "worksFor": { "@type": "Organization", "name": "AB180" },
+    "url": "{{ site.url }}{{ site.baseurl }}/about/",
+    "description": "데이터를 톺아보는 CSM — 광고 유입부터 전환·리텐션까지, 풀퍼널 마케팅 측정의 간극을 메웁니다.",
+    "knowsAbout": ["Mobile Attribution", "Martech", "Full-funnel Marketing Measurement", "Customer Success", "SKAdNetwork", "Deep Linking", "CRM Marketing", "Product Analytics"],
+    "sameAs": [
+      "https://github.com/takealook-data",
+      "https://www.linkedin.com/in/unchae-jeong-a88149179/"
+    ]
+  }
+}
+</script>
+{% endif %}
+
 <!-- end custom head snippets -->
