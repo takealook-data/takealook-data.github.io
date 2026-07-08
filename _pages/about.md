@@ -33,6 +33,6 @@ title: "소개"
 ## 연락
 
 - GitHub: [@takealook-data](https://github.com/takealook-data)
-<!-- LinkedIn URL 확정 후 추가 -->
+- LinkedIn: [Unchae Jeong](https://www.linkedin.com/in/unchae-jeong-a88149179/)
 
 궁금한 점이나 함께 이야기하고 싶은 주제가 있다면 언제든 연락주세요.

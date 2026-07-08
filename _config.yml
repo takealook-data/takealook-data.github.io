@@ -63,7 +63,7 @@ author:
   keybase          : # Username
   instagram        : # Username
   lastfm           : # Username
-  linkedin         : # Username
+  linkedin         : "unchae-jeong-a88149179"
   mastodon         : # URL
   medium           : # URL
   pinterest        : # Username
@@ -140,6 +140,7 @@ social:
   name                   : "Unchae Jeong" # If the user or organization name differs from the site's name
   links: # An array of links to social media profiles
     - "https://github.com/takealook-data"
+    - "https://www.linkedin.com/in/unchae-jeong-a88149179/"
 
 
 # Analytics
