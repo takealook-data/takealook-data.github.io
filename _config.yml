@@ -12,7 +12,7 @@ site_theme               : "air" # Currently available options are "default", "a
 title                    : "takealook@data"
 title_separator          : "-"
 name                     : &name "takealook@data"
-description              : &description "기술, 독서, 그리고 일상의 생각을 기록하는 개인 블로그"
+description              : &description "데이터를 톺아보는 CSM — martech 데이터 · B2B SaaS 고객 성공 · AI 자동화를 기록합니다"
 url                      : "https://takealook-data.github.io" # The base hostname & protocol for your site e.g. "https://[your GitHub username].github.io",
                                                            # or if you already have some other page hosted on Github then use "https://[your GitHub username].github.io/[Your Repo Name]"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
@@ -24,9 +24,9 @@ repository               : "takealook-data/takealook-data.github.io"
 author:
   # Biographic information
   avatar           : "profile.png"
-  name             : "jjefff"
+  name             : "Unchae Jeong"
   pronouns         : "he/him"
-  bio              : "데이터를 톺아보는 걸 좋아합니다."
+  bio              : "데이터를 톺아보는 CSM. martech 데이터와 AI 자동화로 고객 성공을 만듭니다."
   location         : "Seoul"
   employer         : "AB180"
   uri              : # URL
@@ -132,12 +132,12 @@ facebook:
   app_id                 :
   publisher              :
 og_image                 : "profile.png" # Default share image (TODO: replace with a 1200x630 image under /images/)
-og_description           : "기술, 독서, 그리고 일상의 생각을 기록하는 개인 블로그"
+og_description           : "데이터를 톺아보는 CSM — martech 데이터 · B2B SaaS 고객 성공 · AI 자동화를 기록합니다"
 # For specifying social profiles
 # - https://developers.google.com/structured-data/customize/social-profiles
 social:
   type                   : "Person" # Person or Organization (defaults to Person)
-  name                   : "jjefff" # If the user or organization name differs from the site's name
+  name                   : "Unchae Jeong" # If the user or organization name differs from the site's name
   links: # An array of links to social media profiles
     - "https://github.com/takealook-data"
 
@@ -283,7 +283,7 @@ sass:
 permalink: /:categories/:title/
 # paginate: 5 # amount of posts to show
 # paginate_path: /page:num/
-timezone: Asia/Tokyo # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+timezone: Asia/Seoul # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
 
 # Plugins
