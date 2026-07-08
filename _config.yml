@@ -185,6 +185,7 @@ exclude:
   - vendor
   - docs  # Obsidian 프로젝트 관리 문서
   - scripts  # 자동화 스크립트
+  - markdown_generator  # obsidian→article 파이프라인 (사이트 렌더·sitemap 제외)
 keep_files:
   - .git
   - .svn
