@@ -151,7 +151,7 @@ permalink: /
       '#about': 'sec-about'
     };
 
-    function updateTabs() {
+    function updateTabs(scrollIntoView) {
       // 1. Get current hash (default to #blog if empty or not in map)
       let hash = window.location.hash;
       if (!hash || !tabMap[hash]) {
@@ -167,6 +167,18 @@ permalink: /
           sec.style.display = 'none';
         }
       });
+
+      // 2-1. Scroll to the revealed section on user navigation — without this,
+      // the display swap happens below the hero and looks like a no-op
+      if (scrollIntoView) {
+        const target = document.getElementById(targetId);
+        if (target) {
+          const masthead = document.querySelector('.masthead');
+          const offset = (masthead ? masthead.offsetHeight : 60) + 12;
+          const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+          window.scrollTo({ top: Math.max(top, 0), behavior: 'smooth' });
+        }
+      }
 
       // 3. Update active state in GNB using robust URL-based matching
       document.querySelectorAll('.masthead__menu-item a').forEach(link => {
@@ -189,28 +201,28 @@ permalink: /
       });
     }
 
-    // Run on load and hashchange
-    window.addEventListener('hashchange', updateTabs);
-    window.addEventListener('DOMContentLoaded', updateTabs);
+    // Run on load and hashchange (scroll only on user navigation, not initial load)
+    window.addEventListener('hashchange', () => updateTabs(true));
+    window.addEventListener('DOMContentLoaded', () => updateTabs(false));
     if (document.readyState === 'complete' || document.readyState === 'interactive') {
-      updateTabs();
+      updateTabs(false);
     }
 
-    // Add click listener for smooth tab transition on homepage
-    // This prevents standard link redirection if the section exists on the current page
+    // Intercept every in-page link that targets a tab hash — masthead menu,
+    // hero buttons, and links inside section content all behave the same way
     if (document.querySelector('.preview-section')) {
-      document.querySelectorAll('.masthead__menu-item a').forEach(link => {
+      document.querySelectorAll('a[href*="#"]').forEach(link => {
+        const href = link.getAttribute('href');
+        if (!href) return;
+        const targetHash = href.substring(href.indexOf('#'));
+        if (!tabMap[targetHash]) return;
         link.addEventListener('click', (e) => {
-          const href = link.getAttribute('href');
-          if (href) {
-            const hashIdx = href.indexOf('#');
-            if (hashIdx !== -1) {
-              const targetHash = href.substring(hashIdx);
-              if (tabMap[targetHash]) {
-                e.preventDefault();
-                window.location.hash = targetHash;
-              }
-            }
+          e.preventDefault();
+          if (window.location.hash === targetHash) {
+            // Same hash: no hashchange event fires, so switch & scroll manually
+            updateTabs(true);
+          } else {
+            window.location.hash = targetHash;
           }
         });
       });
