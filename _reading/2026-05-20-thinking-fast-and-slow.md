@@ -3,8 +3,6 @@ title: "[서평] 생각에 관한 생각 - 대니얼 카너먼"
 excerpt: "행동경제학의 창시자 대니얼 카너먼이 주창한 직관적 시스템 1과 이성적 시스템 2의 작동 원리를 마케팅 및 유저 인게이지먼트 관점에서 해석하고, 데이터 분석 시 빠지기 쉬운 인지 편향에 대해 정리합니다."
 header:
   teaser: sql_analysis.png
-layout: single
-author_profile: true
 ---
 
 # [서평] 생각에 관한 생각 - 대니얼 카너먼

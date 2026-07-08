@@ -1,15 +1,14 @@
 ---
 title: "Google Cloud AI 에이전트 트렌드 2026"
 date: 2026-06-07
-permalink: posts/2026/06/google-ai-agent-trends-2026/
+permalink: /posts/2026/06/google-ai-agent-trends-2026/
 excerpt: "이 보고서는 비즈니스 리더들이 2026년 및 그 이후를 대비한 AI 에이전트 전략을 수립하는 데 핵심적인 인사이트를 제공합니다."
 categories:
-  - "AI"
+  - ai-automation
 tags:
-  - "AI"
-  - "에이전트"
-  - "트렌드"
-  - "Google Cloud"
+  - ai-agent
+  - trends
+  - google-cloud
 ---
 
 > 출처: Google Cloud AI Agent Trends 2026 Report (한국어판)  
