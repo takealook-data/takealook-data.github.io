@@ -131,7 +131,7 @@ facebook:
   username               :
   app_id                 :
   publisher              :
-og_image                 : "profile.png" # Default share image (TODO: replace with a 1200x630 image under /images/)
+og_image                 : "og-default.png" # Default share image (1200x630)
 og_description           : "데이터를 톺아보는 CSM — martech 데이터 · B2B SaaS 고객 성공 · AI 자동화를 기록합니다"
 # For specifying social profiles
 # - https://developers.google.com/structured-data/customize/social-profiles
