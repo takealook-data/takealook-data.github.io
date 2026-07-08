@@ -79,15 +79,6 @@ author:
   youtube          : # Username
   zhihu            : # Username
 
-# Publication Category - The following the list of publication categories and their headings
-publication_category:
-  books:
-    title: 'Books'
-  manuscripts:
-    title: 'Journal Articles'    
-  conferences:
-    title: 'Conference Papers'
-
 # Site Settings
 teaser                   :  # filename of teaser fallback teaser image placed in /images/ for social media previews
 breadcrumbs              : false # true, false (default)
@@ -225,9 +216,9 @@ collections:
   reading:
     output: true
     permalink: /:collection/:path/
-  publications:
+  essays:
     output: true
-    permalink: /essays/:path/
+    permalink: /:collection/:path/
   portfolio:
     output: true
     permalink: /:collection/:path/
@@ -262,10 +253,10 @@ defaults:
       author_profile: false
       share: true
       comments: true
-  # _publications
+  # _essays
   - scope:
       path: ""
-      type: publications
+      type: essays
     values:
       layout: single
       author_profile: false
@@ -279,7 +270,7 @@ defaults:
       layout: single
       author_profile: false
       share: true
-      comment: true
+      comments: true
 
 
 # Sass/SCSS
