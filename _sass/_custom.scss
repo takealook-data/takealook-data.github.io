@@ -612,13 +612,47 @@ a, button, input, select, textarea {
   font-size: 0.9em;
 
   a {
-    color: #8b95a1 !important;
+    color: inherit;
     text-decoration: none;
     margin-right: 12px;
+    opacity: 0.85;
 
     &:hover {
-      color: #0050ff !important;
+      opacity: 1;
+      text-decoration: underline;
     }
+  }
+}
+
+/* ==========================================================================
+   푸터 가독성 — 스킨 기본값(파란 배경 + 어두운 청록 글자)이 저대비라 교체.
+   라이트/다크(html[data-theme=dark], OS 선호 자동 반영) 모두 대비 확보.
+   ========================================================================== */
+
+.page__footer {
+  background-color: #f2f4f6;
+  color: #4e5968;
+  border-top: 1px solid #e5e8eb;
+
+  .fas,
+  .fab,
+  .far,
+  .fal {
+    color: inherit;
+  }
+
+  a:hover {
+    color: #0050ff;
+  }
+}
+
+html[data-theme="dark"] .page__footer {
+  background-color: #1a1d24;
+  color: #b0b8c1;
+  border-top-color: #333d4b;
+
+  a:hover {
+    color: #6ea8ff;
   }
 }
 
