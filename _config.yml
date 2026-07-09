@@ -120,6 +120,12 @@ staticman:
 atom_feed:
   hide                   : false     # change to true to hide the RSS feed in the footer
   path                   : # blank (default) uses feed.xml
+# jekyll-feed: 컬렉션별 피드 생성 (/feed/essays.xml 등) — 메인 feed.xml은 posts 전용
+feed:
+  collections:
+    - essays
+    - reading
+    - portfolio
 
 
 # SEO Related
