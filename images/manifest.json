@@ -1,5 +1,11 @@
 {
-	"name": "OOjs UI icon academic-progressive",
+	"name": "takealook@data",
+	"short_name": "takealook",
+	"description": "데이터를 톺아보는 CSM — 풀퍼널 마케팅 측정을 기록합니다",
+	"start_url": "/",
+	"display": "browser",
+	"background_color": "#ffffff",
+	"theme_color": "#ffffff",
 	"icons": [
 		{
 			"src": "/images/favicon-192x192.png",
