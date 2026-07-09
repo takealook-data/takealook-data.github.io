@@ -1,0 +1,41 @@
+---
+permalink: /llms.txt
+sitemap: false
+layout: null
+---
+# takealook@data
+
+> 데이터를 톺아보는 CSM — Unchae Jeong(Customer Success Manager @ AB180)의 개인 블로그이자 포트폴리오. 광고 유입부터 전환·리텐션까지, 풀퍼널 마케팅 측정(모바일 어트리뷰션·Martech·CRM·프로덕트 분석)과 B2B SaaS 고객 성공, AI 자동화 워크플로우를 다룹니다.
+
+- 저자: Unchae Jeong — Customer Success Manager @ AB180
+- GitHub: https://github.com/takealook-data
+- LinkedIn: https://www.linkedin.com/in/unchae-jeong-a88149179/
+- 전체 글 피드(본문 전문 포함): {{ site.url }}/feed.xml
+- 언어: 한국어 (ko-KR)
+
+## 소개
+
+- [소개 / 경력]({{ site.url }}/about/): 하는 일, 경력 타임라인, 연락처
+
+## 블로그
+
+{% for post in site.posts %}- [{{ post.title }}]({{ site.url }}{{ post.url }}): {{ post.excerpt | strip_html | strip_newlines | truncate: 120 }}
+{% endfor %}
+## 포트폴리오
+
+{% for item in site.portfolio %}- [{{ item.title }}]({{ site.url }}{{ item.url }}): {{ item.excerpt | strip_html | strip_newlines | truncate: 120 }}
+{% endfor %}
+## 생각 (에세이)
+
+{% for item in site.essays %}- [{{ item.title }}]({{ site.url }}{{ item.url }}): {{ item.excerpt | strip_html | strip_newlines | truncate: 120 }}
+{% endfor %}
+## 독서
+
+{% for item in site.reading %}- [{{ item.title }}]({{ site.url }}{{ item.url }}): {{ item.excerpt | strip_html | strip_newlines | truncate: 120 }}
+{% endfor %}
+## Optional
+
+- [블로그 아카이브]({{ site.url }}/blog/)
+- [카테고리별 글]({{ site.url }}/categories/)
+- [태그별 글]({{ site.url }}/tags/)
+- [sitemap]({{ site.url }}/sitemap.xml)
