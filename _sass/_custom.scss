@@ -621,3 +621,59 @@ a, button, input, select, textarea {
     }
   }
 }
+
+/* ==========================================================================
+   포스트 액션 바 (하트·댓글·공유) — 토스피드 스타일 pill 버튼
+   ========================================================================== */
+
+.post-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 32px 0 8px;
+  padding-top: 24px;
+  border-top: 1px solid #f2f4f6;
+
+  &__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border: 1px solid #e5e8eb;
+    border-radius: 20px;
+    background: #fff;
+    color: #4e5968;
+    font-size: 0.85em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+
+    &:hover {
+      background: #f2f4f6;
+    }
+
+    svg {
+      flex-shrink: 0;
+    }
+  }
+
+  &__btn--like:hover {
+    color: #f04452;
+    border-color: #f04452;
+    background: #fff;
+  }
+
+  &__count {
+    color: #8b95a1;
+    font-weight: 700;
+  }
+
+  &__toast {
+    margin-left: 4px;
+    padding: 6px 12px;
+    border-radius: 8px;
+    background: #333d4b;
+    color: #fff;
+    font-size: 0.8em;
+  }
+}

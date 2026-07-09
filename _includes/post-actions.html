@@ -1,0 +1,61 @@
+<div class="post-actions" id="post-actions">
+  <button type="button" class="post-actions__btn post-actions__btn--like" id="pa-like" aria-label="좋아요 — 댓글 영역의 반응으로 이동">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+    <span>좋아요</span><span class="post-actions__count" id="pa-like-count" hidden></span>
+  </button>
+  <button type="button" class="post-actions__btn" id="pa-comment" aria-label="댓글 영역으로 이동">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+    <span>댓글</span><span class="post-actions__count" id="pa-comment-count" hidden></span>
+  </button>
+  <button type="button" class="post-actions__btn" id="pa-share" aria-label="공유하기">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+    <span>공유</span>
+  </button>
+  <span class="post-actions__toast" id="pa-toast" role="status" hidden>링크가 복사되었습니다</span>
+</div>
+
+<script>
+  (function() {
+    // 하트·댓글 → giscus 댓글 영역으로 스크롤 (하트는 giscus 상단 반응 버튼으로 남긴다)
+    function scrollToComments() {
+      var el = document.getElementById('giscus-comments');
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    var likeBtn = document.getElementById('pa-like');
+    var commentBtn = document.getElementById('pa-comment');
+    if (likeBtn) likeBtn.addEventListener('click', scrollToComments);
+    if (commentBtn) commentBtn.addEventListener('click', scrollToComments);
+
+    // giscus emit-metadata → 반응·댓글 수를 버튼에 반영
+    window.addEventListener('message', function(event) {
+      if (event.origin !== 'https://giscus.app') return;
+      var data = event.data && event.data.giscus;
+      if (!data || !data.discussion) return;
+      var d = data.discussion;
+      var hearts = (d.reactions && d.reactions.HEART && d.reactions.HEART.count);
+      if (typeof hearts !== 'number') hearts = d.reactionCount || 0;
+      var comments = (d.totalCommentCount || 0) + (d.totalReplyCount || 0);
+      var likeCount = document.getElementById('pa-like-count');
+      var commentCount = document.getElementById('pa-comment-count');
+      if (likeCount && hearts > 0) { likeCount.textContent = hearts; likeCount.hidden = false; }
+      if (commentCount && comments > 0) { commentCount.textContent = comments; commentCount.hidden = false; }
+    });
+
+    // 공유: Web Share API → 폴백 클립보드 복사 + 토스트
+    var shareBtn = document.getElementById('pa-share');
+    if (shareBtn) shareBtn.addEventListener('click', function() {
+      var shareData = { title: document.title, url: window.location.href };
+      if (navigator.share) {
+        navigator.share(shareData).catch(function() {});
+      } else if (navigator.clipboard) {
+        navigator.clipboard.writeText(shareData.url).then(function() {
+          var toast = document.getElementById('pa-toast');
+          if (!toast) return;
+          toast.hidden = false;
+          clearTimeout(toast._t);
+          toast._t = setTimeout(function() { toast.hidden = true; }, 2000);
+        });
+      }
+    });
+  })();
+</script>
