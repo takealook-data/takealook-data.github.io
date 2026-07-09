@@ -9,14 +9,18 @@
   <a href="/about/">소개</a>
 </nav>
 
-<!-- Support for MathJax -->
+<!-- MathJax: front matter에 math: true 선언한 페이지에서만 로드 (~1MB) -->
+{% if page.math %}
 <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script"></script>
+{% endif %}
 
-<!-- Support for Mermaid -->
+<!-- Mermaid: front matter에 mermaid: true 선언한 페이지에서만 로드 (~2MB) -->
+{% if page.mermaid %}
 <script type="module">
     import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
     mermaid.initialize({startOnLoad:true, theme:'default'});
     await mermaid.run({querySelector:'code.language-mermaid'});
 </script>
+{% endif %}
 
 <!-- end custom footer snippets -->

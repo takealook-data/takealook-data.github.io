@@ -15,6 +15,8 @@ tags:                           # 영문 소문자 케밥케이스
   - example-tag
 header:
   teaser: og-default.png        # /images/ 아래 파일명. 글별 이미지 권장
+# math: true                    # 수식($$) 쓰는 글만 — MathJax 로드
+# mermaid: true                 # mermaid 다이어그램 쓰는 글만 — Mermaid 로드
 ---
 
 본문. layout·author_profile은 _config.yml defaults가 지정하므로 쓰지 않는다.
