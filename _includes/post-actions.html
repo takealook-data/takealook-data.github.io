@@ -16,7 +16,7 @@
 
 <script>
   (function() {
-    // 하트·댓글 → giscus 댓글 영역으로 스크롤 (하트는 giscus 상단 반응 버튼으로 남긴다)
+    /* 하트·댓글 → giscus 댓글 영역으로 스크롤 (하트는 giscus 상단 반응 버튼으로 남긴다) */
     function scrollToComments() {
       var el = document.getElementById('giscus-comments');
       if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -26,7 +26,7 @@
     if (likeBtn) likeBtn.addEventListener('click', scrollToComments);
     if (commentBtn) commentBtn.addEventListener('click', scrollToComments);
 
-    // giscus emit-metadata → 반응·댓글 수를 버튼에 반영
+    /* giscus emit-metadata → 반응·댓글 수를 버튼에 반영 */
     window.addEventListener('message', function(event) {
       if (event.origin !== 'https://giscus.app') return;
       var data = event.data && event.data.giscus;
@@ -41,7 +41,7 @@
       if (commentCount && comments > 0) { commentCount.textContent = comments; commentCount.hidden = false; }
     });
 
-    // 공유: Web Share API → 폴백 클립보드 복사 + 토스트
+    /* 공유: Web Share API → 폴백 클립보드 복사 + 토스트 */
     var shareBtn = document.getElementById('pa-share');
     if (shareBtn) shareBtn.addEventListener('click', function() {
       var shareData = { title: document.title, url: window.location.href };

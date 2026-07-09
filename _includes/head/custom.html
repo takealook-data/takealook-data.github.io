@@ -3,7 +3,8 @@
 <!-- start custom head snippets -->
 
 <!-- Content Security Policy -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://www.google-analytics.com https://giscus.app; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; img-src 'self' data: https:; font-src 'self' data: https://cdn.jsdelivr.net; connect-src 'self' https://www.google-analytics.com; frame-src https://giscus.app; frame-ancestors 'none';">
+<!-- frame-ancestors는 meta 태그로 전달 불가(브라우저가 무시) — GH Pages는 응답 헤더 설정이 없어 제외 -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://www.google-analytics.com https://giscus.app; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://giscus.app; img-src 'self' data: https:; font-src 'self' data: https://cdn.jsdelivr.net; connect-src 'self' https://www.google-analytics.com; frame-src https://giscus.app;">
 
 <!-- Support for Academicons -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css"/>
