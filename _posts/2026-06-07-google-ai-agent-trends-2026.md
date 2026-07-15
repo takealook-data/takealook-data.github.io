@@ -1,8 +1,8 @@
 ---
-title: "Google Cloud AI 에이전트 트렌드 2026"
+title: "AI 에이전트 도입의 병목은 기술이 아니라 사람이다 — Google Cloud 2026 보고서 정리"
 date: 2026-06-07
 permalink: /posts/2026/06/google-ai-agent-trends-2026/
-excerpt: "이 보고서는 비즈니스 리더들이 2026년 및 그 이후를 대비한 AI 에이전트 전략을 수립하는 데 핵심적인 인사이트를 제공합니다."
+excerpt: "생성형 AI 기업의 52%가 이미 에이전트를 프로덕션에 올렸습니다. 보고서의 핵심 수치와 5가지 트렌드만 추렸습니다."
 categories:
   - ai-automation
 tags:

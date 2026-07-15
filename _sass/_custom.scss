@@ -348,6 +348,41 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 10px !important;
 }
 
+/* 통합 피드(전체 탭) 카드 상단 라벨 뱃지 — 텍스트 중심 절제형 pill */
+.archive__item-badges {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.archive__item-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: -0.2px;
+  color: #4e5968;
+  background-color: #f2f4f6;
+
+  &--category {
+    color: #0050ff;
+    background-color: #e8f0ff;
+  }
+}
+
+html[data-theme="dark"] .archive__item-badge {
+  color: #b0b8c1;
+  background-color: #2a2f38;
+
+  &--category {
+    color: #6ea8ff;
+    background-color: #1f2a3d;
+  }
+}
+
 /* 5. Clean Global Interactive Elements */
 a, button, input, select, textarea {
   transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
