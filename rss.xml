@@ -1,0 +1,26 @@
+---
+layout: null
+permalink: /rss.xml
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>{{ site.title | xml_escape }}</title>
+    <link>{{ site.url }}{{ site.baseurl }}/</link>
+    <description>{{ site.description | xml_escape }}</description>
+    <language>ko</language>
+    <lastBuildDate>{{ site.time | date_to_rfc822 }}</lastBuildDate>
+    <atom:link href="{{ site.url }}{{ site.baseurl }}/rss.xml" rel="self" type="application/rss+xml"/>
+    {%- assign docs = site.posts | concat: site.essays | concat: site.reading | concat: site.portfolio -%}
+    {%- assign dated = docs | where_exp: "doc", "doc.date" | sort: "date" | reverse -%}
+    {%- for doc in dated limit: 20 %}
+    <item>
+      <title>{{ doc.title | xml_escape }}</title>
+      <link>{{ site.url }}{{ site.baseurl }}{{ doc.url }}</link>
+      <guid isPermaLink="true">{{ site.url }}{{ site.baseurl }}{{ doc.url }}</guid>
+      <pubDate>{{ doc.date | date_to_rfc822 }}</pubDate>
+      <description>{{ doc.excerpt | strip_html | strip_newlines | xml_escape | truncate: 300 }}</description>
+    </item>
+    {%- endfor %}
+  </channel>
+</rss>
