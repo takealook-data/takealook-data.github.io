@@ -10,9 +10,29 @@
 <link href="{{ base_path }}/feed/reading.xml" type="application/atom+xml" rel="alternate" title="takealook@data — 독서 Feed"/>
 <link href="{{ base_path }}/feed/portfolio.xml" type="application/atom+xml" rel="alternate" title="takealook@data — 포트폴리오 Feed"/>
 
+<!-- Amplitude Analytics + Session Replay (Browser SDK script loader) — 클라이언트 전용, 전 페이지 1회 초기화 -->
+<script src="https://cdn.amplitude.com/script/65255aac1e6c15df404c05183473f992.js"></script>
+<script>
+window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));
+window.amplitude.init('65255aac1e6c15df404c05183473f992', {
+  "fetchRemoteConfig": true,
+  "autocapture": {
+    "attribution": true,
+    "fileDownloads": true,
+    "formInteractions": true,
+    "pageViews": true,
+    "sessions": true,
+    "elementInteractions": true,
+    "networkTracking": true,
+    "webVitals": true,
+    "frustrationInteractions": true
+  }
+});
+</script>
+
 <!-- Content Security Policy -->
 <!-- frame-ancestors는 meta 태그로 전달 불가(브라우저가 무시) — GH Pages는 응답 헤더 설정이 없어 제외 -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://www.google-analytics.com https://giscus.app; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://giscus.app; img-src 'self' data: https:; font-src 'self' data: https://cdn.jsdelivr.net; connect-src 'self' https://www.google-analytics.com; frame-src https://giscus.app;">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://www.googletagmanager.com https://www.google-analytics.com https://cdn.amplitude.com https://giscus.app; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://giscus.app; img-src 'self' data: https:; font-src 'self' data: https://cdn.jsdelivr.net; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://*.amplitude.com; worker-src 'self' blob:; frame-src https://giscus.app;">
 
 <!-- Support for Academicons -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css"/>
