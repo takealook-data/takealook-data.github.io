@@ -5,6 +5,11 @@
 <!-- 검색엔진 소유확인 (Naver Search Advisor) — 삭제 시 소유권 해제되므로 유지 -->
 <meta name="naver-site-verification" content="dc42fe8379a91e3165f5f389d275c28b51502d0e">
 
+<!-- 컬렉션별 Atom 피드 자동 발견 링크 — 메인 feed.xml(posts)은 jekyll-feed feed_meta가 출력 -->
+<link href="{{ base_path }}/feed/essays.xml" type="application/atom+xml" rel="alternate" title="takealook@data — 생각 Feed"/>
+<link href="{{ base_path }}/feed/reading.xml" type="application/atom+xml" rel="alternate" title="takealook@data — 독서 Feed"/>
+<link href="{{ base_path }}/feed/portfolio.xml" type="application/atom+xml" rel="alternate" title="takealook@data — 포트폴리오 Feed"/>
+
 <!-- Content Security Policy -->
 <!-- frame-ancestors는 meta 태그로 전달 불가(브라우저가 무시) — GH Pages는 응답 헤더 설정이 없어 제외 -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://www.google-analytics.com https://giscus.app; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://giscus.app; img-src 'self' data: https:; font-src 'self' data: https://cdn.jsdelivr.net; connect-src 'self' https://www.google-analytics.com; frame-src https://giscus.app;">
