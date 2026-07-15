@@ -1,0 +1,46 @@
+{% comment %}
+  홈 목차 카드 (전체·블로그·생각·독서·포트폴리오 탭 공용)
+  파라미터:
+    item       — 렌더링할 문서 (post 또는 컬렉션 문서)
+    show_badge — "true"면 카드 상단에 컬렉션·카테고리 라벨 뱃지 표시 (통합 피드용)
+  카테고리 slug → 한글 라벨은 _data/categories.yml 에서 lookup
+{% endcomment %}
+{% assign item = include.item %}
+<article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+  {% if item.header.teaser %}
+    <div class="archive__item-teaser">
+      <img src="{{ base_path }}/images/{{ item.header.teaser }}" alt="{{ item.title }}">
+    </div>
+  {% endif %}
+  {% if include.show_badge == "true" %}
+    <div class="archive__item-badges">
+      {% case item.collection %}
+        {% when "posts" %}<span class="archive__item-badge">블로그</span>
+        {% when "essays" %}<span class="archive__item-badge">생각</span>
+        {% when "reading" %}<span class="archive__item-badge">독서</span>
+        {% when "portfolio" %}<span class="archive__item-badge">포트폴리오</span>
+      {% endcase %}
+      {% for cat in item.categories %}
+        <span class="archive__item-badge archive__item-badge--category">{{ site.data.categories[cat] | default: cat }}</span>
+      {% endfor %}
+    </div>
+  {% endif %}
+  <h2 class="archive__item-title" itemprop="headline">
+    <a href="{{ base_path }}{{ item.url }}" rel="permalink">{{ item.title }}</a>
+  </h2>
+  {% if item.excerpt %}
+    <p class="archive__item-excerpt" itemprop="description">{{ item.excerpt | strip_html | truncate: 200 }}</p>
+  {% endif %}
+  <div class="archive__item-meta">
+    <span><i class="fa-regular fa-calendar-days" style="margin-right: 6px;"></i>{{ item.date | date: "%Y-%m-%d" }}</span>
+    {% if item.collection == "posts" %}
+      {% if item.read_time %}
+        {% assign words = item.content | strip_html | number_of_words %}
+        <span><i class="fa-regular fa-clock" style="margin-right: 6px;"></i>{{ words | divided_by: site.words_per_minute | at_least: 1 }} min read</span>
+      {% endif %}
+      {% if item.categories.size > 0 and include.show_badge != "true" %}
+        <span><i class="fa-solid fa-folder-open" style="margin-right: 6px;"></i>{% for cat in item.categories %}{{ site.data.categories[cat] | default: cat }}{% unless forloop.last %}, {% endunless %}{% endfor %}</span>
+      {% endif %}
+    {% endif %}
+  </div>
+</article>
