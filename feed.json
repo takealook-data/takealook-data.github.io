@@ -1,0 +1,47 @@
+---
+layout: null
+permalink: /feed.json
+---
+{%- comment -%}
+JSON Feed 1.1 — 앱/외부 클라이언트용 콘텐츠 API. rss.xml과 동일한 4개 컬렉션 통합.
+content_html은 전문 포함, src/href 상대경로는 절대 URL로 치환.
+{%- endcomment -%}
+{%- assign abs_src = 'src="' | append: site.url | append: site.baseurl | append: '/' -%}
+{%- assign abs_href = 'href="' | append: site.url | append: site.baseurl | append: '/' -%}
+{%- assign docs = site.posts | concat: site.essays | concat: site.reading | concat: site.portfolio -%}
+{%- assign dated = docs | where_exp: "doc", "doc.date" | sort: "date" | reverse -%}
+{
+  "version": "https://jsonfeed.org/version/1.1",
+  "title": {{ site.title | jsonify }},
+  "description": {{ site.description | jsonify }},
+  "home_page_url": "{{ site.url }}{{ site.baseurl }}/",
+  "feed_url": "{{ site.url }}{{ site.baseurl }}/feed.json",
+  "language": "ko",
+  "icon": "{{ site.url }}{{ site.baseurl }}/images/favicon-512x512.png",
+  "favicon": "{{ site.url }}{{ site.baseurl }}/images/favicon-32x32.png",
+  "authors": [
+    {
+      "name": {{ site.author.name | default: site.title | jsonify }},
+      "url": "{{ site.url }}{{ site.baseurl }}/about/"
+    }
+  ],
+  "items": [
+    {%- for doc in dated limit: 50 -%}
+    {%- assign html = doc.content | replace: 'src="/', abs_src | replace: 'href="/', abs_href %}
+    {
+      "id": "{{ site.url }}{{ site.baseurl }}{{ doc.url }}",
+      "url": "{{ site.url }}{{ site.baseurl }}{{ doc.url }}",
+      "title": {{ doc.title | jsonify }},
+      "summary": {{ doc.excerpt | strip_html | strip_newlines | truncate: 300 | jsonify }},
+      "content_html": {{ html | jsonify }},
+      "date_published": "{{ doc.date | date_to_xmlschema }}",
+      "tags": {% if doc.tags %}{{ doc.tags | jsonify }}{% else %}[]{% endif %},
+      "_takealook": {
+        "collection": {{ doc.collection | jsonify }},
+        "category": {{ doc.categories | first | jsonify }},
+        "category_label": {{ site.data.categories[doc.categories.first] | default: doc.categories.first | jsonify }}
+      }
+    }{% unless forloop.last %},{% endunless %}
+    {%- endfor %}
+  ]
+}

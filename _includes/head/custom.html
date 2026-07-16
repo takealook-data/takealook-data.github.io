@@ -10,6 +10,18 @@
 <link href="{{ base_path }}/feed/reading.xml" type="application/atom+xml" rel="alternate" title="takealook@data — 독서 Feed"/>
 <link href="{{ base_path }}/feed/portfolio.xml" type="application/atom+xml" rel="alternate" title="takealook@data — 포트폴리오 Feed"/>
 
+<!-- JSON Feed (앱/외부 클라이언트용 콘텐츠 API — 4개 컬렉션 통합, 전문 포함) -->
+<link href="{{ base_path }}/feed.json" type="application/feed+json" rel="alternate" title="takealook@data — JSON Feed"/>
+
+<!-- Service Worker 등록 (PWA 설치 요건) — 인라인 script엔 /* */ 주석만 사용 (compress_html) -->
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('{{ base_path }}/sw.js');
+  });
+}
+</script>
+
 <!-- Amplitude Analytics + Session Replay (Browser SDK script loader) — 클라이언트 전용, 전 페이지 1회 초기화 -->
 <script src="https://cdn.amplitude.com/script/65255aac1e6c15df404c05183473f992.js"></script>
 <script>
