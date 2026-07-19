@@ -52,3 +52,4 @@ scripts/
 # Claude Code 로컬 설정 (내부 AI 지침·세션 상태)
 CLAUDE.md
 .omc/
+.claude/
