@@ -898,16 +898,17 @@ html[data-theme="dark"] {
     border-bottom: none;
     padding: 7px 16px;
     font-weight: 500;
-    color: #4e5968;
+    /* .page__content a의 파랑 !important를 이겨야 비활성 회색이 유지된다 */
+    color: #4e5968 !important;
     font-size: 0.82em;
 
     &:hover {
-      color: #3182f6;
+      color: #3182f6 !important;
       background: #f2f4f6;
     }
 
     &.active {
-      color: #3182f6;
+      color: #3182f6 !important;
       font-weight: 700;
       background: #f2f6fc;
     }
