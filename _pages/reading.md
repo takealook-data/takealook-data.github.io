@@ -7,6 +7,7 @@ author_profile: true
 
 {% include base_path %}
 
-{% for post in site.reading reversed %}
+{% assign reading_posts = site.posts | where_exp: "p", "p.categories contains 'reading'" %}
+{% for post in reading_posts %}
   {% include archive-single.html %}
 {% endfor %}

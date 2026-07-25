@@ -3,13 +3,12 @@ layout: null
 permalink: /feed.json
 ---
 {%- comment -%}
-JSON Feed 1.1 — 앱/외부 클라이언트용 콘텐츠 API. rss.xml과 동일한 4개 컬렉션 통합.
+JSON Feed 1.1 — 앱/외부 클라이언트용 콘텐츠 API. 전체 posts 통합 피드.
 content_html은 전문 포함, src/href 상대경로는 절대 URL로 치환.
 {%- endcomment -%}
 {%- assign abs_src = 'src="' | append: site.url | append: site.baseurl | append: '/' -%}
 {%- assign abs_href = 'href="' | append: site.url | append: site.baseurl | append: '/' -%}
-{%- assign docs = site.posts | concat: site.essays | concat: site.reading | concat: site.portfolio -%}
-{%- assign dated = docs | where_exp: "doc", "doc.date" | sort: "date" | reverse -%}
+{%- assign dated = site.posts -%}
 {
   "version": "https://jsonfeed.org/version/1.1",
   "title": {{ site.title | jsonify }},

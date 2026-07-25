@@ -8,7 +8,8 @@ author_profile: true
 {% include base_path %}
 
 
-{% for post in site.portfolio %}
+{% assign portfolio_posts = site.posts | where_exp: "p", "p.categories contains 'portfolio'" %}
+{% for post in portfolio_posts %}
   {% include archive-single.html %}
 {% endfor %}
 
