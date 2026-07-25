@@ -19,6 +19,17 @@ layout: default
         <h1 class="page__title">{{ page.title }}</h1>
       {% endif %}
     {% endunless %}
+    {% if page.sidebar_blog %}
+    <div class="blog-layout">
+      <div class="blog-layout__main">
+        {{ content }}
+      </div>
+      <aside class="blog-layout__sidebar">
+        {% include blog-sidebar.html %}
+      </aside>
+    </div>
+    {% else %}
     {{ content }}
+    {% endif %}
   </div>
 </div>
