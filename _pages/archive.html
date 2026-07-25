@@ -1,0 +1,19 @@
+---
+layout: archive
+permalink: /archive/
+title: "아카이브"
+author_profile: false
+sidebar_blog: true
+---
+
+{% include base_path %}
+
+{% assign prev_month = "" %}
+{% for post in site.posts %}
+  {% assign ym = post.date | date: "%Y-%m" %}
+  {% if ym != prev_month %}
+    <h2 id="{{ ym }}" class="archive__subtitle">{{ post.date | date: "%Y년 %-m월" }}</h2>
+    {% assign prev_month = ym %}
+  {% endif %}
+  {% include archive-single.html %}
+{% endfor %}

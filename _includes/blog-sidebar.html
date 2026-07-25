@@ -1,0 +1,100 @@
+{% comment %}
+  블로그 사이드바 — 검색 · 라벨 · 월별 아카이브 · 추천 글 (pin: true)
+  layout: archive에서 page.sidebar_blog: true일 때만 include
+  라벨 한글 표기는 _data/categories.yml SSOT lookup
+{% endcomment %}
+<div class="blog-sidebar">
+  <section class="blog-sidebar__widget">
+    <h3 class="blog-sidebar__title">검색</h3>
+    <input type="search" id="blog-search-input" class="blog-sidebar__search" placeholder="제목·본문 요약·태그 검색" autocomplete="off" aria-label="블로그 검색">
+    <ul id="blog-search-results" class="blog-sidebar__list" hidden></ul>
+  </section>
+
+  <section class="blog-sidebar__widget">
+    <h3 class="blog-sidebar__title">라벨</h3>
+    <ul class="blog-sidebar__list">
+      {% for cat in site.categories %}
+      <li><a href="{{ base_path }}/categories/#{{ cat[0] | slugify }}">{{ site.data.categories[cat[0]] | default: cat[0] }}<span class="blog-sidebar__count">{{ cat[1] | size }}</span></a></li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section class="blog-sidebar__widget">
+    <h3 class="blog-sidebar__title">아카이브</h3>
+    <ul class="blog-sidebar__list">
+      {% assign prev_month = "" %}
+      {% for post in site.posts %}
+        {% assign ym = post.date | date: "%Y-%m" %}
+        {% if ym != prev_month %}
+      <li><a href="{{ base_path }}/archive/#{{ ym }}">{{ post.date | date: "%Y년 %-m월" }}</a></li>
+          {% assign prev_month = ym %}
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </section>
+
+  {% assign pinned = site.posts | where: "pin", true %}
+  {% if pinned.size > 0 %}
+  <section class="blog-sidebar__widget">
+    <h3 class="blog-sidebar__title">추천 글</h3>
+    <ul class="blog-sidebar__list">
+      {% for post in pinned %}
+      <li><a href="{{ base_path }}{{ post.url }}">{{ post.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+</div>
+
+<script>
+(function () {
+  /* 사이드바 검색 — search.json을 첫 입력 시 1회 fetch 후 클라이언트 필터.
+     compress_html이 한 줄로 압축하므로 줄 주석 금지, 블록 주석만 사용 */
+  var input = document.getElementById('blog-search-input');
+  var results = document.getElementById('blog-search-results');
+  if (!input || !results) { return; }
+  var docs = null;
+  var loading = false;
+
+  function render(hits) {
+    results.innerHTML = '';
+    if (hits.length === 0) {
+      var empty = document.createElement('li');
+      empty.className = 'blog-sidebar__empty';
+      empty.textContent = '결과가 없습니다';
+      results.appendChild(empty);
+    } else {
+      hits.forEach(function (d) {
+        var li = document.createElement('li');
+        var a = document.createElement('a');
+        a.href = d.url;
+        a.textContent = d.title;
+        li.appendChild(a);
+        results.appendChild(li);
+      });
+    }
+    results.hidden = false;
+  }
+
+  function filter() {
+    var q = input.value.trim().toLowerCase();
+    if (!q) { results.hidden = true; results.innerHTML = ''; return; }
+    if (!docs) { return; }
+    var hits = docs.filter(function (d) {
+      var haystack = (d.title + ' ' + d.excerpt + ' ' + (d.tags || []).join(' ') + ' ' + (d.categories || []).join(' ')).toLowerCase();
+      return haystack.indexOf(q) !== -1;
+    }).slice(0, 10);
+    render(hits);
+  }
+
+  input.addEventListener('input', function () {
+    if (docs) { filter(); return; }
+    if (loading) { return; }
+    loading = true;
+    fetch('/search.json')
+      .then(function (r) { return r.json(); })
+      .then(function (d) { docs = d; filter(); })
+      .catch(function () { loading = false; });
+  });
+})();
+</script>
