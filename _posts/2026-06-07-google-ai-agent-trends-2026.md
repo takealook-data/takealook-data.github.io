@@ -9,6 +9,8 @@ tags:
   - ai-agent
   - trends
   - google-cloud
+header:
+  teaser: sketch-google-ai-agent-trends-2026.png
 ---
 
 > 출처: Google Cloud AI Agent Trends 2026 Report (한국어판)  

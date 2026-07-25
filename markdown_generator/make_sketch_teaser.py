@@ -104,13 +104,32 @@ def m_matrix(dr, rnd):
     for r in range(5): stroke(dr, line((x0, y0+r*ch),(x0+4*cw, y0+r*ch)), rnd, w=5, passes=2)
     stroke(dr, rect(x0+2*cw, y0+ch, cw, ch), rnd, w=14)   # 강조된 한 칸
 
-MOTIFS = {"bars": m_bars, "funnel": m_funnel, "venn": m_venn, "one": m_one, "matrix": m_matrix}
+def m_nodes(dr, rnd):
+    """중앙 허브 + 위성 노드. AI 에이전트·자동화·워크플로 계열."""
+    cx, cy, R = 512, 288, 196
+    sats = [(cx + R * math.cos(a), cy + R * math.sin(a) * 0.82)
+            for a in [math.pi * k / 3 + 0.28 for k in range(6)]]
+    hub_r, sat_r = 74, 46
+    for (sx, sy) in sats:                       # 원 가장자리 사이만 잇는다 (내부 관통 방지)
+        dx, dy = sx - cx, sy - cy
+        d = math.hypot(dx, dy)
+        ux, uy = dx / d, dy / d
+        a = (cx + ux * (hub_r + 6), cy + uy * (hub_r + 6))
+        b = (cx + ux * (d - sat_r - 6), cy + uy * (d - sat_r - 6))
+        stroke(dr, line(a, b, n=14), rnd, w=6, passes=3)
+    for (sx, sy) in sats:
+        stroke(dr, circle(sx, sy, sat_r), rnd, w=9)
+    stroke(dr, circle(cx, cy, hub_r), rnd, w=13)
+
+
+MOTIFS = {"bars": m_bars, "funnel": m_funnel, "venn": m_venn, "one": m_one, "matrix": m_matrix, "nodes": m_nodes}
 KEYWORDS = {
     "bars":   ["metric", "지표", "analytics", "measure", "kpi", "lean"],
     "funnel": ["funnel", "퍼널", "conversion", "전환", "retention"],
     "venn":   ["integration", "연동", "통합", "crm", "identity"],
     "one":    ["omtm", "one", "focus", "단 하나", "핵심"],
     "matrix": ["matrix", "매트릭스", "framework", "단계", "stage"],
+    "nodes":  ["ai", "agent", "에이전트", "llm", "automation", "자동화", "workflow", "워크플로", "network"],
 }
 
 def pick(slug, tags, title):
