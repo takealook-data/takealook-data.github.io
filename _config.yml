@@ -120,12 +120,6 @@ staticman:
 atom_feed:
   hide                   : false     # change to true to hide the RSS feed in the footer
   path                   : # blank (default) uses feed.xml
-# jekyll-feed: 컬렉션별 피드 생성 (/feed/essays.xml 등) — 메인 feed.xml은 posts 전용
-feed:
-  collections:
-    - essays
-    - reading
-    - portfolio
 
 
 # SEO Related
@@ -224,19 +218,6 @@ kramdown:
   enable_coderay: false
 
 
-# These settings control the types of collections used by the template
-collections:
-  reading:
-    output: true
-    permalink: /:collection/:path/
-  essays:
-    output: true
-    permalink: /:collection/:path/
-  portfolio:
-    output: true
-    permalink: /:collection/:path/
-
-
 # These settings control how pages and collections are included in the site
 defaults:
   # _posts
@@ -257,33 +238,6 @@ defaults:
     values:
       layout: single
       author_profile: false
-  # _reading
-  - scope:
-      path: ""
-      type: reading
-    values:
-      layout: single
-      author_profile: false
-      share: true
-      comments: true
-  # _essays
-  - scope:
-      path: ""
-      type: essays
-    values:
-      layout: single
-      author_profile: false
-      share: true
-      comments: true
-  # _portfolio
-  - scope:
-      path: ""
-      type: portfolio
-    values:
-      layout: single
-      author_profile: false
-      share: true
-      comments: true
 
 
 # Sass/SCSS
@@ -293,7 +247,7 @@ sass:
 
 
 # Outputting
-permalink: /:categories/:title/
+permalink: /:year/:month/:title/
 # paginate: 5 # amount of posts to show
 # paginate_path: /page:num/
 timezone: Asia/Seoul # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones

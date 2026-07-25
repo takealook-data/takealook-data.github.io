@@ -1,7 +1,8 @@
 ---
 title: "AI 에이전트 도입의 병목은 기술이 아니라 사람이다 — Google Cloud 2026 보고서 정리"
 date: 2026-06-07
-permalink: /posts/2026/06/google-ai-agent-trends-2026/
+redirect_from:
+  - /posts/2026/06/google-ai-agent-trends-2026/
 excerpt: "생성형 AI 기업의 52%가 이미 에이전트를 프로덕션에 올렸습니다. 보고서의 핵심 수치와 5가지 트렌드만 추렸습니다."
 categories:
   - ai-automation

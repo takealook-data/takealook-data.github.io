@@ -1,8 +1,10 @@
 ---
 title: "지금 단계에서 중요한 지표는 단 하나입니다 (『린 분석』 독서 노트)"
-permalink: /reading/lean-analytics/
 redirect_from:
+  - /reading/lean-analytics/
   - /reading/2026-07-19-lean-analytics/
+categories:
+  - reading
 excerpt: "3년 전에 옮겨 적은 『린 분석』 노트를 다시 꺼냈습니다. 그때는 지표 목록만 보였는데, 지금은 그 목록을 왜 그 순서로 놓았는지가 보입니다."
 tags:
   - lean-analytics

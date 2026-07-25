@@ -11,8 +11,7 @@ permalink: /rss.xml
     <language>ko</language>
     <lastBuildDate>{{ site.time | date_to_rfc822 }}</lastBuildDate>
     <atom:link href="{{ site.url }}{{ site.baseurl }}/rss.xml" rel="self" type="application/rss+xml"/>
-    {%- assign docs = site.posts | concat: site.essays | concat: site.reading | concat: site.portfolio -%}
-    {%- assign dated = docs | where_exp: "doc", "doc.date" | sort: "date" | reverse -%}
+    {%- assign dated = site.posts -%}
     {%- for doc in dated limit: 20 %}
     <item>
       <title>{{ doc.title | xml_escape }}</title>
