@@ -1,186 +1,49 @@
 ---
 layout: archive
-permalink: /
 title: "데이터를 톺아보는 CSM · 풀퍼널 마케팅 측정"
 hide_page_title: true
+sidebar_blog: true
 ---
 
 {% include base_path %}
 
-<!-- 0. Hero (모든 탭 공통 노출) -->
+<!-- Hero -->
 <section class="home-hero">
   <p class="home-hero__eyebrow">Unchae Jeong · Customer Success Manager @ AB180</p>
   <h1 class="home-hero__title">데이터를 톺아보는 CSM</h1>
   <p class="home-hero__desc">퍼포먼스 마케터로 시작해 Martech CSM으로 — 광고 유입부터 전환·리텐션까지, 풀퍼널 마케팅 측정의 간극을 메웁니다.</p>
   <div class="home-hero__actions">
-    <a class="home-hero__btn home-hero__btn--primary" href="/#portfolio">포트폴리오 보기</a>
-    <a class="home-hero__btn home-hero__btn--ghost" href="/#about">소개</a>
+    <a class="home-hero__btn home-hero__btn--primary" href="{{ base_path }}/portfolio/">포트폴리오 보기</a>
+    <a class="home-hero__btn home-hero__btn--ghost" href="{{ base_path }}/about/">소개</a>
   </div>
 </section>
 
-<!-- 1. All articles (통합 최신순 피드 — 기본 탭) -->
-<section id="sec-all" class="preview-section">
-  <div class="archive-list">
-    {% for item in site.posts %}
-      {% include home-card.html item=item show_badge="true" %}
-    {% endfor %}
-  </div>
-</section>
-
-<!-- 2. Blog posts section -->
-<section id="sec-blog" class="preview-section" style="display: none;">
-  <div class="archive-list">
-    {% for post in site.posts %}
-      {% unless post.categories contains "essay" or post.categories contains "reading" or post.categories contains "portfolio" %}
-        {% include home-card.html item=post %}
-      {% endunless %}
-    {% endfor %}
-  </div>
-  <a class="section-more" href="{{ base_path }}/blog/">블로그 전체 보기 →</a>
-</section>
-
-<!-- 3. Thoughts section -->
-<section id="sec-thoughts" class="preview-section" style="display: none;">
-  <div class="archive-list">
-    {% assign essay_posts = site.posts | where_exp: "p", "p.categories contains 'essay'" %}
-    {% if essay_posts.size > 0 %}
-      {% for post in essay_posts %}
-        {% include home-card.html item=post %}
-      {% endfor %}
-    {% else %}
-      <p style="color: #8b95a1; text-align: center; padding: 40px 0;">등록된 생각이 없습니다.</p>
-    {% endif %}
-  </div>
-  <a class="section-more" href="{{ base_path }}/essays/">생각 전체 보기 →</a>
-</section>
-
-<!-- 4. Reading section -->
-<section id="sec-reading" class="preview-section" style="display: none;">
-  <div class="archive-list">
-    {% assign reading_posts = site.posts | where_exp: "p", "p.categories contains 'reading'" %}
-    {% if reading_posts.size > 0 %}
-      {% for post in reading_posts %}
-        {% include home-card.html item=post %}
-      {% endfor %}
-    {% else %}
-      <p style="color: #8b95a1; text-align: center; padding: 40px 0;">등록된 독서 기록이 없습니다.</p>
-    {% endif %}
-  </div>
-  <a class="section-more" href="{{ base_path }}/reading/">독서 전체 보기 →</a>
-</section>
-
-<!-- 5. Portfolio section -->
-<section id="sec-portfolio" class="preview-section" style="display: none;">
-  <div class="archive-list">
-    {% assign portfolio_posts = site.posts | where_exp: "p", "p.categories contains 'portfolio'" %}
-    {% if portfolio_posts.size > 0 %}
-      {% for post in portfolio_posts %}
-        {% include home-card.html item=post %}
-      {% endfor %}
-    {% else %}
-      <p style="color: #8b95a1; text-align: center; padding: 40px 0;">등록된 포트폴리오 프로젝트가 없습니다.</p>
-    {% endif %}
-  </div>
-  <a class="section-more" href="{{ base_path }}/portfolio/">포트폴리오 전체 보기 →</a>
-</section>
-
-<!-- 6. About section -->
-<section id="sec-about" class="preview-section page__content" style="display: none;">
-  {% for p in site.pages %}
-    {% if p.permalink == '/about/' %}
-      {{ p.content | markdownify }}
-    {% endif %}
+<!-- 단일 시간역순 피드 -->
+<div class="archive-list">
+  {% for post in paginator.posts %}
+    {% include home-card.html item=post show_badge="true" %}
   {% endfor %}
-  <a class="section-more" href="{{ base_path }}/about/">소개 페이지로 보기 →</a>
-</section>
+</div>
 
-<!-- 7. Client Router Script -->
+{% include paginator.html %}
+
+<!-- 구 해시 탭 URL 호환 스크립트 -->
 <script>
-  (function() {
-    const tabMap = {
-      '#all': 'sec-all',
-      '#blog': 'sec-blog',
-      '#essays': 'sec-thoughts',
-      '#reading': 'sec-reading',
-      '#portfolio': 'sec-portfolio',
-      '#about': 'sec-about'
-    };
-
-    function updateTabs(scrollIntoView) {
-      /* 1. Get current hash (default to #all if empty or not in map) */
-      let hash = window.location.hash;
-      if (!hash || !tabMap[hash]) {
-        hash = '#all';
-      }
-
-      /* 2. Filter sections */
-      const targetId = tabMap[hash];
-      document.querySelectorAll('.preview-section').forEach(sec => {
-        if (sec.id === targetId) {
-          sec.style.display = 'block';
-        } else {
-          sec.style.display = 'none';
-        }
-      });
-
-      /* 2-1. Scroll to the revealed section on user navigation — without this,
-         the display swap happens below the hero and looks like a no-op */
-      if (scrollIntoView) {
-        const target = document.getElementById(targetId);
-        if (target) {
-          const masthead = document.querySelector('.masthead');
-          const offset = (masthead ? masthead.offsetHeight : 60) + 12;
-          const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
-          window.scrollTo({ top: Math.max(top, 0), behavior: 'smooth' });
-        }
-      }
-
-      /* 3. Update active state in GNB using robust URL-based matching */
-      document.querySelectorAll('.masthead__menu-item a').forEach(link => {
-        try {
-          const url = new URL(link.href, window.location.href);
-          if (url.hash === hash) {
-            link.classList.add('active');
-          } else {
-            link.classList.remove('active');
-          }
-        } catch (e) {
-          /* Fallback if URL parsing fails */
-          const href = link.getAttribute('href');
-          if (href && href.endsWith(hash)) {
-            link.classList.add('active');
-          } else {
-            link.classList.remove('active');
-          }
-        }
-      });
-    }
-
-    /* Run on load and hashchange (scroll only on user navigation, not initial load) */
-    window.addEventListener('hashchange', () => updateTabs(true));
-    window.addEventListener('DOMContentLoaded', () => updateTabs(false));
-    if (document.readyState === 'complete' || document.readyState === 'interactive') {
-      updateTabs(false);
-    }
-
-    /* Intercept every in-page link that targets a tab hash — masthead menu,
-       hero buttons, and links inside section content all behave the same way */
-    if (document.querySelector('.preview-section')) {
-      document.querySelectorAll('a[href*="#"]').forEach(link => {
-        const href = link.getAttribute('href');
-        if (!href) return;
-        const targetHash = href.substring(href.indexOf('#'));
-        if (!tabMap[targetHash]) return;
-        link.addEventListener('click', (e) => {
-          e.preventDefault();
-          if (window.location.hash === targetHash) {
-            /* Same hash: no hashchange event fires, so switch & scroll manually */
-            updateTabs(true);
-          } else {
-            window.location.hash = targetHash;
-          }
-        });
-      });
-    }
-  })();
+(function () {
+  /* 외부에 공유된 /#essays 류 구 탭 링크를 전용 페이지로 리다이렉트.
+     compress_html이 한 줄로 압축하므로 줄 주석 금지, 블록 주석만 사용 */
+  var map = {
+    '#blog': '/blog/',
+    '#essays': '/essays/',
+    '#reading': '/reading/',
+    '#portfolio': '/portfolio/',
+    '#about': '/about/'
+  };
+  function go() {
+    var h = window.location.hash;
+    if (map[h]) { window.location.replace(map[h]); }
+  }
+  window.addEventListener('hashchange', go);
+  go();
+})();
 </script>

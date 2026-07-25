@@ -8,20 +8,17 @@
 #      Markdown formatted page while the second is generated using JSON.
 
 main:
-  - title: "전체"
-    url: /#all
+  - title: "홈"
+    url: /
 
-  - title: "블로그"
-    url: /#blog
+  - title: "라벨"
+    url: /categories/
 
-  - title: "생각"
-    url: /#essays
-
-  - title: "독서"
-    url: /#reading
+  - title: "아카이브"
+    url: /archive/
 
   - title: "포트폴리오"
-    url: /#portfolio
+    url: /portfolio/
 
   - title: "소개"
-    url: /#about
+    url: /about/
