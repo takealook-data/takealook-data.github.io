@@ -236,6 +236,31 @@ def yaml_str(s: str):
     return '"' + s.replace("\\", "\\\\").replace('"', '\\"') + '"'
 
 
+def ensure_sketch_teaser(slug, tags, title):
+    """teaser 미지정·본문 이미지 없음 -> 스케치 썸네일을 생성해 파일명을 돌려준다.
+
+    실패해도 발행을 막지 않는다 (DEFAULT_TEASER로 폴백)."""
+    import subprocess
+    script = os.path.join(os.path.dirname(os.path.abspath(__file__)), "make_sketch_teaser.py")
+    if not os.path.exists(script):
+        return DEFAULT_TEASER
+    try:
+        r = subprocess.run(
+            [sys.executable, script, "--slug", slug, "--tags", ",".join(tags or []),
+             "--title", title or "", "--outdir", os.path.join(REPO_ROOT, "images")],
+            capture_output=True, text=True, timeout=180, cwd=REPO_ROOT)
+        if r.returncode != 0:
+            print("  ⚠ 스케치 썸네일 생성 실패 -> %s (%s)" % (DEFAULT_TEASER, r.stderr.strip()[:120]))
+            return DEFAULT_TEASER
+        path, motif = r.stdout.strip().split("\t")
+        name = os.path.basename(path)
+        print("  ✓ 스케치 썸네일 생성: %s (모티프: %s)" % (name, motif))
+        return name
+    except Exception as e:
+        print("  ⚠ 스케치 썸네일 생성 예외 -> %s (%s)" % (DEFAULT_TEASER, e))
+        return DEFAULT_TEASER
+
+
 def build_front_matter(args, title, date, excerpt, collection, slug, teaser):
     """_drafts/_TEMPLATE.md 컨벤션: posts만 date·permalink·categories,
     나머지 컬렉션은 title/excerpt/tags/header.teaser만."""
@@ -273,6 +298,8 @@ def main(argv=None):
     ap.add_argument("--date", help="발행일 YYYY-MM-DD (기본: 파일명 날짜→수정일)")
     ap.add_argument("--slug", help="URL slug (기본: 파일명→제목)")
     ap.add_argument("--excerpt", help="카드/목록에 보일 요약 직접 지정 (기본: 첫 문단 자동 추출)")
+    ap.add_argument("--no-sketch", action="store_true",
+                    help="teaser 없을 때 스케치 자동생성을 끄고 og-default.png를 쓴다")
     ap.add_argument("--teaser", help="카드 썸네일 이미지 파일명 (/images/ 기준, 기본: 첫 임베드 이미지→og-default.png)")
     ap.add_argument("--categories", help="쉼표 구분 카테고리 (posts만, 첫 1개만 사용 — 4축: martech-data|customer-success|ai-automation|essay)")
     ap.add_argument("--tags", help="쉼표 구분 태그 (영문 소문자 케밥)")
@@ -299,7 +326,15 @@ def main(argv=None):
     date = resolve_date(args, args.source)
     slug = resolve_slug(args, args.source, title)
     excerpt = args.excerpt or make_excerpt(body)
-    teaser = args.teaser or (copied[0][1] if copied else DEFAULT_TEASER)
+    if args.teaser:
+        teaser = args.teaser
+    elif copied:
+        teaser = copied[0][1]
+    elif args.no_sketch:
+        teaser = DEFAULT_TEASER
+    else:
+        _tags = [t.strip() for t in (args.tags or "").split(",") if t.strip()]
+        teaser = ensure_sketch_teaser(slug, _tags, title)
 
     front_matter = build_front_matter(args, title, date, excerpt, args.collection, slug, teaser)
     article = front_matter + "\n\n" + body

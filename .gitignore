@@ -53,3 +53,6 @@ scripts/
 CLAUDE.md
 .omc/
 .claude/
+
+# teaser 생성기용 로컬 venv
+.venv-teaser/

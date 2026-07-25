@@ -9,7 +9,7 @@ tags:
   - metrics
   - data-culture
 header:
-  teaser: og-default.png
+  teaser: sketch-lean-analytics.png
 ---
 
 **TL;DR**
