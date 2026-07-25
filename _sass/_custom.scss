@@ -702,6 +702,8 @@ html[data-theme="dark"] .page__footer {
   margin: 32px 0 8px;
   padding-top: 24px;
   border-top: 1px solid #f2f4f6;
+  /* 본문 float를 해제하지 않으면 우측 상단 남는 공간(폭 0)으로 밀려난다 */
+  clear: both;
 
   &__btn {
     display: inline-flex;
@@ -865,6 +867,86 @@ html[data-theme="dark"] {
 
     &:hover {
       color: #4e9eff;
+    }
+  }
+}
+
+/* ==========================================================================
+   Post TOC — 상세페이지 우측 플로팅 목차 (single 레이아웃)
+   ========================================================================== */
+
+.post-toc {
+  margin: 0 0 20px 24px;
+
+  nav.toc {
+    border: 1px solid #e5e8eb;
+    border-radius: 12px;
+    background: #fff;
+    overflow: hidden;
+  }
+
+  .nav__title {
+    margin: 0;
+    padding: 10px 16px;
+    font-size: 0.85em;
+    color: #333d4b;
+    background: #f9fafb;
+    border-bottom: 1px solid #e5e8eb;
+  }
+
+  .toc__menu a {
+    border-bottom: none;
+    padding: 7px 16px;
+    font-weight: 500;
+    color: #4e5968;
+    font-size: 0.82em;
+
+    &:hover {
+      color: #3182f6;
+      background: #f2f4f6;
+    }
+
+    &.active {
+      color: #3182f6;
+      font-weight: 700;
+      background: #f2f6fc;
+    }
+  }
+
+  @media (min-width: 925px) {
+    position: sticky;
+    top: 90px;
+    float: right;
+    width: 250px;
+    z-index: 10;
+  }
+
+  @media (max-width: 924.98px) {
+    float: none;
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+html[data-theme="dark"] .post-toc {
+  nav.toc {
+    background: #1e2028;
+    border-color: #2c2e3a;
+  }
+
+  .nav__title {
+    color: #e4e6eb;
+    background: #15171e;
+    border-color: #2c2e3a;
+  }
+
+  .toc__menu a {
+    color: #b0b8c1;
+
+    &:hover,
+    &.active {
+      color: #4e9eff;
+      background: #15171e;
     }
   }
 }

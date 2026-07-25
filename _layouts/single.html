@@ -37,9 +37,75 @@ layout: default
       {% endunless %}
 
       <section class="page__content" itemprop="text">
+        {% if page.toc != false %}
+        <aside class="sidebar__right post-toc" id="post-toc" hidden>
+          <nav class="toc">
+            <header><h4 class="nav__title"><i class="fas fa-list-ul" aria-hidden="true"></i> 목차</h4></header>
+            <ul class="toc__menu" id="post-toc-menu"></ul>
+          </nav>
+        </aside>
+        {% endif %}
         {{ content }}
         {% if page.link %}<div><a href="{{ page.link }}" class="btn">{{ site.data.ui-text[site.locale].ext_link_label | default: "Direct Link" }}</a></div>{% endif %}
       </section>
+
+      {% if page.toc != false %}
+      <script>
+      (function () {
+        /* 섹션 목차 — 본문 h2/h3(kramdown auto id)로 목차를 만들고 스크롤 위치를 하이라이트.
+           compress_html이 한 줄로 압축하므로 줄 주석 금지, 블록 주석만 사용 */
+        var content = document.querySelector('.page__content');
+        var aside = document.getElementById('post-toc');
+        var menu = document.getElementById('post-toc-menu');
+        if (!content || !aside || !menu) { return; }
+        var heads = Array.prototype.slice.call(content.querySelectorAll('h2[id], h3[id]'));
+        if (heads.length < 2) { return; }
+
+        var links = [];
+        var currentH2Ul = null;
+        heads.forEach(function (h) {
+          var li = document.createElement('li');
+          var a = document.createElement('a');
+          a.href = '#' + h.id;
+          a.textContent = h.textContent;
+          li.appendChild(a);
+          if (h.tagName === 'H2' || !currentH2Ul) {
+            menu.appendChild(li);
+            if (h.tagName === 'H2') {
+              currentH2Ul = document.createElement('ul');
+              li.appendChild(currentH2Ul);
+            }
+          } else {
+            currentH2Ul.appendChild(li);
+          }
+          links.push({ id: h.id, el: h, a: a });
+        });
+        aside.hidden = false;
+
+        var active = null;
+        function spy() {
+          var y = window.scrollY + 120;
+          var cur = null;
+          for (var i = 0; i < links.length; i++) {
+            if (links[i].el.offsetTop <= y) { cur = links[i]; } else { break; }
+          }
+          if (cur !== active) {
+            if (active) { active.a.classList.remove('active'); }
+            if (cur) { cur.a.classList.add('active'); }
+            active = cur;
+          }
+        }
+        var ticking = false;
+        window.addEventListener('scroll', function () {
+          if (!ticking) {
+            ticking = true;
+            requestAnimationFrame(function () { spy(); ticking = false; });
+          }
+        }, { passive: true });
+        spy();
+      })();
+      </script>
+      {% endif %}
 
       <footer class="page__meta">
         {% if site.data.ui-text[site.locale].meta_label %}
