@@ -1,5 +1,8 @@
 ---
 title: "AI가 보고서를 쓰는 시대, 컨설턴트의 몫은 무엇인가 — 2026 상반기 회고"
+permalink: /essays/half-year-retrospective/
+redirect_from:
+  - /essays/2026-06-01-half-year-retrospective/
 excerpt: "AI가 코드와 보고서를 대신 쓰기 시작한 반년 동안, 무엇을 남기고 무엇을 버렸는지 정리했습니다."
 header:
   teaser: data_flow.png
