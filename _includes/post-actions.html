@@ -21,10 +21,18 @@
       var el = document.getElementById('giscus-comments');
       if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+    /* autocapture도 이 클릭을 잡지만 Element Clicked + DOM 셀렉터라 차트를 못 만든다 — 이름을 붙인다 */
+    function trackAction(action, props) {
+      if (!window.amplitude || typeof window.amplitude.track !== 'function') { return; }
+      var p = props || {};
+      p.action = action;
+      try { window.amplitude.track('post_action_clicked', p); } catch (e) {}
+    }
+
     var likeBtn = document.getElementById('pa-like');
     var commentBtn = document.getElementById('pa-comment');
-    if (likeBtn) likeBtn.addEventListener('click', scrollToComments);
-    if (commentBtn) commentBtn.addEventListener('click', scrollToComments);
+    if (likeBtn) likeBtn.addEventListener('click', function () { trackAction('like'); scrollToComments(); });
+    if (commentBtn) commentBtn.addEventListener('click', function () { trackAction('comment'); scrollToComments(); });
 
     /* giscus emit-metadata → 반응·댓글 수를 버튼에 반영 */
     window.addEventListener('message', function(event) {
@@ -46,8 +54,10 @@
     if (shareBtn) shareBtn.addEventListener('click', function() {
       var shareData = { title: document.title, url: window.location.href };
       if (navigator.share) {
+        trackAction('share', { share_method: 'webshare' });
         navigator.share(shareData).catch(function() {});
       } else if (navigator.clipboard) {
+        trackAction('share', { share_method: 'clipboard' });
         navigator.clipboard.writeText(shareData.url).then(function() {
           var toast = document.getElementById('pa-toast');
           if (!toast) return;

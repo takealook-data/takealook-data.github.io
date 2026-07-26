@@ -45,6 +45,12 @@ var toggleTheme = () => {
   const new_theme = current_theme === "dark" ? "light" : "dark";
   localStorage.setItem("theme", new_theme);
   setTheme(new_theme);
+  // autocapture는 이 클릭을 익명의 Element Clicked로만 남긴다 — 어느 방향으로 바꿨는지 기록
+  if (window.amplitude && typeof window.amplitude.track === "function") {
+    try {
+      window.amplitude.track("theme_toggled", { to_theme: new_theme });
+    } catch (e) {}
+  }
 };
 
 /* ==========================================================================

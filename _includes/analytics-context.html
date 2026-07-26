@@ -1,0 +1,42 @@
+{% comment %}
+  Amplitude 공통 컨텍스트 (enrichment plugin)
+
+  모든 이벤트 — autocapture가 만든 [Amplitude] Page Viewed·Element Clicked 포함 — 에
+  "어느 글에서 일어났는가"를 붙인다. 이게 없으면 autocapture 이벤트는 글 단위로 쪼갤 수 없다.
+
+  ⚠ head/custom.html에서 amplitude.init() **앞**에 include할 것.
+     init() 호출 시점에 autocapture pageView가 곧바로 발사되므로,
+     plugin이 그보다 먼저 등록돼야 첫 이벤트에도 컨텍스트가 붙는다.
+{% endcomment %}
+{% assign _is_post = false %}
+{% if page.date %}{% assign _is_post = true %}{% endif %}
+{% comment %} wpm이 비면 divided_by가 빈 문자열을 뱉어 아래 JS가 구문 오류가 난다 — default 필수 {% endcomment %}
+{% assign _wpm = site.words_per_minute | default: 160 %}
+{% if _is_post %}{% assign _words = page.content | strip_html | number_of_words %}{% endif %}
+<script>
+window.__blogMeta = {
+  page_type: {% if _is_post %}"post"{% elsif page.url == "/" %}"home"{% elsif page.layout %}{{ page.layout | jsonify }}{% else %}"page"{% endif %},
+  page_path: {{ page.url | jsonify }}{% if _is_post %},
+  post_title: {{ page.title | jsonify }},
+  post_category: {{ page.categories | first | jsonify }},
+  post_tags: {{ page.tags | jsonify }},
+  post_published_at: {{ page.date | date: "%Y-%m-%d" | jsonify }},
+  post_word_count: {{ _words }},
+  post_read_minutes: {{ _words | divided_by: _wpm | plus: 1 }}{% endif %}
+};
+(function () {
+  /* compress_html이 production에서 한 줄로 압축한다 — 줄 주석 금지, 블록 주석만 사용 */
+  if (!window.amplitude || typeof window.amplitude.add !== 'function') { return; }
+  window.amplitude.add({
+    name: 'blog-context-enrichment',
+    type: 'enrichment',
+    setup: function () { return Promise.resolve(undefined); },
+    execute: function (event) {
+      var meta = window.__blogMeta || {};
+      /* 이벤트 고유 프로퍼티가 우선하도록 meta를 먼저 깔고 그 위에 덮는다 */
+      event.event_properties = Object.assign({}, meta, event.event_properties || {});
+      return Promise.resolve(event);
+    }
+  });
+})();
+</script>

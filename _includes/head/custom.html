@@ -34,6 +34,8 @@ if ('serviceWorker' in navigator) {
 
 <!-- Amplitude Analytics + Session Replay (Browser SDK script loader) — 클라이언트 전용, 전 페이지 1회 초기화 -->
 <script src="https://cdn.amplitude.com/script/65255aac1e6c15df404c05183473f992.js"></script>
+{% comment %} 공통 컨텍스트 enrichment — init() 앞에 등록해야 첫 pageView에도 글 메타가 붙는다 {% endcomment %}
+{% include analytics-context.html %}
 <script>
 window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));
 window.amplitude.init('65255aac1e6c15df404c05183473f992', {
