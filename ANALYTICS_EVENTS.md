@@ -99,6 +99,17 @@
 - **CSP 수정 불필요.** `connect-src`에 `https://*.amplitude.com`이 이미 있습니다
 - **PII 금지.** 이 레포는 **PUBLIC**입니다. 검색어 원문·이메일·전화번호를 프로퍼티에 넣지 마세요
 
+## 새 이벤트를 추가할 때의 순서
+
+Amplitude는 코드에서 보낸 이벤트를 곧바로 tracking plan에 넣어주지 않습니다. 아래 순서를 지키지 않으면 `update_event`가 `"not in the tracking plan (unexpected)"` 오류로 거부합니다.
+
+1. 코드 배포 → 이벤트를 **한 번 이상 실제로 발생**시킨다 (발생 전에는 Amplitude에 존재하지 않음)
+2. `get_events`로 확인 — 이 시점의 상태는 `isQueryable: true`, `isInSchema: false` (= 관측됐으나 plan 밖, "unexpected")
+3. `create_events`에 **`isUnexpected: true`** 로 plan에 편입 (이 단계에서는 description을 못 넣습니다)
+4. `update_event`로 description 부여
+
+2026-07-27 기준 위 6종은 4단계까지 완료했습니다.
+
 ## 도입하지 않은 것
 
 **Ampli CLI (`@amplitude/ampli`)** — 이 스택에 맞지 않습니다. `package.json`은 테마의 jQuery uglify 스크립트뿐이라 TypeScript도 번들러도 없고, Amplitude SDK도 npm이 아닌 CDN 로더(`cdn.amplitude.com/script/<key>.js`)입니다. Ampli가 생성하는 타입 안전 래퍼를 `import`할 방법이 없습니다. 이벤트 6종 규모에서는 이 문서로 충분합니다.
