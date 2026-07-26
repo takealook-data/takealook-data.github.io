@@ -164,6 +164,7 @@ exclude:
   - "*.sublime-project"
   - "*.sublime-workspace"
   - ANALYTICS_PLAN.md
+  - ANALYTICS_EVENTS.md
   - .asset-cache
   - .bundle
   - .github

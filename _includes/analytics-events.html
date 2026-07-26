@@ -1,0 +1,121 @@
+{% comment %}
+  글 상세 페이지 전용 커스텀 이벤트.
+
+  autocapture(elementInteractions·frustrationInteractions 등)가 이미 클릭·폼·에러를 잡으므로,
+  여기서는 autocapture가 **원리적으로 잡을 수 없는 읽기 행동**만 다룬다.
+  글 메타(post_slug·post_category 등)는 analytics-context.html의 enrichment plugin이
+  모든 이벤트에 자동으로 붙이므로 여기서 다시 넣지 않는다.
+
+  _layouts/single.html에서 include.
+{% endcomment %}
+<script>
+(function () {
+  /* compress_html이 production에서 한 줄로 압축한다 — 줄 주석 금지, 블록 주석만 사용 */
+  if (!window.amplitude || typeof window.amplitude.track !== 'function') { return; }
+
+  var content = document.querySelector('.page__content');
+  if (!content) { return; }
+
+  function track(name, props) {
+    try { window.amplitude.track(name, props || {}); } catch (e) {}
+  }
+
+  /* ---------- 본문 읽은 비율 ---------- */
+  function contentPct() {
+    var rect = content.getBoundingClientRect();
+    var top = rect.top + window.scrollY;
+    var height = rect.height;
+    if (height <= 0) { return 0; }
+    var seen = window.scrollY + window.innerHeight - top;
+    var pct = Math.round((seen / height) * 100);
+    return Math.max(0, Math.min(100, pct));
+  }
+
+  /* ---------- 활성 체류 시간 (탭이 보이는 동안만 누적) ---------- */
+  var engagedMs = 0;
+  var reportedMs = 0;
+  var lastTick = Date.now();
+  var visible = document.visibilityState !== 'hidden';
+
+  function accrue() {
+    var now = Date.now();
+    if (visible) { engagedMs += now - lastTick; }
+    lastTick = now;
+  }
+
+  /* ---------- article_scroll_depth ---------- */
+  var MARKS = [25, 50, 75, 100];
+  var firedMarks = {};
+
+  /* ---------- article_read_complete ---------- */
+  var readMeta = window.__blogMeta || {};
+  var expectedMs = (readMeta.post_read_minutes || 1) * 60 * 1000;
+  var completeFired = false;
+
+  function check() {
+    accrue();
+    var pct = contentPct();
+
+    for (var i = 0; i < MARKS.length; i++) {
+      var m = MARKS[i];
+      if (pct >= m && !firedMarks[m]) {
+        firedMarks[m] = true;
+        track('article_scroll_depth', { depth_pct: m });
+      }
+    }
+
+    /* 끝까지 스크롤했더라도 예상 읽기시간의 절반을 못 채웠으면 "훑음"으로 보고 완독 처리하지 않는다 */
+    if (!completeFired && pct >= 90 && engagedMs >= expectedMs * 0.5) {
+      completeFired = true;
+      track('article_read_complete', {
+        engaged_seconds: Math.round(engagedMs / 1000),
+        scroll_pct: pct
+      });
+    }
+  }
+
+  var ticking = false;
+  window.addEventListener('scroll', function () {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(function () { check(); ticking = false; });
+    }
+  }, { passive: true });
+
+  /* 스크롤이 없어도 체류만으로 완독 조건을 채울 수 있다 (짧은 글) */
+  setInterval(check, 5000);
+
+  /* ---------- article_engaged_time ---------- */
+  /* 직전 전송 이후의 델타만 보낸다 — Amplitude에서 sum으로 집계하면 총 체류시간이 된다.
+     탭 전환으로 여러 번 발생하는 것이 정상이다 */
+  function flushEngaged() {
+    accrue();
+    var deltaSec = Math.round((engagedMs - reportedMs) / 1000);
+    if (deltaSec < 1) { return; }
+    reportedMs = engagedMs;
+    track('article_engaged_time', {
+      engaged_seconds: deltaSec,
+      scroll_pct: contentPct()
+    });
+    /* 이탈 직전이라 SDK 큐가 비워지기 전에 페이지가 죽을 수 있다 */
+    if (typeof window.amplitude.flush === 'function') {
+      try { window.amplitude.flush(); } catch (e) {}
+    }
+  }
+
+  document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState === 'hidden') {
+      accrue();
+      visible = false;
+      flushEngaged();
+    } else {
+      lastTick = Date.now();
+      visible = true;
+    }
+  });
+
+  window.addEventListener('pagehide', flushEngaged);
+
+  check();
+})();
+</script>

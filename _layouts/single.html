@@ -122,6 +122,9 @@ layout: default
       })();
       </script>
       {% endif %}
+
+      {% comment %} 읽기 행동 커스텀 이벤트 — 글에서만 (about 등 정적 페이지도 single 레이아웃을 쓴다) {% endcomment %}
+      {% if page.date %}{% include analytics-events.html %}{% endif %}
     </div>
 
     {% if site.comments.provider and page.comments %}

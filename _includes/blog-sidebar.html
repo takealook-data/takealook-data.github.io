@@ -78,6 +78,19 @@
     results.hidden = false;
   }
 
+  /* blog_search_performed — 타자 한 글자마다 보내지 않도록 디바운스.
+     검색어 원문은 개인정보가 섞일 수 있어 보내지 않고 길이만 남긴다 */
+  var trackTimer = null;
+  function trackSearch(len, count) {
+    clearTimeout(trackTimer);
+    trackTimer = setTimeout(function () {
+      if (!window.amplitude || typeof window.amplitude.track !== 'function') { return; }
+      try {
+        window.amplitude.track('blog_search_performed', { query_length: len, result_count: count });
+      } catch (e) {}
+    }, 800);
+  }
+
   function filter() {
     var q = input.value.trim().toLowerCase();
     if (!q) { results.hidden = true; results.innerHTML = ''; return; }
@@ -87,6 +100,7 @@
       return haystack.indexOf(q) !== -1;
     }).slice(0, 10);
     render(hits);
+    trackSearch(q.length, hits.length);
   }
 
   input.addEventListener('input', function () {
