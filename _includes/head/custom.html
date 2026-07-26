@@ -5,6 +5,21 @@
 <!-- 검색엔진 소유확인 (Naver Search Advisor) — 삭제 시 소유권 해제되므로 유지 -->
 <meta name="naver-site-verification" content="dc42fe8379a91e3165f5f389d275c28b51502d0e">
 
+<!-- 테마 조기 초기화 — 첫 페인트 전에 data-theme을 걸어 FOUC 방지.
+     localStorage 'theme' 키는 assets/js/_main.js(setTheme)와 공유 -->
+<script>
+(function () {
+  /* compress_html 안전: 블록 주석만 사용 */
+  var t = null;
+  try { t = localStorage.getItem('theme'); } catch (e) { t = null; }
+  if (t !== 'dark' && t !== 'light') {
+    t = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+  if (t === 'dark') { document.documentElement.setAttribute('data-theme', 'dark'); }
+  else { document.documentElement.removeAttribute('data-theme'); }
+})();
+</script>
+
 <!-- JSON Feed (앱/외부 클라이언트용 콘텐츠 API — 전체 posts 통합, 전문 포함) -->
 <link href="{{ base_path }}/feed.json" type="application/feed+json" rel="alternate" title="takealook@data — JSON Feed"/>
 

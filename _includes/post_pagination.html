@@ -1,16 +1,50 @@
 {% include base_path %}
 
-{% if page.previous or page.next %}
-  <nav class="pagination">
-    {% if page.previous %}
-      <a href="{{ base_path }}{{ page.previous.url }}" class="pagination--pager" title="{{ page.previous.title | markdownify | strip_html }}">{{ site.data.ui-text[site.locale].pagination_previous | default: "Previous" }}</a>
+{% comment %}
+  이전/다음 — 같은 라벨(첫 번째 category) 안에서만 이동.
+  site.posts는 최신순이므로 index-1이 더 최신(다음), index+1이 더 오래된 글(이전).
+  라벨이 없으면 전체 posts 기준으로 폴백.
+{% endcomment %}
+{% assign nav_cat = page.categories | first %}
+{% if nav_cat %}
+  {% assign nav_pool = site.posts | where_exp: "p", "p.categories contains nav_cat" %}
+{% else %}
+  {% assign nav_pool = site.posts %}
+{% endif %}
+{% assign nav_prev = nil %}
+{% assign nav_next = nil %}
+{% for p in nav_pool %}
+  {% if p.url == page.url %}
+    {% unless forloop.first %}
+      {% assign j = forloop.index0 | minus: 1 %}
+      {% assign nav_next = nav_pool[j] %}
+    {% endunless %}
+    {% unless forloop.last %}
+      {% assign k = forloop.index0 | plus: 1 %}
+      {% assign nav_prev = nav_pool[k] %}
+    {% endunless %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% if nav_prev or nav_next %}
+  {% assign nav_label = site.data.categories[nav_cat] | default: nav_cat %}
+  <nav class="pagination post-pagination" aria-label="{{ nav_label | default: '글' }} 이전/다음">
+    {% if nav_prev %}
+      <a href="{{ base_path }}{{ nav_prev.url }}" class="pagination--pager" title="{{ nav_prev.title | markdownify | strip_html }}">
+        <span class="post-pagination__dir">← 이전{% if nav_cat %} · {{ nav_label }}{% endif %}</span>
+        <span class="post-pagination__title">{{ nav_prev.title | markdownify | strip_html | truncate: 34 }}</span>
+      </a>
     {% else %}
-      <a href="#" class="pagination--pager disabled">{{ site.data.ui-text[site.locale].pagination_previous | default: "Previous" }}</a>
+      <a href="#" class="pagination--pager disabled"><span class="post-pagination__dir">← 이전</span></a>
     {% endif %}
-    {% if page.next %}
-      <a href="{{ base_path }}{{ page.next.url }}" class="pagination--pager" title="{{ page.next.title | markdownify | strip_html }}">{{ site.data.ui-text[site.locale].pagination_next | default: "Next" }}</a>
+    {% if nav_next %}
+      <a href="{{ base_path }}{{ nav_next.url }}" class="pagination--pager" title="{{ nav_next.title | markdownify | strip_html }}">
+        <span class="post-pagination__dir">다음{% if nav_cat %} · {{ nav_label }}{% endif %} →</span>
+        <span class="post-pagination__title">{{ nav_next.title | markdownify | strip_html | truncate: 34 }}</span>
+      </a>
     {% else %}
-      <a href="#" class="pagination--pager disabled">{{ site.data.ui-text[site.locale].pagination_next | default: "Next" }}</a>
+      <a href="#" class="pagination--pager disabled"><span class="post-pagination__dir">다음 →</span></a>
     {% endif %}
   </nav>
 {% endif %}

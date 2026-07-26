@@ -13,7 +13,40 @@
           {% endif %}
           <li class="masthead__menu-item"><a href="{{ domain }}{{ link.url }}">{{ link.title }}</a></li>
         {% endfor %}
+        <li class="masthead__menu-item masthead__menu-item--theme">
+          <button type="button" id="theme-toggle" class="theme-toggle" aria-label="다크 모드 전환">
+            <i id="theme-icon" class="fas fa-sun" aria-hidden="true"></i>
+          </button>
+        </li>
       </ul>
     </div>
   </div>
 </div>
+
+<script>
+(function () {
+  /* 라이트/다크 토글 — head 조기 초기화 스크립트와 같은 localStorage 'theme' 키 사용.
+     compress_html 안전: 블록 주석만 사용 */
+  var btn = document.getElementById('theme-toggle');
+  var icon = document.getElementById('theme-icon');
+  if (!btn || !icon) { return; }
+
+  function syncIcon() {
+    var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+    icon.classList.toggle('fa-moon', dark);
+    icon.classList.toggle('fa-sun', !dark);
+  }
+
+  btn.addEventListener('click', function () {
+    var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+    var next = dark ? 'light' : 'dark';
+    try { localStorage.setItem('theme', next); } catch (e) { /* no-op */ }
+    if (next === 'dark') { document.documentElement.setAttribute('data-theme', 'dark'); }
+    else { document.documentElement.removeAttribute('data-theme'); }
+    syncIcon();
+    window.dispatchEvent(new CustomEvent('themechange', { detail: { theme: next } }));
+  });
+
+  syncIcon();
+})();
+</script>
