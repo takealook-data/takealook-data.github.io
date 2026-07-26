@@ -764,9 +764,11 @@ html[data-theme="dark"] .page__footer {
   }
 
   &__sidebar {
-    flex: 0 0 260px;
+    flex: 0 0 240px;
     position: sticky;
     top: 80px;
+    /* DOM은 본문 우선(모바일 UX·SEO), 데스크톱 시각 순서만 왼쪽 배치 */
+    order: -1;
   }
 
   @media (max-width: 900px) {
@@ -776,6 +778,7 @@ html[data-theme="dark"] .page__footer {
       position: static;
       flex-basis: auto;
       width: 100%;
+      order: 0; /* 모바일: 피드 아래로 복귀 */
     }
   }
 }
