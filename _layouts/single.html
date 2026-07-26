@@ -36,18 +36,34 @@ layout: default
         </header>
       {% endunless %}
 
-      <section class="page__content" itemprop="text">
+      <div class="post-layout">
+        <div class="post-layout__main">
+          <section class="page__content" itemprop="text">
+            {{ content }}
+            {% if page.link %}<div><a href="{{ page.link }}" class="btn">{{ site.data.ui-text[site.locale].ext_link_label | default: "Direct Link" }}</a></div>{% endif %}
+          </section>
+
+          <footer class="page__meta">
+            {% if site.data.ui-text[site.locale].meta_label %}
+              <h4 class="page__meta-title">{{ site.data.ui-text[site.locale].meta_label }}</h4>
+            {% endif %}
+            {% include page__taxonomy.html %}
+          </footer>
+
+          {% if page.share %}{% include post-actions.html %}{% endif %}
+
+          {% include post_pagination.html %}
+        </div>
+
         {% if page.toc != false %}
-        <aside class="sidebar__right post-toc" id="post-toc" hidden>
+        <aside class="post-toc" id="post-toc" hidden>
           <nav class="toc">
             <header><h4 class="nav__title"><i class="fas fa-list-ul" aria-hidden="true"></i> 목차</h4></header>
             <ul class="toc__menu" id="post-toc-menu"></ul>
           </nav>
         </aside>
         {% endif %}
-        {{ content }}
-        {% if page.link %}<div><a href="{{ page.link }}" class="btn">{{ site.data.ui-text[site.locale].ext_link_label | default: "Direct Link" }}</a></div>{% endif %}
-      </section>
+      </div>
 
       {% if page.toc != false %}
       <script>
@@ -106,17 +122,6 @@ layout: default
       })();
       </script>
       {% endif %}
-
-      <footer class="page__meta">
-        {% if site.data.ui-text[site.locale].meta_label %}
-          <h4 class="page__meta-title">{{ site.data.ui-text[site.locale].meta_label }}</h4>
-        {% endif %}
-        {% include page__taxonomy.html %}
-      </footer>
-
-      {% if page.share %}{% include post-actions.html %}{% endif %}
-
-      {% include post_pagination.html %}
     </div>
 
     {% if site.comments.provider and page.comments %}

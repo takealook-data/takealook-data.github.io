@@ -875,11 +875,29 @@ html[data-theme="dark"] {
 }
 
 /* ==========================================================================
-   Post TOC — 상세페이지 우측 플로팅 목차 (single 레이아웃)
+   Post TOC — 상세페이지 우측 전용 레일 (single 레이아웃)
+   float가 아닌 flex 컬럼이라 표·코드 등 전체 폭 블록과 구조적으로 겹치지 않는다
    ========================================================================== */
 
+.post-layout {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+
+  &__main {
+    flex: 1 1 auto;
+    min-width: 0; /* 표·코드 overflow-x가 컬럼을 밀지 않게 */
+  }
+
+  @media (max-width: 924.98px) {
+    flex-direction: column;
+  }
+}
+
 .post-toc {
-  margin: 0 0 20px 24px;
+  flex: 0 0 240px;
+  position: sticky;
+  top: 90px;
 
   nav.toc {
     border: 1px solid #e5e8eb;
@@ -917,18 +935,11 @@ html[data-theme="dark"] {
     }
   }
 
-  @media (min-width: 925px) {
-    position: sticky;
-    top: 90px;
-    float: right;
-    width: 250px;
-    z-index: 10;
-  }
-
   @media (max-width: 924.98px) {
-    float: none;
+    position: static;
+    flex-basis: auto;
     width: 100%;
-    margin-left: 0;
+    order: -1; /* 모바일: 본문 위 인라인 */
   }
 }
 
