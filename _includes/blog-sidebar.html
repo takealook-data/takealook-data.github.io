@@ -14,7 +14,9 @@
     <h3 class="blog-sidebar__title">라벨</h3>
     <ul class="blog-sidebar__list">
       {% for cat in site.categories %}
-      <li><a href="{{ base_path }}/categories/#{{ cat[0] | slugify }}">{{ site.data.categories[cat[0]] | default: cat[0] }}<span class="blog-sidebar__count">{{ cat[1] | size }}</span></a></li>
+        {% assign cat_slug = cat[0] %}
+        {% comment %} Liquid는 hash[array[0]] 중첩 브래킷을 지원하지 않아 변수로 우회 {% endcomment %}
+      <li><a href="{{ base_path }}/categories/#{{ cat_slug | slugify }}">{{ site.data.categories[cat_slug] | default: cat_slug }}<span class="blog-sidebar__count">{{ cat[1] | size }}</span></a></li>
       {% endfor %}
     </ul>
   </section>
