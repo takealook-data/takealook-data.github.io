@@ -27,7 +27,8 @@
   for (var k in attrs) { s.setAttribute(k, attrs[k]); }
   document.getElementById('giscus-container').appendChild(s);
 
-  window.addEventListener('themechange', function () {
+  /* 토글 주체(_main.js)와 무관하게 html data-theme 변화를 감지해 giscus에 반영 */
+  var observer = new MutationObserver(function () {
     var iframe = document.querySelector('iframe.giscus-frame');
     if (!iframe) { return; }
     iframe.contentWindow.postMessage(
@@ -35,5 +36,6 @@
       'https://giscus.app'
     );
   });
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 })();
 </script>
