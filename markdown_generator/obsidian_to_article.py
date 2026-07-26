@@ -236,7 +236,7 @@ def yaml_str(s: str):
     return '"' + s.replace("\\", "\\\\").replace('"', '\\"') + '"'
 
 
-def ensure_sketch_teaser(slug, tags, title):
+def ensure_sketch_teaser(slug, tags, title, text=""):
     """teaser 미지정·본문 이미지 없음 -> 스케치 썸네일을 생성해 파일명을 돌려준다.
 
     실패해도 발행을 막지 않는다 (DEFAULT_TEASER로 폴백)."""
@@ -247,7 +247,8 @@ def ensure_sketch_teaser(slug, tags, title):
     try:
         r = subprocess.run(
             [sys.executable, script, "--slug", slug, "--tags", ",".join(tags or []),
-             "--title", title or "", "--outdir", os.path.join(REPO_ROOT, "images")],
+             "--title", title or "", "--text", (text or "")[:3000],
+             "--outdir", os.path.join(REPO_ROOT, "images")],
             capture_output=True, text=True, timeout=180, cwd=REPO_ROOT)
         if r.returncode != 0:
             print("  ⚠ 스케치 썸네일 생성 실패 -> %s (%s)" % (DEFAULT_TEASER, r.stderr.strip()[:120]))
@@ -334,7 +335,7 @@ def main(argv=None):
         teaser = DEFAULT_TEASER
     else:
         _tags = [t.strip() for t in (args.tags or "").split(",") if t.strip()]
-        teaser = ensure_sketch_teaser(slug, _tags, title)
+        teaser = ensure_sketch_teaser(slug, _tags, title, (excerpt or "") + " " + body)
 
     front_matter = build_front_matter(args, title, date, excerpt, args.collection, slug, teaser)
     article = front_matter + "\n\n" + body

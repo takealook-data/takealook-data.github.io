@@ -28,7 +28,7 @@ def _bootstrap():
 _bootstrap()
 
 import pathlib
-import hashlib, math, random
+import hashlib, math, random, re
 from PIL import Image, ImageDraw, ImageFilter
 
 W, H = 1024, 576
@@ -124,30 +124,38 @@ def m_nodes(dr, rnd):
 
 MOTIFS = {"bars": m_bars, "funnel": m_funnel, "venn": m_venn, "one": m_one, "matrix": m_matrix, "nodes": m_nodes}
 KEYWORDS = {
-    "bars":   ["metric", "지표", "analytics", "measure", "kpi", "lean"],
-    "funnel": ["funnel", "퍼널", "conversion", "전환", "retention"],
-    "venn":   ["integration", "연동", "통합", "crm", "identity"],
-    "one":    ["omtm", "one", "focus", "단 하나", "핵심"],
-    "matrix": ["matrix", "매트릭스", "framework", "단계", "stage"],
-    "nodes":  ["ai", "agent", "에이전트", "llm", "automation", "자동화", "workflow", "워크플로", "network"],
+    "bars":   ["metric", "지표", "analytics", "measure", "kpi", "lean", "ga4", "amplitude", "측정", "대시보드"],
+    "funnel": ["funnel", "퍼널", "conversion", "전환", "retention", "리텐션", "유입", "온보딩"],
+    "venn":   ["integration", "연동", "통합", "crm", "identity", "매핑"],
+    "one":    ["omtm", "focus", "단 하나", "하나만", "원포인트"],
+    "matrix": ["matrix", "매트릭스", "framework", "프레임워크", "단계", "stage", "체크리스트"],
+    "nodes":  ["ai", "agent", "에이전트", "llm", "automation", "자동화", "workflow", "워크플로", "network",
+               "seo", "geo", "검색엔진", "색인", "크롤러", "크롤링", "indexnow", "sitemap", "rss", "피드"],
 }
 
-def pick(slug, tags, title):
-    hay = " ".join([slug, " ".join(tags or []), title or ""]).lower()
+def _hit(k, hay):
+    # 영문 키워드는 단어 경계 매칭 ("ai"가 "airbridge"에 걸리는 오매칭 방지)
+    if re.fullmatch(r"[a-z0-9]+", k):
+        return re.search(r"(?<![a-z0-9])" + re.escape(k) + r"(?![a-z0-9])", hay) is not None
+    return k in hay
+
+def pick(slug, tags, title, text=""):
+    strong = " ".join([slug, " ".join(tags or []), title or ""]).lower()
+    weak = (text or "").lower()
     best, score = None, 0
     for m, kws in KEYWORDS.items():
-        s = sum(1 for k in kws if k in hay)
+        s = sum(2 for k in kws if _hit(k, strong)) + sum(1 for k in kws if _hit(k, weak))
         if s > score: best, score = m, s
     if best: return best
     h = int(hashlib.sha256(slug.encode()).hexdigest(), 16)
     return sorted(MOTIFS)[h % len(MOTIFS)]
 
-def generate(slug, out, tags=None, title="", motif=None):
+def generate(slug, out, tags=None, title="", motif=None, text=""):
     rnd = random.Random(int(hashlib.sha256(slug.encode()).hexdigest()[:12], 16))
     img = paper(rnd)
     layer = Image.new("RGBA", (W, H), (0,0,0,0))
     dr = ImageDraw.Draw(layer)
-    name = motif or pick(slug, tags, title)
+    name = motif or pick(slug, tags, title, text)
     MOTIFS[name](dr, rnd)
     img = Image.alpha_composite(img.convert("RGBA"), layer.filter(ImageFilter.GaussianBlur(0.55))).convert("RGB")
     img.save(out, "PNG", optimize=True)
@@ -160,11 +168,12 @@ if __name__ == "__main__":
     ap.add_argument("--slug", required=True)
     ap.add_argument("--tags", default="")
     ap.add_argument("--title", default="")
+    ap.add_argument("--text", default="", help="excerpt·본문 등 추가 매칭 텍스트 (가중치 1)")
     ap.add_argument("--outdir", default="images")
     ap.add_argument("--motif", choices=sorted(MOTIFS), help="자동 선택 대신 강제 지정")
     a = ap.parse_args()
     out = pathlib.Path(a.outdir) / ("sketch-" + a.slug + ".png")
     out.parent.mkdir(parents=True, exist_ok=True)
     name = generate(a.slug, str(out), tags=[t for t in a.tags.split(",") if t],
-                    title=a.title, motif=a.motif)
+                    title=a.title, motif=a.motif, text=a.text)
     print(str(out) + "\t" + name)
