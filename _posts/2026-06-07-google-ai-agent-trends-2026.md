@@ -1,5 +1,5 @@
 ---
-title: "AI 에이전트 도입의 병목은 기술이 아니라 사람이다 — Google Cloud 2026 보고서 정리"
+title: "AI 에이전트 도입의 병목은 기술이 아니라 사람이다 (Google Cloud 2026 보고서 정리)"
 date: 2026-06-07
 redirect_from:
   - /posts/2026/06/google-ai-agent-trends-2026/

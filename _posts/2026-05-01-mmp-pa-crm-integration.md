@@ -1,5 +1,5 @@
 ---
-title: "MMP-PA-CRM 통합 풀퍼널 연동 모듈 개발"
+title: "유저 식별자 불일치를 해결하는 MMP·PA·CRM 풀퍼널 연동 (Identity Resolution 설계)"
 redirect_from:
   - /portfolio/mmp-pa-crm-integration/
   - /portfolio/2026-05-01-mmp-pa-crm-integration/

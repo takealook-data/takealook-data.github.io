@@ -1,5 +1,5 @@
 ---
-title: "AI가 보고서를 쓰는 시대, 컨설턴트의 몫은 무엇인가 — 2026 상반기 회고"
+title: "AI가 보고서를 쓰는 시대, 컨설턴트의 몫은 무엇인가 (2026 상반기 회고)"
 redirect_from:
   - /essays/half-year-retrospective/
   - /essays/2026-06-01-half-year-retrospective/

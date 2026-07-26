@@ -1,5 +1,5 @@
 ---
-title: "데이터 분석에서 가장 자주 속는 상대는 내 직관이다 — 『생각에 관한 생각』"
+title: "데이터 분석에서 가장 자주 속는 상대는 내 직관이다 (『생각에 관한 생각』 서평)"
 redirect_from:
   - /reading/thinking-fast-and-slow/
   - /reading/2026-05-20-thinking-fast-and-slow/
