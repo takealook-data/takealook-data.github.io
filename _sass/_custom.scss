@@ -951,3 +951,231 @@ html[data-theme="dark"] .post-toc {
     }
   }
 }
+
+/* ==========================================================================
+   테마 토글 버튼 (masthead)
+   ========================================================================== */
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0 !important;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: #8b95a1;
+  font-size: 0.95rem;
+  cursor: pointer;
+
+  &:hover {
+    background: #f2f4f6;
+    color: #191f28;
+  }
+}
+
+/* ==========================================================================
+   이전/다음 (같은 라벨 내 이동) — 방향 라벨 + 제목 2줄 카드
+   ========================================================================== */
+
+.post-pagination {
+  .pagination--pager {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 14px 18px;
+    text-align: left;
+  }
+
+  .pagination--pager:last-child {
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  &__dir {
+    font-size: 0.78em;
+    font-weight: 600;
+    color: #8b95a1;
+    letter-spacing: -0.2px;
+  }
+
+  &__title {
+    font-size: 0.92em;
+    font-weight: 600;
+    line-height: 1.4;
+    word-break: keep-all;
+  }
+}
+
+/* ==========================================================================
+   풀 다크 모드 — 라이트 규칙의 !important를 이기기 위해 html[data-theme] 접두 + !important
+   팔레트: bg #17171c · 카드 #1e2028 · 보더 #2c2e3a · 본문 #d1d6db · 강조 #f2f4f6 · 액센트 #6ea8ff
+   ========================================================================== */
+
+html[data-theme="dark"] {
+  body,
+  #main {
+    background-color: #17171c !important;
+    color: #d1d6db !important;
+  }
+
+  h1, h2, h3, h4, h5, h6,
+  .page__title,
+  .archive__item-title,
+  .home-hero__title,
+  .site-title {
+    color: #f2f4f6 !important;
+  }
+
+  /* 마스트헤드 */
+  .masthead__menu-item a {
+    color: #b0b8c1 !important;
+
+    &:hover,
+    &.active {
+      background-color: #26262c !important;
+      color: #f2f4f6 !important;
+    }
+  }
+
+  .theme-toggle {
+    color: #b0b8c1;
+
+    &:hover {
+      background: #26262c;
+      color: #f2f4f6;
+    }
+  }
+
+  /* 홈 히어로 */
+  .home-hero {
+    border-bottom-color: #2c2e3a;
+  }
+
+  .home-hero__desc {
+    color: #b0b8c1;
+  }
+
+  .home-hero__btn--ghost {
+    background: #26262c;
+    color: #d1d6db !important;
+
+    &:hover {
+      background: #2c2e3a;
+    }
+  }
+
+  /* 카드 (홈·아카이브·라벨) */
+  .archive__item-title a:hover {
+    color: #6ea8ff !important;
+  }
+
+  .archive__item-excerpt {
+    color: #b0b8c1 !important;
+  }
+
+  .archive__item-teaser {
+    background-color: #1e2028 !important;
+  }
+
+  .archive__subtitle {
+    color: #f2f4f6 !important;
+    border-bottom-color: #2c2e3a !important;
+  }
+
+  /* 본문 */
+  .page__content {
+    color: #d1d6db !important;
+
+    p, li, dl, ul, ol {
+      color: #d1d6db !important;
+    }
+
+    a {
+      color: #6ea8ff !important;
+    }
+
+    blockquote {
+      background: #1e2028 !important;
+      border-left-color: #6ea8ff !important;
+      color: #b0b8c1 !important;
+    }
+
+    table {
+      border-color: #2c2e3a !important;
+
+      th {
+        background: #1e2028 !important;
+        color: #f2f4f6 !important;
+        border-color: #2c2e3a !important;
+      }
+
+      td {
+        border-color: #2c2e3a !important;
+        color: #d1d6db !important;
+      }
+
+      tr:nth-child(even) {
+        background: #1a1d24 !important;
+      }
+    }
+
+    :not(pre) > code {
+      background: #26262c !important;
+      color: #e5a86a !important;
+    }
+  }
+
+  /* 액션 바 */
+  .post-actions {
+    border-top-color: #2c2e3a;
+
+    &__btn {
+      background: #1e2028;
+      border-color: #2c2e3a;
+      color: #b0b8c1;
+
+      &:hover {
+        background: #26262c;
+      }
+    }
+
+    &__btn--like:hover {
+      color: #f04452;
+      border-color: #f04452;
+      background: #1e2028;
+    }
+  }
+
+  /* 이전/다음 + 페이지네이션 */
+  .pagination--pager {
+    background: #1e2028;
+    border-color: #2c2e3a !important;
+    color: #d1d6db !important;
+
+    &:hover {
+      background: #26262c;
+      color: #f2f4f6 !important;
+    }
+
+    &.disabled {
+      opacity: 0.4;
+    }
+  }
+
+  /* 태그·카테고리 칩 등 버튼류 */
+  .btn {
+    background-color: #26262c !important;
+    color: #d1d6db !important;
+  }
+
+  /* 댓글 제목 등 페이지 부속 */
+  .page__comments-title,
+  .page__meta-title,
+  .page__related-title {
+    color: #f2f4f6 !important;
+  }
+}
