@@ -162,7 +162,7 @@ airbridge:
   web_token              : ""   # 웹 SDK 토큰
   # 앱이 스토어에 올라간 뒤 true로 바꾸면 글 하단에 '앱에서 보기' CTA가 노출된다.
   app_cta_enabled        : false
-  android_scheme         : "takealook"   # 안드로이드 URI 스킴 (앱의 intent-filter와 일치해야 함)
+  android_scheme         : "takealook-data"   # 안드로이드 URI 스킴 (앱의 intent-filter와 일치해야 함)
 
 
 # Reading Files
