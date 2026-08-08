@@ -26,5 +26,40 @@ airbridge.init({
   webToken: {{ _ab_token | jsonify }},
   utmParsing: true
 })
+
+/* 콘텐츠 이벤트 — 웹 SDK는 페이지뷰를 자동 수집하지 않는다(init은 터치포인트만 잡는다).
+   명시적으로 보내야 한다.
+
+   ⚠ 이벤트를 여기(웹)에서만 보내는 이유: 안드로이드 앱은 WebView 하이브리드이고
+      Airbridge.setWebInterface로 이 호출을 네이티브 SDK가 넘겨받는다. 네이티브에서
+      같은 이벤트를 또 쏘면 이중 집계된다.
+
+   글 메타는 analytics-context.html이 만든 window.__blogMeta를 재사용한다
+   (그 include가 head/custom.html에서 이 파일보다 먼저 실행된다). */
+;(function () {
+  var m = window.__blogMeta || {};
+  var t = m.page_type;
+  var category;
+  var options = { customAttributes: m };
+
+  if (t === 'post') {
+    category = 'airbridge.ecommerce.product.viewed';
+    options.action = m.post_category || '';
+    options.label = m.post_title || '';
+    options.value = m.post_read_minutes || 0;
+    options.semanticAttributes = {
+      products: [{ productID: m.page_path || '', name: m.post_title || '' }]
+    };
+  } else if (t === 'home') {
+    category = 'airbridge.ecommerce.home.viewed';
+  } else {
+    /* 아카이브·태그·소개 등 — 스탠다드에 대응이 없어 커스텀 이벤트로 보낸다 */
+    category = 'page_viewed';
+    options.action = t || 'page';
+    options.label = m.page_path || '';
+  }
+
+  try { airbridge.events.send(category, options); } catch (e) {}
+})();
 </script>
 {%- endif -%}

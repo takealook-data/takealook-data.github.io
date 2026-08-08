@@ -17,6 +17,9 @@
     앱이 스토어에 없는 동안 켜지면 fallbacks.android('google-play')가 빈 스토어로 보내므로
     출시 전까지는 _config.yml에서 app_cta_enabled: false 를 유지한다.
   {%- endcomment -%}
+  {%- comment -%} _ab_on: SDK가 켜졌는가(이벤트 전송용) / _ab_cta: 앱 버튼을 노출하는가 {%- endcomment -%}
+  {%- assign _ab_on = false -%}
+  {%- if site.airbridge.app != '' and site.airbridge.web_token != '' -%}{%- assign _ab_on = true -%}{%- endif -%}
   {%- assign _ab_cta = false -%}
   {%- if site.airbridge.app_cta_enabled and site.airbridge.app != '' and site.airbridge.web_token != '' -%}{%- assign _ab_cta = true -%}{%- endif -%}
   {%- comment -%} 앱과의 딥링크 계약: takealook://post?path=<permalink> — 앱의 DeeplinkActivity가 그대로 파싱한다 {%- endcomment -%}
@@ -43,8 +46,30 @@
       if (!window.amplitude || typeof window.amplitude.track !== 'function') { return; }
       var p = props || {};
       p.action = action;
+{%- if _ab_on %}
+      trackAirbridge(action, props);
+{%- endif %}
       try { window.amplitude.track('post_action_clicked', p); } catch (e) {}
     }
+{%- if _ab_on %}
+    /* 같은 액션을 Airbridge에도 보낸다. 공유는 스탠다드 이벤트가 있고 나머지는 커스텀. */
+    function trackAirbridge(action, props) {
+      if (!window.airbridge || !airbridge.events || typeof airbridge.events.send !== 'function') { return; }
+      var meta = window.__blogMeta || {};
+      var attrs = {};
+      var k;
+      for (k in meta) { if (Object.prototype.hasOwnProperty.call(meta, k)) { attrs[k] = meta[k]; } }
+      for (k in (props || {})) { if (Object.prototype.hasOwnProperty.call(props, k)) { attrs[k] = props[k]; } }
+      attrs.action = action;
+      try {
+        airbridge.events.send(action === 'share' ? 'airbridge.share' : 'post_action_' + action, {
+          action: action,
+          label: meta.post_title || '',
+          customAttributes: attrs
+        });
+      } catch (e) {}
+    }
+{%- endif %}
 
     var likeBtn = document.getElementById('pa-like');
     var commentBtn = document.getElementById('pa-comment');
