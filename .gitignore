@@ -48,6 +48,8 @@ Icon?
 # Obsidian 프로젝트 관리 문서 (개인 작업 로그, 경로 정보 등)
 docs/
 scripts/
+# 단, GitHub Actions가 쓰는 스크립트는 커밋 대상 (위 scripts/ 패턴이 .github/scripts/까지 잡는다)
+!.github/scripts/
 
 # Claude Code 로컬 설정 (내부 AI 지침·세션 상태)
 CLAUDE.md
