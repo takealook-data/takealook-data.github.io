@@ -154,6 +154,16 @@ analytics:
   google:
     tracking_id          : "G-37ESECL6WP"
 
+# Airbridge — 웹→앱 어트리뷰션 (MMP). GA4/Amplitude를 대체하지 않고 병행한다.
+# 두 값이 모두 채워졌을 때만 Web SDK가 렌더된다 (_includes/analytics-providers/airbridge.html).
+# 값은 에어브릿지 대시보드 [설정]>[토큰 관리]에서 확인. 웹 SDK 토큰은 클라이언트 JS에 노출되는 공개 값이다.
+airbridge:
+  app                    : ""   # 앱 이름 (예: takealookdata)
+  web_token              : ""   # 웹 SDK 토큰
+  # 앱이 스토어에 올라간 뒤 true로 바꾸면 글 하단에 '앱에서 보기' CTA가 노출된다.
+  app_cta_enabled        : false
+  android_scheme         : "takealook-data"   # 안드로이드 URI 스킴 (앱의 intent-filter와 일치해야 함)
+
 
 # Reading Files
 include:

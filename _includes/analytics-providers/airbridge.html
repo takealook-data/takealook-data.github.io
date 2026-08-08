@@ -1,0 +1,30 @@
+{% comment %}
+  Airbridge Web SDK — 웹→앱 어트리뷰션의 웹쪽 절반.
+
+  안드로이드 앱(WebView 하이브리드)이 Airbridge.setWebInterface로 이 SDK의 명령을
+  네이티브 SDK에 넘겨받는다. 즉 인앱 웹뷰의 이벤트 수집 주체는 이 파일이고,
+  네이티브는 같은 이벤트를 다시 쏘지 않는다 (공식 문서의 중복 집계 경고).
+
+  ⚠ config 게이트 — site.airbridge.app 과 site.airbridge.web_token 이
+     둘 다 채워졌을 때만 출력된다. 비어 있으면 아무것도 렌더되지 않으므로
+     토큰 없이 머지해도 프로덕션은 무변화다. _config.yml 두 줄만 채우면 켜진다.
+
+  ⚠ production에서 compress_html이 한 줄로 압축한다 — 줄 주석(//) 금지, 블록 주석만.
+     (로더 스니펫은 미니파이된 한 줄이라 안전하다)
+
+  [KB: _kb/sources/help.airbridge.io/ko/developers/web-sdk.md]
+  [참고: https://help.airbridge.io/ko/developers/web-sdk]
+{% endcomment %}
+{%- assign _ab_app = site.airbridge.app | default: '' -%}
+{%- assign _ab_token = site.airbridge.web_token | default: '' -%}
+{%- if _ab_app != '' and _ab_token != '' -%}
+<script>
+(function(a_,i_,r_,_b,_r,_i,_d,_g,_e){function q(b,a){function d(){var l=x(b,a);y(l)}if(0<_g){var e,f=new (null!=(e=a_.XDomainRequest)?e:a_.XMLHttpRequest);e=function(){};f.open("GET",a);f.timeout=_g;f.onload=d;f.onerror=e;f.onprogress=e;f.ontimeout=e;f.send()}else d()}function y(b){if("complete"===i_.readyState)i_.head.appendChild(b);else{var a=function(){a_.removeEventListener("load",a);i_.head.appendChild(b)};a_.addEventListener("load",a)}}function x(b,a){var d=i_.createElement(r_);d.async=!0;d.src=a;d.onerror=function(){return z(b)};return d}function z(b){b.queue.filter(function(a){return 0<=_d.indexOf(a[0])}).forEach(function(a){a=a[1];a=a[a.length-1];"function"===typeof a&&a("Failed to load Airbridge SDK.")})}function r(b){var a={queue:null!=b?b:[],get isSDKEnabled(){return!1}};_i.concat(_d).forEach(function(d){var e=d.split("."),f=e.pop();e.reduce(function(l,t){var u;return l[t]=null!=(u=l[t])?u:{}},a)[f]=function(){a.queue.push([d,arguments])}});return a}null!=a_.__AIRBRIDGE__||(a_.__AIRBRIDGE__={mocks:[]});"undefined"!==typeof i_.documentMode&&(_r=_r.replace(/^https:/,""));a_.createAirbridge=function(){var b=r(),a;null==(a=a_.__AIRBRIDGE__)||a.mocks.push(b);q(b,_r);return b};a_[_b]||(_e=r(_e),a_[_b]=_e,q(_e,_r))})(window,document,"script","airbridge","https://static.airbridge.io/sdk/latest/airbridge.min.js","init startTracking stopTracking openBanner setBanner setDownload setDownloads openDeeplink setDeeplinks sendWeb setUserAgent setMobileAppData setUserID clearUserID setUserEmail clearUserEmail setUserPhone clearUserPhone setUserAttribute removeUserAttribute clearUserAttributes setUserAlias removeUserAlias clearUserAlias clearUser setUserId setUserAttributes addUserAlias setDeviceAlias removeDeviceAlias clearDeviceAlias setDeviceIFV setDeviceIFA setDeviceGAID events.send events.signIn events.signUp events.signOut events.purchased events.addedToCart events.productDetailsViewEvent events.homeViewEvent events.productListViewEvent events.searchResultViewEvent".split(" "),["events.wait","fetchResource","createTouchpoint","createTrackingLink"],0);
+
+airbridge.init({
+  app: {{ _ab_app | jsonify }},
+  webToken: {{ _ab_token | jsonify }},
+  utmParsing: true
+})
+</script>
+{%- endif -%}
