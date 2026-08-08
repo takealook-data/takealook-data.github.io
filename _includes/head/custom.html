@@ -54,9 +54,18 @@ window.amplitude.init('65255aac1e6c15df404c05183473f992', {
 });
 </script>
 
+{% comment %}
+  Airbridge Web SDK — 웹→앱 어트리뷰션. 안드로이드 앱이 setWebInterface로 이 SDK를 넘겨받는다.
+  theme의 analytics.html에 있는 provider case 스위치에는 넣지 않는다 — 거긴 provider를
+  하나만 고르는 구조이고 이미 GA4가 점유 중이다. Airbridge는 대체가 아니라 병행이므로
+  Amplitude와 같은 방식으로 여기서 직접 include한다.
+  site.airbridge.app / web_token 이 비어 있으면 아무것도 렌더되지 않는다.
+{% endcomment %}
+{% include analytics-providers/airbridge.html %}
+
 <!-- Content Security Policy -->
 <!-- frame-ancestors는 meta 태그로 전달 불가(브라우저가 무시) — GH Pages는 응답 헤더 설정이 없어 제외 -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://www.googletagmanager.com https://www.google-analytics.com https://cdn.amplitude.com https://giscus.app; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://giscus.app; img-src 'self' data: https:; font-src 'self' data: https://cdn.jsdelivr.net; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://*.amplitude.com; worker-src 'self' blob:; frame-src https://giscus.app;">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://www.googletagmanager.com https://www.google-analytics.com https://cdn.amplitude.com https://static.airbridge.io https://giscus.app; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://giscus.app; img-src 'self' data: https:; font-src 'self' data: https://cdn.jsdelivr.net; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://*.amplitude.com https://*.airbridge.io; worker-src 'self' blob:; frame-src https://giscus.app;">
 
 <!-- Support for Academicons -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css"/>
