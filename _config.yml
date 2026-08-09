@@ -159,7 +159,7 @@ analytics:
 # 값은 에어브릿지 대시보드 [설정]>[토큰 관리]에서 확인. 웹 SDK 토큰은 클라이언트 JS에 노출되는 공개 값이다.
 airbridge:
   app                    : "takealookdata"   # 앱 이름 (에어브릿지 대시보드 등록값)
-  web_token              : ""   # 웹 SDK 토큰
+  web_token              : "860a6b68e3d94abda1de62586f667915"   # 웹 SDK 토큰 (클라이언트 JS에 노출되는 공개 값)
   # 앱이 스토어에 올라간 뒤 true로 바꾸면 글 하단에 '앱에서 보기' CTA가 노출된다.
   app_cta_enabled        : false
   android_scheme         : "takealook-data"   # 안드로이드 URI 스킴 (앱의 intent-filter와 일치해야 함)
