@@ -6,13 +6,15 @@
 
 ## 구성
 
-| 섹션 | 소스 | 내용 |
-|------|------|------|
-| 홈 `/` | `index.html` | 히어로 + 탭형 피드 (hash 기반 SPA) |
-| 블로그 | `_posts/` | martech-data · customer-success · ai-automation |
-| 생각 `/essays/` | `_essays/` | 회고·에세이 |
-| 독서 `/reading/` | `_reading/` | 서평·독서 노트 |
-| 포트폴리오 `/portfolio/` | `_portfolio/` | 완결 프로젝트 (문제→접근→결과) |
+글은 전부 `_posts/`에 있고 섹션은 front matter `categories`로 갈린다 (2026-07 통합).
+
+| 섹션 | 소스 | categories | 내용 |
+|------|------|-----------|------|
+| 홈 `/` | `index.html` | — | 히어로 + 탭형 피드 (hash 기반 SPA) |
+| 블로그 | `_posts/` | `martech-data` · `customer-success` · `ai-automation` | martech 데이터·고객 성공·AI 자동화 |
+| 생각 `/essays/` | `_posts/` | `essay` | 회고·에세이 |
+| 독서 `/reading/` | `_posts/` | `reading` | 서평·독서 노트 |
+| 포트폴리오 `/portfolio/` | `_posts/` | `portfolio` | 완결 프로젝트 (문제→접근→결과) |
 
 ## 글 쓰기
 
