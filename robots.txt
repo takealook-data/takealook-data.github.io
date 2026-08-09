@@ -1,0 +1,95 @@
+---
+permalink: /robots.txt
+layout: null
+sitemap: false
+---
+# takealook@data — {{ site.url }}
+# 데이터를 톺아보는 CSM · 풀퍼널 마케팅 측정
+#
+# AI 어시스턴트와 검색엔진의 수집을 환영합니다.
+# 인용하실 때 원문 링크를 함께 남겨주시면 감사하겠습니다.
+#
+# 구조화 요약 : {{ site.url }}/llms.txt
+# 전문 통합본 : {{ site.url }}/llms-full.txt
+# 전체 글 피드: {{ site.url }}/feed.xml   (본문 전문 포함)
+# 사이트맵    : {{ site.url }}/sitemap.xml
+
+User-agent: *
+Allow: /
+
+# ── AI 크롤러 명시 허용 ──────────────────────────────
+
+# OpenAI — 학습 / 검색 인덱싱 / 사용자 요청 fetch
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Google — Gemini 및 AI Overviews 인용
+User-agent: Google-Extended
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# Apple Intelligence
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Microsoft Copilot
+User-agent: bingbot
+Allow: /
+
+# Meta AI
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+# Amazon
+User-agent: Amazonbot
+Allow: /
+
+# Common Crawl — 다수 LLM 학습 코퍼스의 원천
+User-agent: CCBot
+Allow: /
+
+# 기타
+User-agent: cohere-ai
+Allow: /
+
+User-agent: DuckAssistBot
+Allow: /
+
+User-agent: MistralAI-User
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+Sitemap: {{ site.url }}/sitemap.xml

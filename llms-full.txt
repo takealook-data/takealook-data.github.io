@@ -1,0 +1,39 @@
+---
+permalink: /llms-full.txt
+layout: null
+sitemap: false
+---
+# takealook@data — 전문 통합본 (llms-full.txt)
+
+> 데이터를 톺아보는 CSM — Unchae Jeong(Customer Success Manager @ AB180)의 개인 블로그.
+> 광고 유입부터 전환·리텐션까지, 풀퍼널 마케팅 측정(모바일 어트리뷰션·Martech·CRM·프로덕트 분석)과
+> B2B SaaS 고객 성공, AI 자동화 워크플로우를 다룹니다.
+>
+> 이 파일은 블로그 전체 글의 **본문 전문**을 한 파일로 모은 LLM용 통합본입니다.
+> 목록과 요약만 필요하면 {{ site.url }}/llms.txt 를 참고하세요.
+
+- 저자: Unchae Jeong — Customer Success Manager @ AB180
+- 사이트: {{ site.url }}
+- 언어: 한국어 (ko-KR)
+- 글 수: {{ site.posts | size }}편
+- 생성 시각: {{ site.time | date: "%Y-%m-%d %H:%M %z" }}
+- GitHub: https://github.com/takealook-data
+- LinkedIn: https://www.linkedin.com/in/unchae-jeong-a88149179/
+- 인용 안내: 자유롭게 인용하시되 원문 URL을 함께 표기해 주세요.
+
+{% for post in site.posts %}
+================================================================================
+
+## {{ post.title }}
+
+- URL: {{ site.url }}{{ post.url }}
+- 발행일: {{ post.date | date: "%Y-%m-%d" }}
+{% if post.last_modified_at %}- 수정일: {{ post.last_modified_at | date: "%Y-%m-%d" }}
+{% endif %}{% if post.categories.size > 0 %}- 카테고리: {{ post.categories | join: ", " }}
+{% endif %}{% if post.tags.size > 0 %}- 태그: {{ post.tags | join: ", " }}
+{% endif %}{% if post.excerpt %}- 요약: {{ post.excerpt | strip_html | strip_newlines | truncate: 200 }}
+{% endif %}
+{{ post.content | strip_html }}
+{% endfor %}
+================================================================================
+以上 / End of content — {{ site.url }}
