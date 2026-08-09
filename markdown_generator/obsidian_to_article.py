@@ -41,11 +41,20 @@ import sys
 # 블로그 저장소 루트 (이 스크립트는 markdown_generator/ 안에 있음)
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# 2026-07 컬렉션 통합: _essays·_reading·_portfolio 폴더는 사라지고 _posts + categories로 합쳐졌다.
+# (_config.yml에 collections 블록 없음, _pages/essays.md 등이 site.posts를 categories로 필터링)
+# 여기를 옛 폴더명으로 되돌리면 Jekyll이 빌드하지 않는 곳에 글이 떨어져 에러 없이 사라진다.
 COLLECTION_DIRS = {
     "posts": "_posts",
-    "essays": "_essays",
-    "reading": "_reading",
-    "portfolio": "_portfolio",
+    "essays": "_posts",
+    "reading": "_posts",
+    "portfolio": "_posts",
+}
+# 통합된 컬렉션이 쓰는 고정 카테고리 (essays는 단수 essay)
+COLLECTION_CATEGORY = {
+    "essays": "essay",
+    "reading": "reading",
+    "portfolio": "portfolio",
 }
 COLLECTION_LABEL = {
     "posts": "블로그",
@@ -263,13 +272,24 @@ def ensure_sketch_teaser(slug, tags, title, text=""):
 
 
 def build_front_matter(args, title, date, excerpt, collection, slug, teaser):
-    """_drafts/_TEMPLATE.md 컨벤션: posts만 date·permalink·categories,
-    나머지 컬렉션은 title/excerpt/tags/header.teaser만."""
+    """2026-07 컬렉션 통합 이후 컨벤션.
+
+    posts        : title/date/permalink/excerpt/categories(--categories)/tags/header
+    그 외 컬렉션 : _posts로 합쳐졌으므로 date·permalink 대신 구 URL redirect_from과
+                   고정 categories를 붙인다. 날짜는 파일명이 갖는다.
+    """
     fm = ["---", f"title: {yaml_str(title)}"]
     if collection == "posts":
         fm.append(f"date: {date}")
         y, m, _d = date.split("-")
         fm.append(f"permalink: /posts/{y}/{m}/{slug}/")  # 앞 슬래시 필수
+    else:
+        # 통합 전 URL(/essays/slug/ 등)로 들어오는 링크를 살린다
+        fm.append("redirect_from:")
+        fm.append(f"  - /{collection}/{slug}/")
+        fm.append(f"  - /{collection}/{date}-{slug}/")
+        fm.append("categories:")
+        fm.append(f"  - {COLLECTION_CATEGORY[collection]}")
     if excerpt:
         fm.append(f"excerpt: {yaml_str(excerpt)}")
     if collection == "posts" and args.categories:
