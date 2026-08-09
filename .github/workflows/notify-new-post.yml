@@ -1,0 +1,55 @@
+# 새 글이 master에 push되면 FCM topic "new-post"로 앱 푸시를 보낸다.
+#
+# - 수신부: takealook-blog-android의 PushService (data 페이로드 계약은 그쪽 README 참조)
+# - 시크릿: FCM_SERVICE_ACCOUNT_JSON — Firebase 콘솔 [프로젝트 설정]>[서비스 계정]의 키 JSON 전문.
+#   없으면 이 워크플로우는 아무것도 보내지 않고 성공으로 끝난다 (레포는 PUBLIC — 키는 Secrets에만).
+# - data-only 메시지를 보낸다. notification 페이로드를 섞으면 앱이 백그라운드일 때
+#   시스템이 알림을 대신 그려 딥링크 extra가 유실된다.
+name: notify-new-post
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - "_posts/**"
+      - "_essays/**"
+      - "_reading/**"
+      - "_portfolio/**"
+
+permissions:
+  contents: read
+
+jobs:
+  push-notification:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: 추가된 글 감지 (수정·삭제는 알리지 않는다)
+        id: detect
+        run: |
+          if ! git rev-parse HEAD^ >/dev/null 2>&1; then
+            echo "첫 커밋 — 비교 대상 없음, 스킵"
+            echo "count=0" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git diff --diff-filter=A --name-only HEAD^ HEAD -- _posts _essays _reading _portfolio \
+            | grep '\.md$' > added_files.txt || true
+          COUNT=$(wc -l < added_files.txt | tr -d ' ')
+          echo "새 글 ${COUNT}건"
+          cat added_files.txt
+          echo "count=${COUNT}" >> "$GITHUB_OUTPUT"
+
+      - name: FCM 발송 (시크릿 없으면 스킵)
+        if: steps.detect.outputs.count != '0'
+        env:
+          FCM_SERVICE_ACCOUNT_JSON: ${{ secrets.FCM_SERVICE_ACCOUNT_JSON }}
+        run: |
+          if [ -z "$FCM_SERVICE_ACCOUNT_JSON" ]; then
+            echo "::notice::FCM_SERVICE_ACCOUNT_JSON 시크릿이 없어 푸시를 건너뜁니다."
+            exit 0
+          fi
+          pip install --quiet google-auth requests
+          python3 .github/scripts/send_fcm.py added_files.txt
