@@ -7,15 +7,16 @@ Obsidian vault의 마크다운 노트를 블로그 아티클로 변환합니다.
      인라인 #태그, 기존 front matter, 콜아웃 정리
   2) 첫 번째 H1을 front matter의 title로 승격 (본문 H1 중복 제거)
   3) Jekyll front matter 생성 — `_drafts/_TEMPLATE.md` 컨벤션 준수
-     - posts: title/date/permalink/excerpt/categories/tags/header.teaser
-     - essays·reading·portfolio: title/excerpt/tags/header.teaser (date·permalink·categories 없음)
-  4) 컬렉션 폴더에 `YYYY-MM-DD-slug.md` 규칙으로 저장 → 폴더가 곧 홈 화면의 탭
+     - posts: title/date/permalink/excerpt/categories(--categories)/tags/header.teaser
+     - essays·reading·portfolio: title/redirect_from/categories(고정)/excerpt/tags/header.teaser
+       (date·permalink 없음 — 날짜는 파일명이 갖고, URL은 사이트 기본값을 따른다)
+  4) `_posts/YYYY-MM-DD-slug.md` 규칙으로 저장
 
-컬렉션(탭) 매핑:
-  posts     → "블로그"     (_posts/)
-  essays    → "생각"       (_essays/)
-  reading   → "독서"       (_reading/)
-  portfolio → "포트폴리오" (_portfolio/)
+컬렉션(탭) 매핑 — 2026-07 통합으로 폴더가 아니라 categories가 탭을 가른다:
+  posts     → "블로그"     (_posts/, categories는 --categories로 지정)
+  essays    → "생각"       (_posts/, categories: essay)
+  reading   → "독서"       (_posts/, categories: reading)
+  portfolio → "포트폴리오" (_posts/, categories: portfolio)
 
 사용 예:
   python3 markdown_generator/obsidian_to_article.py \

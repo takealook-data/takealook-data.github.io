@@ -11,10 +11,8 @@ on:
   push:
     branches: [master]
     paths:
+      # 글은 전부 _posts/에 있다 (2026-07 컬렉션 통합). 홈 탭은 categories가 가른다.
       - "_posts/**"
-      - "_essays/**"
-      - "_reading/**"
-      - "_portfolio/**"
 
 permissions:
   contents: read
@@ -35,7 +33,7 @@ jobs:
             echo "count=0" >> "$GITHUB_OUTPUT"
             exit 0
           fi
-          git diff --diff-filter=A --name-only HEAD^ HEAD -- _posts _essays _reading _portfolio \
+          git diff --diff-filter=A --name-only HEAD^ HEAD -- _posts \
             | grep '\.md$' > added_files.txt || true
           COUNT=$(wc -l < added_files.txt | tr -d ' ')
           echo "새 글 ${COUNT}건"
