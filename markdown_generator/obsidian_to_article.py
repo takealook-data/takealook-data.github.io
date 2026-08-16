@@ -94,6 +94,70 @@ def split_front_matter(text: str):
     return "", text
 
 
+def parse_note_front_matter(fm_text: str):
+    """노트 상단 front matter에서 CLI 기본값으로 쓸 값을 뽑는다.
+
+    PyYAML 없이 이 프로젝트가 실제로 쓰는 형태(최상위 스칼라 + 단순 리스트)만 처리한다.
+    들여쓰기된 중첩 키(header.teaser 등)는 의도적으로 무시한다 — teaser는 --teaser나
+    스케치 자동생성이 담당한다.
+    """
+    out = {}
+    if not fm_text.strip():
+        return out
+    cur_key = None
+    for line in fm_text.splitlines():
+        if not line.strip() or line.lstrip().startswith("#"):
+            continue
+        m = re.match(r"^([A-Za-z_][\w.-]*):\s*(.*)$", line)   # 최상위 키만 (들여쓰기 제외)
+        if m:
+            key, val = m.group(1), m.group(2).strip()
+            if val:
+                out[key] = val.strip("\"'")
+                cur_key = None
+            else:
+                cur_key = key
+                out.setdefault(key, [])
+            continue
+        m = re.match(r"^\s+-\s+(.+)$", line)
+        if m and cur_key and isinstance(out.get(cur_key), list):
+            out[cur_key].append(m.group(1).strip().strip("\"'"))
+    return out
+
+
+def apply_note_front_matter(args, fm_text: str):
+    """노트 front matter를 args의 빈 값에만 채운다. 우선순위는 CLI > 노트 > 자동 추론.
+
+    이걸 안 하면 노트에 title·excerpt를 정성껏 써둬도 전부 버려지고
+    제목은 파일명, excerpt는 본문 첫 문단 복사로 잡힌다 (2026-08-17 실제 사고).
+    """
+    fm = parse_note_front_matter(fm_text)
+    if not fm:
+        return []
+    used = []
+
+    def _join(v):
+        return ",".join(v) if isinstance(v, list) else v
+
+    for arg_name, fm_key, conv in (
+        ("title", "title", None),
+        ("excerpt", "excerpt", None),
+        ("date", "date", None),
+        ("tags", "tags", _join),
+        ("categories", "categories", _join),
+    ):
+        if not getattr(args, arg_name, None) and fm.get(fm_key):
+            setattr(args, arg_name, conv(fm[fm_key]) if conv else fm[fm_key])
+            used.append(fm_key)
+
+    # permalink `/posts/2026/08/my-slug/` → slug `my-slug`
+    if not getattr(args, "slug", None) and isinstance(fm.get("permalink"), str):
+        seg = [s for s in fm["permalink"].split("/") if s]
+        if seg:
+            args.slug = seg[-1]
+            used.append("permalink→slug")
+    return used
+
+
 def extract_h1_title(body: str):
     """본문 첫 H1(`# 제목`)을 찾아 (title, body_without_that_h1) 반환."""
     lines = body.splitlines()
@@ -338,6 +402,7 @@ def main(argv=None):
         raw = f.read()
 
     _fm, body = split_front_matter(raw)
+    _fm_used = apply_note_front_matter(args, _fm)
     h1_title, body = extract_h1_title(body)
     source_dir = os.path.dirname(os.path.abspath(args.source))
     body, copied, missing = process_embeds(body, source_dir, args.vault)
@@ -367,6 +432,8 @@ def main(argv=None):
 
     # 리포트 출력
     print(f"■ 대상 노트 : {args.source}")
+    if _fm_used:
+        print(f"■ 노트 FM   : {', '.join(_fm_used)} (노트 front matter에서 가져옴)")
     print(f"■ 컬렉션(탭): {args.collection} ({COLLECTION_LABEL[args.collection]})")
     print(f"■ 제목      : {title}")
     print(f"■ 날짜      : {date}")
