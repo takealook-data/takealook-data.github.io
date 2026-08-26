@@ -33,9 +33,17 @@ layout: null
 
 {% assign reading_posts = site.posts | where_exp: "p", "p.categories contains 'reading'" %}{% for item in reading_posts %}- [{{ item.title }}]({{ site.url }}{{ item.url }}): {{ item.excerpt | strip_html | strip_newlines | truncate: 120 }}
 {% endfor %}
+## 투자유치 아카이브
+
+국내 스타트업 투자유치 사례를 라운드·금액·투자사 단위로 정리한 클리핑 아카이브. 각 사례는 공개 보도 요약이며 원문 출처 링크를 함께 싣습니다.
+
+- [투자유치 아카이브 전체]({{ site.url }}/funding/)
+{% assign funding_items = site.funding | sort: "announced" | reverse %}{% for f in funding_items %}- [{{ f.company }} · {{ f.round }}{% if f.amount_eok %} {{ f.amount_eok }}억 원{% endif %}]({{ site.url }}{{ f.url }}): {{ f.excerpt | strip_html | strip_newlines | truncate: 120 }}
+{% endfor %}
 ## Optional
 
 - [블로그 아카이브]({{ site.url }}/blog/)
 - [카테고리별 글]({{ site.url }}/categories/)
 - [태그별 글]({{ site.url }}/tags/)
+- [투자유치 아카이브]({{ site.url }}/funding/)
 - [sitemap]({{ site.url }}/sitemap.xml)

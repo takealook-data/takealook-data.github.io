@@ -1,0 +1,317 @@
+/* ==========================================================================
+   투자유치 아카이브 (_funding 컬렉션 + /funding/ 인덱스)
+   색은 테마 변수(--global-*)만 쓰고, 면(面)은 회색 알파로 덮어 라이트·다크 모두에서 뜬다.
+   ========================================================================== */
+
+$funding-surface: rgba(128, 128, 128, 0.07);
+$funding-surface-hover: rgba(128, 128, 128, 0.12);
+
+/* --- 인덱스 --------------------------------------------------------------- */
+
+.funding-intro {
+  margin: 0 0 24px;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--global-text-color-light);
+}
+
+.funding-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 24px;
+
+  &__item {
+    flex: 1 1 150px;
+    padding: 14px 16px;
+    border: 1px solid var(--global-border-color);
+    border-radius: 10px;
+  }
+
+  &__num {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.4px;
+    color: var(--global-text-color);
+
+    small {
+      margin-left: 3px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--global-text-color-light);
+    }
+  }
+
+  &__label {
+    display: block;
+    margin-top: 4px;
+    font-size: 0.8125rem;
+    color: var(--global-text-color-light);
+  }
+}
+
+.funding-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+
+  &__search { flex: 2 1 240px; }
+  &__select { flex: 1 1 140px; }
+
+  input,
+  select {
+    width: 100%;
+    margin: 0;
+    padding: 9px 12px;
+    border: 1px solid var(--global-border-color);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--global-text-color);
+    font-size: 0.9375rem;
+    font-family: inherit;
+  }
+}
+
+.funding-table {
+  &__head {
+    display: grid;
+    grid-template-columns: 6.5em minmax(0, 2.2fr) 7em 7em minmax(0, 2fr);
+    gap: 12px;
+    padding: 10px 4px;
+    border-bottom: 1px solid var(--global-border-color);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--global-text-color-light);
+
+    @media (max-width: 700px) { display: none; }
+  }
+}
+
+.funding-row {
+  display: grid;
+  grid-template-columns: 6.5em minmax(0, 2.2fr) 7em 7em minmax(0, 2fr);
+  gap: 12px;
+  align-items: start;
+  padding: 16px 4px;
+  border-bottom: 1px solid var(--global-border-color);
+  color: var(--global-text-color);
+  text-decoration: none !important;
+
+  &:hover {
+    background: $funding-surface;
+  }
+
+  &[hidden] { display: none; }
+
+  &__date {
+    font-size: 0.8125rem;
+    color: var(--global-text-color-light);
+    white-space: nowrap;
+  }
+
+  &__company {
+    min-width: 0;
+
+    strong {
+      display: block;
+      font-size: 1.0625rem;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+  }
+
+  &__sector {
+    display: inline-block;
+    margin-top: 2px;
+    font-size: 0.8125rem;
+    font-style: normal;
+    color: var(--global-text-color-light);
+  }
+
+  &__excerpt {
+    display: block;
+    margin-top: 6px;
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: var(--global-text-color-light);
+  }
+
+  &__amount {
+    strong {
+      display: block;
+      font-size: 1rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .is-na {
+      font-weight: 600;
+      color: var(--global-text-color-light);
+    }
+
+    small {
+      display: block;
+      margin-top: 2px;
+      font-size: 0.8125rem;
+      color: var(--global-text-color-light);
+    }
+  }
+
+  &__investors {
+    min-width: 0;
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: var(--global-text-color-light);
+    word-break: keep-all;
+
+    strong { color: var(--global-text-color); }
+  }
+
+  /* 모바일: 표 대신 카드 — 열 머리글이 없어도 읽히게 area로 재배치 */
+  @media (max-width: 700px) {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "company amount"
+      "date    round"
+      "inv     inv";
+    gap: 8px 12px;
+
+    &__company { grid-area: company; }
+    &__amount { grid-area: amount; text-align: right; }
+    &__date { grid-area: date; align-self: center; }
+    &__round { grid-area: round; justify-self: end; }
+    &__investors { grid-area: inv; }
+  }
+}
+
+.funding-badge {
+  display: inline-block;
+  padding: 2px 9px;
+  border: 1px solid var(--global-border-color);
+  border-radius: 999px;
+  background: $funding-surface;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.7;
+  white-space: nowrap;
+  color: var(--global-text-color-light);
+}
+
+.funding-empty,
+.funding-count {
+  margin: 16px 0 0;
+  font-size: 0.875rem;
+  color: var(--global-text-color-light);
+}
+
+.funding-howto {
+  margin-top: 40px;
+  padding-top: 16px;
+  border-top: 1px solid var(--global-border-color);
+  font-size: 0.875rem;
+  line-height: 1.75;
+  color: var(--global-text-color-light);
+
+  code {
+    word-break: break-all;
+  }
+}
+
+/* --- 단일 사례 ------------------------------------------------------------ */
+
+.funding-note {
+  &__eyebrow {
+    margin: 0 0 6px;
+    font-size: 0.875rem;
+    color: var(--global-text-color-light);
+  }
+
+  &__headline {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 10px;
+    margin: 6px 0 20px;
+  }
+
+  &__amount {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+
+    &--na {
+      font-size: 1.125rem;
+      color: var(--global-text-color-light);
+    }
+  }
+
+  &__date {
+    font-size: 0.875rem;
+    color: var(--global-text-color-light);
+  }
+
+  &__disclaimer {
+    margin-top: 32px;
+    padding: 12px 16px;
+    border-left: 3px solid var(--global-border-color);
+    background: $funding-surface;
+    font-size: 0.8125rem;
+    line-height: 1.75;
+    color: var(--global-text-color-light);
+  }
+
+  &__back {
+    margin-top: 32px;
+    font-size: 0.9375rem;
+  }
+}
+
+.funding-facts {
+  margin: 0 0 32px;
+  padding: 4px 0;
+  border-top: 1px solid var(--global-border-color);
+  border-bottom: 1px solid var(--global-border-color);
+
+  &__row {
+    display: grid;
+    grid-template-columns: 7.5em minmax(0, 1fr);
+    gap: 12px;
+    padding: 8px 0;
+
+    + .funding-facts__row {
+      border-top: 1px solid $funding-surface-hover;
+    }
+
+    dt {
+      margin: 0;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--global-text-color-light);
+    }
+
+    dd {
+      margin: 0;
+      font-size: 0.9375rem;
+      line-height: 1.6;
+      word-break: keep-all;
+    }
+
+    @media (max-width: 700px) {
+      grid-template-columns: 6em minmax(0, 1fr);
+      gap: 8px;
+    }
+  }
+}
+
+.funding-sources {
+  li { margin-bottom: 6px; }
+
+  &__publisher {
+    margin-left: 8px;
+    font-size: 0.8125rem;
+    color: var(--global-text-color-light);
+  }
+}

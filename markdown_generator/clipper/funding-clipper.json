@@ -1,0 +1,81 @@
+{
+  "schemaVersion": "0.1.0",
+  "name": "투자유치 클리핑",
+  "behavior": "create",
+  "noteNameFormat": "{{date:YYYY-MM-DD}} {{title}}",
+  "path": "Clippings/Funding",
+  "noteContentFormat": "{{content}}",
+  "properties": [
+    {
+      "name": "title",
+      "value": "{{title}}",
+      "type": "text"
+    },
+    {
+      "name": "source",
+      "value": "{{url}}",
+      "type": "text"
+    },
+    {
+      "name": "site",
+      "value": "{{site}}",
+      "type": "text"
+    },
+    {
+      "name": "author",
+      "value": "{{author}}",
+      "type": "multitext"
+    },
+    {
+      "name": "published",
+      "value": "{{published|date:\"YYYY-MM-DD\"}}",
+      "type": "date"
+    },
+    {
+      "name": "created",
+      "value": "{{date:YYYY-MM-DD}}",
+      "type": "date"
+    },
+    {
+      "name": "description",
+      "value": "{{description}}",
+      "type": "text"
+    },
+    {
+      "name": "company",
+      "value": "",
+      "type": "text"
+    },
+    {
+      "name": "round",
+      "value": "",
+      "type": "text"
+    },
+    {
+      "name": "amount_eok",
+      "value": "",
+      "type": "number"
+    },
+    {
+      "name": "sector",
+      "value": "",
+      "type": "text"
+    },
+    {
+      "name": "tags",
+      "value": "funding, clippings",
+      "type": "multitext"
+    }
+  ],
+  "triggers": [
+    "https://platum.kr/",
+    "https://wowtale.net/",
+    "https://www.venturesquare.net/",
+    "https://besuccess.com/",
+    "https://startuprecipe.co.kr/",
+    "https://thevc.kr/",
+    "https://demoday.co.kr/",
+    "https://www.mt.co.kr/future/",
+    "https://www.unicornfactory.co.kr/"
+  ]
+}

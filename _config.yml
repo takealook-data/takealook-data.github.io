@@ -229,6 +229,15 @@ kramdown:
   enable_coderay: false
 
 
+# Collections
+# funding — 스타트업 투자유치 사례 아카이브 (Obsidian 클리핑 → _funding/*.md)
+#   블로그 글(_posts)과 분리한 이유: 홈 통합 피드·RSS·앱 푸시는 site.posts만 보므로
+#   클리핑을 _posts에 넣으면 피드가 뉴스로 덮인다. 컬렉션은 /funding/ 인덱스에서만 모인다.
+collections:
+  funding:
+    output: true
+    permalink: /funding/:name/
+
 # These settings control how pages and collections are included in the site
 defaults:
   # _posts
@@ -249,6 +258,16 @@ defaults:
     values:
       layout: single
       author_profile: false
+  # _funding (투자유치 아카이브)
+  - scope:
+      path: ""
+      type: funding
+    values:
+      layout: funding
+      author_profile: false
+      read_time: false
+      comments: false
+      toc: false
 
 
 # Sass/SCSS

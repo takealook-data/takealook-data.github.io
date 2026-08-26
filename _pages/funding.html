@@ -1,0 +1,162 @@
+---
+layout: archive
+permalink: /funding/
+title: "투자유치 아카이브"
+author_profile: false
+excerpt: "국내 스타트업 투자유치 사례를 라운드·금액·투자사 단위로 정리한 클리핑 아카이브."
+---
+
+{% include base_path %}
+
+{% assign funding_items = site.funding | sort: "announced" | reverse %}
+{% assign total_eok = 0 %}
+{% assign disclosed = 0 %}
+{% for f in funding_items %}
+  {% if f.amount_eok %}
+    {% assign total_eok = total_eok | plus: f.amount_eok %}
+    {% assign disclosed = disclosed | plus: 1 %}
+  {% endif %}
+{% endfor %}
+{% assign rounds = funding_items | map: "round" | uniq | sort %}
+{% assign sectors = funding_items | map: "sector" | uniq | sort %}
+
+<p class="funding-intro">
+  공개된 보도를 읽고 <strong>라운드·금액·투자사 구성</strong>만 남겨 정리한 클리핑입니다.
+  한 파일이 한 라운드고, 원문은 각 사례 하단의 출처에서 봅니다.
+</p>
+
+<div class="funding-stats">
+  <div class="funding-stats__item">
+    <span class="funding-stats__num">{{ funding_items.size }}</span>
+    <span class="funding-stats__label">사례</span>
+  </div>
+  <div class="funding-stats__item">
+    <span class="funding-stats__num">{{ total_eok }}<small>억 원</small></span>
+    <span class="funding-stats__label">공개 금액 합계 ({{ disclosed }}건)</span>
+  </div>
+  <div class="funding-stats__item">
+    <span class="funding-stats__num">{{ funding_items.first.announced | date: "%Y-%m-%d" }}</span>
+    <span class="funding-stats__label">최근 사례</span>
+  </div>
+</div>
+
+<div class="funding-controls">
+  <label class="funding-controls__search">
+    <span class="sr-only">기업·투자사 검색</span>
+    <input type="search" id="funding-q" placeholder="기업명·투자사·분야로 검색" autocomplete="off">
+  </label>
+  <label class="funding-controls__select">
+    <span class="sr-only">라운드</span>
+    <select id="funding-round">
+      <option value="">라운드 전체</option>
+      {% for r in rounds %}{% if r != "" %}<option value="{{ r }}">{{ r }}</option>{% endif %}{% endfor %}
+    </select>
+  </label>
+  <label class="funding-controls__select">
+    <span class="sr-only">분야</span>
+    <select id="funding-sector">
+      <option value="">분야 전체</option>
+      {% for s in sectors %}{% if s != "" %}<option value="{{ s }}">{{ s }}</option>{% endif %}{% endfor %}
+    </select>
+  </label>
+  <label class="funding-controls__select">
+    <span class="sr-only">정렬</span>
+    <select id="funding-sort">
+      <option value="date">최신순</option>
+      <option value="amount">금액순</option>
+    </select>
+  </label>
+</div>
+
+<div class="funding-table" id="funding-table">
+  <div class="funding-table__head" aria-hidden="true">
+    <span>발표일</span><span>기업</span><span>라운드</span><span>금액</span><span>투자사</span>
+  </div>
+  {% for f in funding_items %}
+    {% capture investors_all %}{{ f.investors_lead | join: " " }} {{ f.investors | join: " " }}{% endcapture %}
+    <a class="funding-row"
+       href="{{ base_path }}{{ f.url }}"
+       data-round="{{ f.round }}"
+       data-sector="{{ f.sector }}"
+       data-amount="{{ f.amount_eok | default: 0 }}"
+       data-date="{{ f.announced | date: '%Y%m%d' }}"
+       data-search="{{ f.company }} {{ f.company_en }} {{ f.sector }} {{ f.round }} {{ investors_all }} {{ f.tags | join: ' ' }}">
+      <span class="funding-row__date"><time datetime="{{ f.announced | date: '%Y-%m-%d' }}">{{ f.announced | date: "%Y.%m.%d" }}</time></span>
+      <span class="funding-row__company">
+        <strong>{{ f.company }}</strong>
+        {% if f.sector %}<em class="funding-row__sector">{{ f.sector }}</em>{% endif %}
+        <span class="funding-row__excerpt">{{ f.excerpt | strip_html | truncate: 90 }}</span>
+      </span>
+      <span class="funding-row__round"><span class="funding-badge funding-badge--round">{{ f.round }}</span></span>
+      <span class="funding-row__amount">
+        {% if f.amount_eok %}<strong>{{ f.amount_eok }}억</strong>{% else %}<strong class="is-na">비공개</strong>{% endif %}
+        {% if f.cumulative_eok %}<small>누적 {{ f.cumulative_eok }}억</small>{% endif %}
+      </span>
+      <span class="funding-row__investors">
+        {% if f.investors_lead.size > 0 %}<strong>{{ f.investors_lead | join: ", " }}</strong>{% endif %}
+        {% if f.investors.size > 0 %}<span>{{ f.investors | join: ", " }}</span>{% endif %}
+      </span>
+    </a>
+  {% endfor %}
+</div>
+
+<p class="funding-empty" id="funding-empty" hidden>조건에 맞는 사례가 없습니다.</p>
+<p class="funding-count" id="funding-count"></p>
+
+<p class="funding-howto">
+  새 사례는 Obsidian Web Clipper로 기사를 클리핑한 뒤
+  <code>python3 markdown_generator/funding_clip_to_note.py --source &lt;노트&gt;</code> 로 변환해 <code>_funding/</code>에 추가합니다.
+  자세한 절차는 <a href="https://github.com/{{ site.repository }}/blob/master/markdown_generator/funding-archive.md">funding-archive.md</a>.
+</p>
+
+<script>
+(function () {
+  /* 목록 필터·정렬 — 외부 라이브러리 없이 DOM에서 처리한다.
+     compress_html이 한 줄로 압축하므로 줄 주석 금지, 블록 주석만 사용 */
+  var table = document.getElementById('funding-table');
+  if (!table) { return; }
+  var rows = Array.prototype.slice.call(table.querySelectorAll('.funding-row'));
+  var q = document.getElementById('funding-q');
+  var roundSel = document.getElementById('funding-round');
+  var sectorSel = document.getElementById('funding-sector');
+  var sortSel = document.getElementById('funding-sort');
+  var empty = document.getElementById('funding-empty');
+  var count = document.getElementById('funding-count');
+
+  function apply() {
+    var term = (q.value || '').trim().toLowerCase();
+    var round = roundSel.value;
+    var sector = sectorSel.value;
+    var shown = 0;
+    var sum = 0;
+    rows.forEach(function (row) {
+      var hay = (row.getAttribute('data-search') || '').toLowerCase();
+      var ok = (!term || hay.indexOf(term) !== -1) &&
+               (!round || row.getAttribute('data-round') === round) &&
+               (!sector || row.getAttribute('data-sector') === sector);
+      row.hidden = !ok;
+      if (ok) { shown++; sum += parseInt(row.getAttribute('data-amount'), 10) || 0; }
+    });
+    empty.hidden = shown !== 0;
+    count.textContent = shown + '건 · 공개 금액 합계 ' + sum + '억 원';
+  }
+
+  function sort() {
+    var mode = sortSel.value;
+    var sorted = rows.slice().sort(function (a, b) {
+      if (mode === 'amount') {
+        return (parseInt(b.getAttribute('data-amount'), 10) || 0) - (parseInt(a.getAttribute('data-amount'), 10) || 0);
+      }
+      return (b.getAttribute('data-date') || '').localeCompare(a.getAttribute('data-date') || '');
+    });
+    sorted.forEach(function (row) { table.appendChild(row); });
+  }
+
+  [q, roundSel, sectorSel].forEach(function (el) {
+    el.addEventListener('input', apply);
+    el.addEventListener('change', apply);
+  });
+  sortSel.addEventListener('change', function () { sort(); apply(); });
+  apply();
+})();
+</script>

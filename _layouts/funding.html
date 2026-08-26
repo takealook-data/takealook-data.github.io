@@ -1,0 +1,84 @@
+---
+layout: default
+---
+
+{% include base_path %}
+
+{% comment %}
+  투자유치 사례 단일 문서 레이아웃 (_funding/*.md)
+  front matter의 구조화 필드로 팩트 시트를 먼저 그리고, 본문(요약·메모)을 잇는다.
+  원문은 요약·인용만 싣고 전문은 옮기지 않는다 — sources가 반드시 있어야 한다.
+{% endcomment %}
+
+<div id="main" role="main">
+  <article class="page funding-note" itemscope itemtype="http://schema.org/Article">
+    <meta itemprop="headline" content="{{ page.title | strip_html | escape_once }}">
+    {% if page.excerpt %}<meta itemprop="description" content="{{ page.excerpt | strip_html | escape_once }}">{% endif %}
+    {% if page.announced %}<meta itemprop="datePublished" content="{{ page.announced | date: '%Y-%m-%d' }}">{% endif %}
+
+    <div class="page__inner-wrap">
+      <header class="funding-note__header">
+        <p class="funding-note__eyebrow">
+          <a href="{{ base_path }}/funding/">투자유치 아카이브</a>
+          {% if page.sector %}<span aria-hidden="true">·</span> {{ page.sector }}{% endif %}
+        </p>
+        <h1 class="page__title" itemprop="headline">{{ page.company }}</h1>
+        <div class="funding-note__headline">
+          {% if page.round %}<span class="funding-badge funding-badge--round">{{ page.round }}</span>{% endif %}
+          {% if page.amount_eok %}<span class="funding-note__amount">{{ page.amount_eok }}억 원</span>
+          {% else %}<span class="funding-note__amount funding-note__amount--na">금액 비공개</span>{% endif %}
+          {% if page.announced %}<span class="funding-note__date"><time datetime="{{ page.announced | date: '%Y-%m-%d' }}">{{ page.announced | date: '%Y년 %m월 %d일' }}</time> 발표</span>{% endif %}
+        </div>
+      </header>
+
+      <dl class="funding-facts">
+        {% if page.company_en %}<div class="funding-facts__row"><dt>영문명</dt><dd>{{ page.company_en }}</dd></div>{% endif %}
+        {% if page.round %}<div class="funding-facts__row"><dt>라운드</dt><dd>{{ page.round }}</dd></div>{% endif %}
+        <div class="funding-facts__row"><dt>투자금액</dt><dd>{% if page.amount_eok %}{{ page.amount_eok }}억 원{% else %}비공개{% endif %}</dd></div>
+        {% if page.cumulative_eok %}<div class="funding-facts__row"><dt>누적 투자</dt><dd>{{ page.cumulative_eok }}억 원</dd></div>{% endif %}
+        {% if page.investors_lead.size > 0 %}
+        <div class="funding-facts__row"><dt>리드 투자사</dt><dd>{{ page.investors_lead | join: ", " }}</dd></div>
+        {% endif %}
+        {% if page.investors.size > 0 %}
+        <div class="funding-facts__row"><dt>참여 투자사</dt><dd>{{ page.investors | join: ", " }}</dd></div>
+        {% endif %}
+        {% if page.sector %}<div class="funding-facts__row"><dt>분야</dt><dd>{{ page.sector }}</dd></div>{% endif %}
+        {% if page.founded %}<div class="funding-facts__row"><dt>설립</dt><dd>{{ page.founded }}년</dd></div>{% endif %}
+        {% if page.announced %}<div class="funding-facts__row"><dt>발표일</dt><dd>{{ page.announced | date: '%Y-%m-%d' }}</dd></div>{% endif %}
+      </dl>
+
+      <div class="post-layout">
+        <div class="post-layout__main">
+          <section class="page__content" itemprop="text">
+            {{ content }}
+
+            {% if page.sources.size > 0 %}
+            <h2 id="출처">출처</h2>
+            <ul class="funding-sources">
+              {% for s in page.sources %}
+              <li>
+                <a href="{{ s.url }}" rel="noopener nofollow" target="_blank">{{ s.title | default: s.url }}</a>
+                {% if s.publisher %}<span class="funding-sources__publisher">{{ s.publisher }}</span>{% endif %}
+              </li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+
+            <p class="funding-note__disclaimer">
+              공개된 보도자료·기사를 요약해 정리한 클리핑입니다. 수치와 투자사 표기는 위 출처 기준이며, 원문 전체를 옮기지 않습니다.
+              {% if page.clipped %}클리핑 {{ page.clipped | date: '%Y-%m-%d' }}.{% endif %}
+            </p>
+          </section>
+
+          {% if page.tags.size > 0 %}
+          <footer class="page__meta">
+            {% include tag-list.html %}
+          </footer>
+          {% endif %}
+
+          <p class="funding-note__back"><a href="{{ base_path }}/funding/">← 투자유치 아카이브 전체 보기</a></p>
+        </div>
+      </div>
+    </div>
+  </article>
+</div>
