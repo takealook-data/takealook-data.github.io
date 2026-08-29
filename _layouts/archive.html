@@ -25,7 +25,15 @@ layout: default
       opt-in(page.hero)이라 hero 키가 없는 다른 archive 페이지는 영향받지 않는다.
     {% endcomment %}
     {% if page.hero %}
-      {% include home-hero.html %}
+      {% comment %}
+        히어로는 랜딩에 한 번만. paginator가 만드는 2페이지 이후에도 렌더하면
+        목록 위에 대형 히어로가 반복되어 "밝기 반전 = 챕터 시작"이라는 의도가 무너진다.
+        (CTA는 각 페이지의 끝 역할을 하므로 페이지마다 둔다.)
+        hero 키가 없는 archive 페이지들은 paginator 자체가 없어 영향받지 않는다.
+      {% endcomment %}
+      {% unless paginator.page > 1 %}
+        {% include home-hero.html %}
+      {% endunless %}
     {% endif %}
     {% if page.sidebar_blog %}
     <div class="blog-layout">
