@@ -19,6 +19,14 @@ layout: default
         <h1 class="page__title">{{ page.title }}</h1>
       {% endif %}
     {% endunless %}
+    {% comment %}
+      풀블리드 히어로 슬롯. sidebar_blog가 켜지면 본문이 .blog-layout 2컬럼에 갇혀
+      calc(50% - 50vw) 풀블리드가 사이드바 폭만큼 어긋난다. 그래서 래퍼 바깥에 둔다.
+      opt-in(page.hero)이라 hero 키가 없는 다른 archive 페이지는 영향받지 않는다.
+    {% endcomment %}
+    {% if page.hero %}
+      {% include home-hero.html %}
+    {% endif %}
     {% if page.sidebar_blog %}
     <div class="blog-layout">
       <div class="blog-layout__main">
@@ -30,6 +38,14 @@ layout: default
     </div>
     {% else %}
     {{ content }}
+    {% endif %}
+    {% comment %}
+      마무리 CTA 슬롯. 히어로와 같은 이유로 .blog-layout 바깥에 둔다 —
+      래퍼 안에서는 calc(50% - 50vw)의 50%가 사이드바를 뺀 컬럼 폭이 되어
+      풀블리드가 어긋나고 가로 스크롤이 생긴다.
+    {% endcomment %}
+    {% if page.cta %}
+      {% include home-cta.html %}
     {% endif %}
   </div>
 </div>

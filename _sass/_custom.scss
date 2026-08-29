@@ -2,6 +2,59 @@
    takealook@data Blog Minimal UI/UX Custom Facelift (toss.tech Style)
    ========================================================================== */
 
+/* ==========================================================================
+   0. 디자인 토큰 — corp.tossinvest.com 실측값 (근거: docs/toss-landing-teardown.md)
+
+   토스가 일관되게 보이는 이유는 값이 예뻐서가 아니라 값의 "가짓수"가 적기 때문이다.
+   라운드 3종, line-height 2값. 새 규칙을 쓸 때 여기 없는 값을 만들지 않는다.
+
+   기존 1,253줄을 일괄 치환하지는 않았다 — 회귀 위험이 크다.
+   신규 섹션(§17)과 교체한 §7에만 적용한다.
+   ========================================================================== */
+
+$radius-lg   : 30px;    /* 대형 카드·시트 */
+$radius-md   : 8px;     /* 버튼·소형 요소 */
+$radius-pill : 100px;   /* eyebrow·태그 */
+
+$lh-title    : 1.30;    /* 제목 */
+$lh-body     : 1.60;    /* 본문 */
+
+/* 풀블리드 섹션 안쪽 텍스트가 시작해야 할 x좌표를 50vw에서 빼는 값.
+
+   #main은 `max-width: 1080px` + `padding: 0 40px` + `box-sizing: border-box`다.
+   border-box이므로 1080은 패딩을 "포함한" 바깥 폭이고, 텍스트가 실제로 시작하는 지점은
+     (100vw - 1080) / 2 + 40  =  50vw - 500
+   이다. 여기에 토스의 컨테이너 1230px이나 1080의 절반인 540을 쓰면 헤더 로고·글 목록과
+   40px 이상 어긋난다. 정렬의 기준은 컨테이너 폭이 아니라 콘텐츠 시작점이다. */
+$bleed-inset : 500px;
+
+/* #main 밖으로 나가 화면 폭을 꽉 채우되, 안쪽 텍스트는 #main의 콘텐츠 시작점과 맞춘다.
+   좌우 여백은 #main의 padding(20/32/40)과 같은 브레이크포인트를 쓴다.
+   Sass가 max()를 컴파일 타임에 평가하려 들지 않도록 unquote로 감싼다. */
+@mixin full-bleed {
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding-left: 20px;
+  padding-right: 20px;
+
+  @media screen and (min-width: 768px) {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    padding-left: unquote("max(40px, calc(50vw - #{$bleed-inset}))");
+    padding-right: unquote("max(40px, calc(50vw - #{$bleed-inset}))");
+  }
+}
+
+/* 풀블리드가 세로 스크롤바 폭만큼 가로 넘침을 만들 수 있다.
+   overflow-x: hidden이 아니라 clip을 쓰는 이유 — hidden은 스크롤 컨테이너를 만들어
+   글 상세의 sticky TOC 레일(§12)을 깨뜨린다. clip은 스크롤 포트를 만들지 않는다. */
+html {
+  overflow-x: clip;
+}
+
 /* 1. Global Reset & Typography */
 body {
   font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -536,44 +589,69 @@ a, button, input, select, textarea {
   font-size: 0.875rem !important;
 }
 
-/* 7. Home Hero (모든 탭 공통 — index.html 최상단) */
+/* 7. Home Hero — 토스 히어로 이식 (_includes/home-hero.html)
+
+   토스 랜딩 §1은 뷰포트 높이를 통째로 쓰는 순흑 풀블리드다. 배경 밝기가 뒤집히는 지점이
+   곧 챕터 구분이라, 히어로에 border-bottom 같은 선이 필요 없다 — 반전 자체가 경계다.
+   높이는 토스의 100vh를 따르지 않는다. 블로그는 글 목록이 본체여서 첫 화면이 통째로
+   접히면 손해다. clamp로 화면의 절반 남짓만 쓴다. */
 .home-hero {
-  padding: 40px 0 44px;
-  margin-bottom: 40px;
-  border-bottom: 1px solid #f2f4f6;
+  @include full-bleed;
+  display: flex;
+  align-items: center;
+  background: #000;
+  min-height: clamp(340px, 54vh, 520px);
+  padding-top: 56px;
+  padding-bottom: 56px;
+  margin-bottom: 48px;
 
   @media screen and (min-width: 768px) {
-    padding: 56px 0 60px;
-    margin-bottom: 48px;
+    min-height: clamp(400px, 60vh, 600px);
+    padding-top: 72px;
+    padding-bottom: 72px;
+    margin-bottom: 64px;
   }
 }
 
+.home-hero__inner {
+  width: 100%;
+  max-width: 720px;
+}
+
+/* eyebrow는 토스 feature row(§4~6)의 pill 형태를 가져왔다. 라운드는 토큰의 pill 1종. */
 .home-hero__eyebrow {
-  font-size: 0.875rem;
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: $radius-pill;
+  background: rgba(255, 255, 255, 0.10);
+  color: rgba(242, 242, 255, 0.75);
+  font-size: 0.8125rem;  /* 13px — 토스 캡션 단계 */
+  line-height: $lh-body;
   font-weight: 500;
-  color: #8b95a1;
-  margin: 0 0 10px;
+  margin: 0 0 18px;
   letter-spacing: -0.2px;
 }
 
+/* §1의 `h1..h6 { color: #191f28 !important }`를 이겨야 해서 !important가 필요하다. */
 .home-hero__title {
   font-size: 1.75rem;   /* 28px mobile */
   font-weight: 700;
-  color: #191f28;
+  color: #ffffff !important;
   letter-spacing: -0.6px;
-  line-height: 1.3;
-  margin: 0 0 12px;
+  line-height: $lh-title;
+  margin: 0 0 14px;
 
   @media screen and (min-width: 768px) {
-    font-size: 2.25rem; /* 36px desktop */
+    font-size: 2.25rem; /* 36px — 토스 헤드라인 단계 */
   }
 }
 
+/* 다크 배경 위 본문은 별도 회색을 만들지 않고 흰색의 투명도로 처리한다(토스 방식). */
 .home-hero__desc {
   font-size: 1rem;
-  line-height: 1.65;
-  color: #4e5968;
-  margin: 0 0 24px;
+  line-height: $lh-body;
+  color: rgba(253, 253, 255, 0.75);
+  margin: 0 0 28px;
   max-width: 620px;
 
   @media screen and (min-width: 768px) {
@@ -596,8 +674,8 @@ a, button, input, select, textarea {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 11px 20px;
-  border-radius: 8px;
+  padding: 12px 22px;
+  border-radius: $radius-md;
   font-size: 0.9375rem; /* 15px */
   font-weight: 600;
   letter-spacing: -0.2px;
@@ -610,17 +688,36 @@ a, button, input, select, textarea {
   color: #fff !important;
 
   &:hover {
-    background: #0040d6;
+    background: #1b64ff;
     color: #fff !important;
   }
 }
 
+/* 다크 배경 위 secondary. 고정 회색(#f2f4f6) 대신 흰색 투명도라 배경이 바뀌어도 따라온다. */
 .home-hero__btn--ghost {
-  background: #f2f4f6;
-  color: #333d4b !important;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff !important;
 
   &:hover {
-    background: #e5e8eb;
+    background: rgba(255, 255, 255, 0.20);
+    color: #fff !important;
+  }
+}
+
+/* 다크모드 짝 — 히어로는 이미 순흑이라 값은 같지만, §15의 !important 스택이
+   .home-hero 하위를 덮지 않도록 명시적으로 재선언한다. */
+html[data-theme="dark"] {
+  .home-hero { background: #000 !important; }
+  .home-hero__title { color: #ffffff !important; }
+  .home-hero__desc { color: rgba(253, 253, 255, 0.75) !important; }
+  .home-hero__eyebrow {
+    background: rgba(255, 255, 255, 0.10) !important;
+    color: rgba(242, 242, 255, 0.75) !important;
+  }
+  .home-hero__btn--primary { background: #0050ff !important; color: #fff !important; }
+  .home-hero__btn--ghost {
+    background: rgba(255, 255, 255, 0.12) !important;
+    color: #fff !important;
   }
 }
 
@@ -1249,5 +1346,245 @@ html[data-theme="dark"] {
     background-color: #3c414b !important;
     color: #f2f4f6 !important;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35) !important;
+  }
+}
+
+/* ==========================================================================
+   17. 홈 섹션 리듬 + 스크롤 인 — corp.tossinvest.com 이식
+        근거·실측값: docs/toss-landing-teardown.md
+
+        토스는 7,644px 문서를 헤딩이 아니라 배경 밝기로 끊는다(흑→백→흑→회색).
+        여기서는 다크 섹션을 히어로 1개로 줄였다 — 글 읽는 흐름을 끊지 않기 위해서다.
+        흑(히어로) → 백(글 목록) → 회색(CTA), 두 번의 반전.
+   ========================================================================== */
+
+.home-section {
+  margin-bottom: 56px;
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 72px;
+  }
+}
+
+/* 토스 feature row의 pill eyebrow. 밝은 배경 위이므로 잉크의 투명도로 위계를 만든다. */
+.home-section__eyebrow {
+  font-size: 0.8125rem;   /* 13px */
+  line-height: $lh-body;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: rgba(3, 24, 50, 0.46);
+  margin: 0 0 6px;
+}
+
+.home-section__title {
+  font-size: 1.25rem;     /* 20px */
+  font-weight: 700;
+  line-height: $lh-title;
+  letter-spacing: -0.4px;
+  color: #191f28 !important;
+  margin: 0 0 20px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 1.5rem;    /* 24px — 토스 카드 제목 단계 */
+  }
+}
+
+/* ---- 주제 3단 (토스 §4~6 feature row를 텍스트만으로 옮긴 것) ---- */
+
+.home-topics {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    gap: 16px;
+  }
+}
+
+.home-topic {
+  flex: 1;
+  display: block;
+  padding: 22px;
+  border-radius: $radius-lg;   /* 토스 대형 카드 라운드 */
+  background: #f9fafb;
+  text-decoration: none !important;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    background: #f2f4f6;
+    transform: translateY(-2px);
+    text-decoration: none !important;
+  }
+}
+
+.home-topic__pill {
+  display: inline-block;
+  padding: 5px 12px;
+  margin-bottom: 12px;
+  border-radius: $radius-pill;
+  background: #ffffff;
+  color: #0050ff;
+  font-size: 0.8125rem;   /* 13px */
+  line-height: $lh-body;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+}
+
+.home-topic__desc {
+  margin: 0;
+  font-size: 0.9375rem;   /* 15px */
+  line-height: $lh-body;
+  color: rgba(3, 18, 40, 0.70);
+  word-break: keep-all;
+}
+
+/* ---- 마무리 CTA (토스 §8) — 밝기를 한 번 더 바꿔 문서의 끝을 알린다 ---- */
+
+.home-cta {
+  @include full-bleed;
+  background: #f4f5f7;   /* 토스 CTA 섹션 실측값 */
+  padding-top: 56px;
+  padding-bottom: 56px;
+  margin-top: 64px;
+  text-align: center;
+
+  @media screen and (min-width: 768px) {
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+}
+
+.home-cta__title {
+  font-size: 1.375rem;   /* 22px */
+  font-weight: 700;
+  line-height: $lh-title;
+  letter-spacing: -0.5px;
+  color: #191f28 !important;
+  margin: 0 0 10px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 1.875rem; /* 30px — 토스 서브 헤드라인 단계 */
+  }
+}
+
+.home-cta__desc {
+  font-size: 1rem;
+  line-height: $lh-body;
+  color: rgba(3, 18, 40, 0.70);
+  margin: 0 0 24px;
+}
+
+.home-cta__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  @media screen and (min-width: 600px) {
+    flex-direction: row;
+    justify-content: center;
+    gap: 12px;
+  }
+}
+
+.home-cta__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 22px;
+  border-radius: $radius-md;
+  font-size: 0.9375rem;  /* 15px */
+  font-weight: 600;
+  letter-spacing: -0.2px;
+  text-decoration: none !important;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.home-cta__btn--primary {
+  background: #0050ff;
+  color: #fff !important;
+
+  &:hover {
+    background: #1b64ff;
+    color: #fff !important;
+  }
+}
+
+.home-cta__btn--ghost {
+  background: #ffffff;
+  color: #333d4b !important;
+
+  &:hover {
+    background: #e5e8eb;
+    color: #333d4b !important;
+  }
+}
+
+/* ---- 스크롤 인 (외부 라이브러리 없음) ----
+
+   translateY(28px)는 토스 실측값 그대로다. 트리거는 assets/js/_main.js의
+   IntersectionObserver이고, 그 코드가 html에 .js-reveal을 붙인 뒤에만 요소를 숨긴다.
+   JS가 죽거나 꺼진 환경에서는 클래스가 없어 콘텐츠가 그냥 보인다 — 글이 안 보이는
+   사고를 구조적으로 막는다. */
+
+/* 초기 숨김에는 트랜지션을 걸지 않는다.
+
+   여기에 transition을 선언하면, JS가 .js-reveal을 붙이는 순간 목표값이 1에서 0으로
+   바뀌면서 "보이던 글이 0.6초에 걸쳐 사라지는" 역방향 애니메이션이 재생된다.
+   숨김은 즉시, 등장만 애니메이션이어야 한다 — 그래서 transition은 .is-in에만 있다. */
+html.js-reveal .reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  will-change: opacity, transform;
+}
+
+html.js-reveal .reveal.is-in {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition-delay: calc(var(--reveal-i, 0) * 70ms);   /* 카드 순차 등장 */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js-reveal .reveal,
+  html.js-reveal .reveal.is-in {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ---- 다크모드 짝 (§15가 !important 스택이라 같은 무기가 필요하다) ---- */
+
+html[data-theme="dark"] {
+  .home-section__eyebrow { color: rgba(242, 242, 255, 0.47) !important; }
+  .home-section__title   { color: #f2f4f6 !important; }
+
+  .home-topic {
+    background: #1e2028 !important;
+
+    &:hover { background: #262933 !important; }
+  }
+  .home-topic__pill {
+    background: #2c2e3a !important;
+    color: #6ea8ff !important;
+  }
+  .home-topic__desc { color: #d1d6db !important; }
+
+  .home-cta       { background: #1e2028 !important; }
+  .home-cta__title { color: #f2f4f6 !important; }
+  .home-cta__desc  { color: #d1d6db !important; }
+
+  .home-cta__btn--primary {
+    background: #0050ff !important;
+    color: #fff !important;
+  }
+  .home-cta__btn--ghost {
+    background: #2c2e3a !important;
+    color: #d1d6db !important;
+
+    &:hover { background: #3c414b !important; color: #f2f4f6 !important; }
   }
 }

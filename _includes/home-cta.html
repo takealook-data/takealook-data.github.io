@@ -1,0 +1,18 @@
+{% include base_path %}
+{% comment %}
+  홈 마무리 CTA (토스 랜딩 §8 대응 — 밝기를 한 번 더 바꿔 문서의 끝을 알린다).
+
+  히어로와 같은 이유로 .blog-layout 바깥에서 렌더해야 한다. 래퍼 안에 두면
+  margin: calc(50% - 50vw)의 50%가 사이드바를 뺀 좁은 컬럼 폭 기준이 되어
+  풀블리드가 어긋나고 가로 스크롤이 생긴다.
+{% endcomment %}
+<section class="home-cta">
+  <div class="home-cta__inner">
+    <h2 class="home-cta__title">글은 계속 쌓입니다</h2>
+    <p class="home-cta__desc">측정하고, 틀리고, 고쳐 쓴 기록을 남깁니다.</p>
+    <div class="home-cta__actions">
+      <a class="home-cta__btn home-cta__btn--primary" href="{{ base_path }}/blog/">전체 글 보기</a>
+      <a class="home-cta__btn home-cta__btn--ghost" href="{{ base_path }}/feed.xml">RSS 구독</a>
+    </div>
+  </div>
+</section>
