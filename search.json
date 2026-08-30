@@ -3,8 +3,10 @@ layout: null
 permalink: /search.json
 sitemap: false
 ---
+{%- comment -%} noindex: true 인 글(본문 미작성)은 검색 인덱스에서 뺀다 {%- endcomment -%}
+{%- assign published = site.posts | where_exp: "p", "p.noindex != true" -%}
 [
-{%- for post in site.posts %}
+{%- for post in published %}
   {
     "title": {{ post.title | jsonify }},
     "url": {{ post.url | jsonify }},

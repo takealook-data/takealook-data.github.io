@@ -15,13 +15,13 @@ sitemap: false
 - 저자: Unchae Jeong — Customer Success Manager @ AB180
 - 사이트: {{ site.url }}
 - 언어: 한국어 (ko-KR)
-- 글 수: {{ site.posts | size }}편
+- 글 수: {{ site.posts | where_exp: "p", "p.noindex != true" | size }}편
 - 생성 시각: {{ site.time | date: "%Y-%m-%d %H:%M %z" }}
 - GitHub: https://github.com/takealook-data
 - LinkedIn: https://www.linkedin.com/in/unchae-jeong-a88149179/
 - 인용 안내: 자유롭게 인용하시되 원문 URL을 함께 표기해 주세요.
 
-{% for post in site.posts %}
+{% assign published = site.posts | where_exp: "p", "p.noindex != true" %}{% for post in published %}
 ================================================================================
 
 ## {{ post.title }}

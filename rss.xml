@@ -11,7 +11,8 @@ permalink: /rss.xml
     <language>ko</language>
     <lastBuildDate>{{ site.time | date_to_rfc822 }}</lastBuildDate>
     <atom:link href="{{ site.url }}{{ site.baseurl }}/rss.xml" rel="self" type="application/rss+xml"/>
-    {%- assign dated = site.posts -%}
+    {%- comment -%} noindex: true 인 글(본문 미작성)은 피드에서 뺀다 {%- endcomment -%}
+    {%- assign dated = site.posts | where_exp: "p", "p.noindex != true" -%}
     {%- for doc in dated limit: 20 %}
     <item>
       <title>{{ doc.title | xml_escape }}</title>
