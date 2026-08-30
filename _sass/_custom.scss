@@ -1109,18 +1109,58 @@ html[data-theme="dark"] .post-toc {
    ========================================================================== */
 
 .post-pagination {
+  /* 테마 기본은 float:left + width:50% + 테두리 이어붙이기라 좌우 높이가 맞을 수 없다
+     (실측 75px vs 50px). 게다가 자식이 전부 float이라 컨테이너 높이가 0으로 붕괴한다.
+     Grid는 기본이 stretch라 두 칸의 높이가 자동으로 같아진다 — 그래서 grid로 바꾼다. */
+  display: grid !important;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  float: none !important;
+  width: 100% !important;
+  margin-top: 40px !important;
+  padding-top: 0 !important;
+
+  &::after { content: none !important; }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+
   .pagination--pager {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 4px;
-    padding: 14px 18px;
+    justify-content: center;
+    gap: 6px;
+    float: none !important;
+    width: auto !important;
+    margin: 0 !important;
+    padding: 16px 18px !important;
+    /* 짙은 청록(rgb(0,73,101))이 기본값이라 사이트 경계선 색으로 바꾼다 */
+    border: 1px solid #e5e8eb !important;
+    border-radius: $radius-md !important;   /* 이어붙이기 해제: 양쪽 모두 둥글게 */
+    background: #ffffff;
     text-align: left;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+
+    &:hover {
+      background: #f9fafb;
+      border-color: #d1d6db !important;
+    }
   }
 
   .pagination--pager:last-child {
     align-items: flex-end;
     text-align: right;
+  }
+
+  /* 이웃 글이 없는 쪽은 테두리를 걷고 흐리게 둔다. 칸 자체는 남겨야
+     "이전은 왼쪽, 다음은 오른쪽"이라는 공간적 의미가 유지된다. */
+  .pagination--pager.disabled {
+    border-color: transparent !important;
+    background: transparent !important;
+    opacity: 0.45;
+    pointer-events: none;
   }
 
   &__dir {
@@ -1135,6 +1175,35 @@ html[data-theme="dark"] .post-toc {
     font-weight: 600;
     line-height: 1.4;
     word-break: keep-all;
+    /* 링크 기본 파랑이 아니라 본문 제목색을 쓴다 — 카드 전체가 링크라
+       제목만 파랗게 뜰 이유가 없다. */
+    color: #191f28;
+    /* 제목 길이가 제각각이라 2줄에서 자른다. Liquid truncate만으로는
+       글자 수 기준이라 카드 폭과 무관하게 끊겨 "(G..." 같은 꼴이 된다.
+       마크업의 truncate는 80자로 넉넉히 두고 실제 절단은 여기서 한다. */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+html[data-theme="dark"] .post-pagination {
+  .post-pagination__title { color: #f2f4f6; }
+
+  .pagination--pager {
+    border-color: #2c2e3a !important;
+    background: #1e2028;
+
+    &:hover {
+      background: #262933;
+      border-color: #3c414b !important;
+    }
+  }
+
+  .pagination--pager.disabled {
+    border-color: transparent !important;
+    background: transparent !important;
   }
 }
 
@@ -1892,6 +1961,75 @@ html[data-theme="dark"] {
     &.disabled:not(.current) {
       color: #6b7280 !important;
       background: transparent !important;
+    }
+  }
+}
+
+/* ==========================================================================
+   20. 글 하단 태그·카테고리 — 테마 기본 각진 박스를 사이트의 pill 언어로.
+
+   기본값은 border 1px + radius 4px에 테두리 색이 짙은 청록(rgb(0,73,101))이라,
+   히어로·토픽 카드에서 쓰는 pill과 전혀 다른 물건처럼 보였다.
+   여기서는 테두리를 걷고 연회색 배경 pill로 통일한다(라운드는 토큰의 $radius-pill).
+   ========================================================================== */
+
+.page__taxonomy {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 12px;
+
+  strong {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-right: 4px !important;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #8b95a1;
+    letter-spacing: -0.2px;
+  }
+}
+
+.page__taxonomy-item {
+  display: inline-flex;
+  align-items: center;
+  margin: 0 !important;          /* flex gap이 간격을 담당한다 */
+  padding: 6px 13px !important;
+  border: none !important;
+  border-radius: $radius-pill !important;
+  background: #f2f4f6;
+  color: #4e5968 !important;
+  font-size: 0.8125rem;          /* 13px — 토스 캡션 단계 */
+  font-weight: 500;
+  line-height: $lh-body;
+  letter-spacing: -0.2px;
+  text-decoration: none !important;
+  transition: background-color 0.15s ease, color 0.15s ease;
+
+  &:hover {
+    background: #e5e8eb;
+    color: #191f28 !important;
+    text-decoration: none !important;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #0050ff;
+    outline-offset: 2px;
+  }
+}
+
+html[data-theme="dark"] {
+  .page__taxonomy strong { color: #8b95a1 !important; }
+
+  .page__taxonomy-item {
+    background: #2c2e3a !important;
+    color: #d1d6db !important;
+
+    &:hover {
+      background: #3c414b !important;
+      color: #f2f4f6 !important;
     }
   }
 }
