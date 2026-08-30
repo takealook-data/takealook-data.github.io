@@ -999,6 +999,12 @@ html[data-theme="dark"] {
 
   @media (max-width: 924.98px) {
     flex-direction: column;
+
+    /* align-items는 교차축 정렬이라 방향이 바뀌면 의미도 바뀐다.
+       row에서 flex-start는 "위 맞춤"(의도한 동작)이지만, column에서는 "왼쪽 맞춤"이
+       되어 자식이 늘어나지 않고 자기 콘텐츠 폭을 그대로 갖는다. 그 결과 390px 뷰포트에서
+       본문이 603px이 되어 글이 화면 밖으로 잘렸다. 세로로 쌓일 때는 stretch여야 한다. */
+    align-items: stretch;
   }
 }
 
