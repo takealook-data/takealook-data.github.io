@@ -146,3 +146,45 @@ $(document).ready(function () {
   });
 
 });
+
+/* ==========================================================================
+   스크롤 인 리빌 — corp.tossinvest.com의 opacity 0→1 + translateY(28px) 이식.
+   외부 라이브러리(GSAP 등) 없이 IntersectionObserver만 쓴다.
+   스타일은 _sass/_custom.scss §17.
+
+   설계 두 가지:
+   1) html에 .js-reveal을 붙인 뒤에만 요소가 숨겨진다. JS가 죽거나 꺼지면 클래스가
+      없어 글이 그냥 보인다 — 콘텐츠가 사라지는 사고를 구조적으로 막는다.
+   2) js-reveal을 붙이기 "전에" 이미 화면에 들어와 있는 항목을 is-in으로 확정한다.
+      순서를 반대로 하면 첫 화면 카드가 숨겨졌다 나타나며 한 번 깜빡인다.
+   ========================================================================== */
+(function () {
+  if (!("IntersectionObserver" in window)) { return; }
+
+  var items = document.querySelectorAll(".reveal");
+  if (!items.length) { return; }
+
+  var vh = window.innerHeight || document.documentElement.clientHeight || 0;
+  var i;
+
+  for (i = 0; i < items.length; i++) {
+    if (items[i].getBoundingClientRect().top < vh * 0.9) {
+      items[i].classList.add("is-in");
+    }
+  }
+
+  document.documentElement.classList.add("js-reveal");
+
+  var io = new IntersectionObserver(function (entries) {
+    for (var k = 0; k < entries.length; k++) {
+      if (entries[k].isIntersecting) {
+        entries[k].target.classList.add("is-in");
+        io.unobserve(entries[k].target);
+      }
+    }
+  }, { rootMargin: "0px 0px -10% 0px", threshold: 0.05 });
+
+  for (i = 0; i < items.length; i++) {
+    if (items[i].className.indexOf("is-in") === -1) { io.observe(items[i]); }
+  }
+})();

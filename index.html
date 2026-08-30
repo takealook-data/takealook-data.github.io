@@ -3,29 +3,92 @@ layout: archive
 title: "데이터를 톺아보는 CSM · 풀퍼널 마케팅 측정"
 hide_page_title: true
 sidebar_blog: true
+hero: true
+cta: true
 ---
 
 {% include base_path %}
 
-<!-- Hero -->
-<section class="home-hero">
-  <p class="home-hero__eyebrow">Unchae Jeong · Customer Success Manager @ AB180</p>
-  <h1 class="home-hero__title">데이터를 톺아보는 CSM</h1>
-  <p class="home-hero__desc">퍼포먼스 마케터로 시작해 Martech CSM으로 — 광고 유입부터 전환·리텐션까지, 풀퍼널 마케팅 측정의 간극을 메웁니다.</p>
-  <div class="home-hero__actions">
-    <a class="home-hero__btn home-hero__btn--primary" href="{{ base_path }}/portfolio/">포트폴리오 보기</a>
-    <a class="home-hero__btn home-hero__btn--ghost" href="{{ base_path }}/about/">소개</a>
+{% comment %}
+  히어로는 _layouts/archive.html이 page.hero를 보고 .blog-layout 바깥에서 렌더한다
+  (_includes/home-hero.html). 여기서는 그 아래 섹션만 다룬다.
+
+  섹션 리듬은 corp.tossinvest.com 해부에서 가져왔다 — 배경 밝기가 뒤집히는 지점이
+  챕터 구분이 된다. 흑(히어로) → 백(글) → 회색(CTA).
+  근거·실측값: docs/toss-landing-teardown.md
+{% endcomment %}
+
+{% comment %} 최근 글 3편. 1페이지에서만 노출하고, 아래 피드는 그만큼 건너뛴다. {% endcomment %}
+{% assign is_first_page = false %}
+{% unless paginator.page and paginator.page > 1 %}{% assign is_first_page = true %}{% endunless %}
+
+{% if is_first_page and paginator.posts.size > 3 %}
+<section class="home-section">
+  <p class="home-section__eyebrow">Latest</p>
+  <h2 class="home-section__title">최근에 쓴 글</h2>
+  <div class="archive-list">
+    {% for post in paginator.posts limit: 3 %}
+      <div class="reveal" style="--reveal-i: {{ forloop.index0 }}">
+        {% include home-card.html item=post show_badge="true" %}
+      </div>
+    {% endfor %}
   </div>
 </section>
 
-<!-- 단일 시간역순 피드 -->
-<div class="archive-list">
-  {% for post in paginator.posts %}
-    {% include home-card.html item=post show_badge="true" %}
-  {% endfor %}
-</div>
+{% comment %}
+  토스 §4~6의 feature row 골격(pill eyebrow → 헤드라인 → 설명)을 세로로 옮겼다.
+  토스는 좌측에 3D 일러스트를 뒀지만 이 블로그엔 그런 에셋이 없으므로 텍스트만 쓴다.
+  카테고리 라벨은 _data/categories.yml의 slug와 일치해야 링크가 살아난다.
+{% endcomment %}
+<section class="home-section">
+  <p class="home-section__eyebrow">Topics</p>
+  <h2 class="home-section__title">주로 다루는 주제</h2>
+  <div class="home-topics">
+    <a class="home-topic reveal" style="--reveal-i: 0" href="{{ base_path }}/categories/#martech-data">
+      <span class="home-topic__pill">마테크·데이터</span>
+      <p class="home-topic__desc">광고 유입부터 전환·리텐션까지, 측정이 어긋나는 지점과 그걸 메우는 방법.</p>
+    </a>
+    <a class="home-topic reveal" style="--reveal-i: 1" href="{{ base_path }}/categories/#customer-success">
+      <span class="home-topic__pill">고객성공</span>
+      <p class="home-topic__desc">도입 이후를 설계하는 일 — 온보딩, 헬스체크, 그리고 남는 고객.</p>
+    </a>
+    <a class="home-topic reveal" style="--reveal-i: 2" href="{{ base_path }}/categories/#ai-automation">
+      <span class="home-topic__pill">AI·자동화</span>
+      <p class="home-topic__desc">반복을 걷어내는 실험 기록. 에이전트, 스크립트, 파이프라인.</p>
+    </a>
+  </div>
+</section>
+{% endif %}
+
+{% comment %} 전체 피드. 1페이지에서는 위 하이라이트 3편을 건너뛴다. {% endcomment %}
+<section class="home-section">
+  {% if is_first_page and paginator.posts.size > 3 %}
+    <p class="home-section__eyebrow">Archive</p>
+    <h2 class="home-section__title">지난 글</h2>
+    <div class="archive-list">
+      {% for post in paginator.posts offset: 3 %}
+        <div class="reveal" style="--reveal-i: {{ forloop.index0 }}">
+          {% include home-card.html item=post show_badge="true" %}
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="archive-list">
+      {% for post in paginator.posts %}
+        <div class="reveal" style="--reveal-i: {{ forloop.index0 }}">
+          {% include home-card.html item=post show_badge="true" %}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+</section>
 
 {% include paginator.html %}
+
+{% comment %}
+  마무리 CTA는 _layouts/archive.html이 page.cta를 보고 .blog-layout 바깥에서 렌더한다
+  (_includes/home-cta.html). 여기 두면 풀블리드가 어긋난다.
+{% endcomment %}
 
 <!-- 구 해시 탭 URL 호환 스크립트 -->
 <script>
