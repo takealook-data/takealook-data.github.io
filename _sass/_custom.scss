@@ -618,21 +618,39 @@ a, button, input, select, textarea {
   max-width: 720px;
 }
 
-/* eyebrow는 토스 feature row(§4~6)의 pill 형태를 가져왔다. 라운드는 토큰의 pill 1종. */
-.home-hero__eyebrow {
+/* 메타 줄 — 카테고리 pill + 날짜. pill 형태는 토스 feature row(§4~6)에서 가져왔고
+   라운드는 토큰의 pill 1종이다. */
+.home-hero__meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0 0 18px;
+}
+
+.home-hero__pill {
   display: inline-block;
   padding: 6px 14px;
   border-radius: $radius-pill;
   background: rgba(255, 255, 255, 0.10);
-  color: rgba(242, 242, 255, 0.75);
+  color: rgba(242, 242, 255, 0.85);
   font-size: 0.8125rem;  /* 13px — 토스 캡션 단계 */
   line-height: $lh-body;
-  font-weight: 500;
-  margin: 0 0 18px;
+  font-weight: 600;
   letter-spacing: -0.2px;
 }
 
-/* §1의 `h1..h6 { color: #191f28 !important }`를 이겨야 해서 !important가 필요하다. */
+.home-hero__date {
+  font-size: 0.8125rem;
+  line-height: $lh-body;
+  font-weight: 500;
+  color: rgba(242, 242, 255, 0.47);
+  letter-spacing: -0.2px;
+}
+
+/* 제목은 최신 글 제목이고 링크다. 글 제목이 그대로 헤드라인이 되므로
+   길이가 들쭉날쭉해도 버티도록 line-height를 제목값(1.3)으로 고정한다.
+   §1의 `h1..h6 { color: #191f28 !important }`를 이겨야 해서 !important가 필요하다. */
 .home-hero__title {
   font-size: 1.75rem;   /* 28px mobile */
   font-weight: 700;
@@ -643,6 +661,17 @@ a, button, input, select, textarea {
 
   @media screen and (min-width: 768px) {
     font-size: 2.25rem; /* 36px — 토스 헤드라인 단계 */
+  }
+
+  a {
+    color: inherit !important;
+    text-decoration: none !important;
+    transition: opacity 0.15s ease;
+
+    &:hover {
+      text-decoration: none !important;
+      opacity: 0.82;
+    }
   }
 }
 
@@ -708,12 +737,14 @@ a, button, input, select, textarea {
    .home-hero 하위를 덮지 않도록 명시적으로 재선언한다. */
 html[data-theme="dark"] {
   .home-hero { background: #000 !important; }
-  .home-hero__title { color: #ffffff !important; }
+  .home-hero__title,
+  .home-hero__title a { color: #ffffff !important; }
   .home-hero__desc { color: rgba(253, 253, 255, 0.75) !important; }
-  .home-hero__eyebrow {
+  .home-hero__pill {
     background: rgba(255, 255, 255, 0.10) !important;
-    color: rgba(242, 242, 255, 0.75) !important;
+    color: rgba(242, 242, 255, 0.85) !important;
   }
+  .home-hero__date { color: rgba(242, 242, 255, 0.47) !important; }
   .home-hero__btn--primary { background: #0050ff !important; color: #fff !important; }
   .home-hero__btn--ghost {
     background: rgba(255, 255, 255, 0.12) !important;
@@ -1363,6 +1394,16 @@ html[data-theme="dark"] {
 
   @media screen and (min-width: 768px) {
     margin-bottom: 72px;
+  }
+}
+
+/* 주제 섹션은 페이지네이션 바로 뒤에 온다. 위 여백이 없으면 [이전 1 2 다음]에
+   붙어 보여 별개 챕터로 읽히지 않는다. */
+.home-section--topics {
+  margin-top: 48px;
+
+  @media screen and (min-width: 768px) {
+    margin-top: 64px;
   }
 }
 

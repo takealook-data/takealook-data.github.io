@@ -1,17 +1,37 @@
 {% include base_path %}
 {% comment %}
-  홈 풀블리드 히어로. _layouts/archive.html에서 page.hero가 true일 때만 include된다.
+  홈 풀블리드 히어로 = 최신 글 1편.
+
+  자기소개가 아니라 글을 첫 화면에 놓는다. 방문할 때마다 내용이 바뀌고,
+  글 제목이 그대로 헤드라인이 된다.
+
+  _layouts/archive.html에서 page.hero가 true이고 1페이지일 때만 include된다.
   .blog-layout 래퍼 바깥에 놓여야 calc(50% - 50vw) 풀블리드가 어긋나지 않는다.
   reveal 클래스를 붙이지 않는다 — 첫 화면은 즉시 보여야 한다(LCP).
+
+  카테고리 라벨은 반드시 변수로 한 번 풀어서 lookup한다.
+  site.data.categories[latest.categories[0]] 같은 중첩 브래킷은 Liquid가
+  에러 없이 nil을 반환한다.
 {% endcomment %}
+{% assign latest = site.posts.first %}
+{% if latest %}
+{% assign cat = latest.categories[0] %}
 <section class="home-hero">
   <div class="home-hero__inner">
-    <p class="home-hero__eyebrow">Unchae Jeong · Customer Success Manager @ AB180</p>
-    <h1 class="home-hero__title">데이터를 톺아보는 CSM</h1>
-    <p class="home-hero__desc">퍼포먼스 마케터로 시작해 Martech CSM으로 — 광고 유입부터 전환·리텐션까지, 풀퍼널 마케팅 측정의 간극을 메웁니다.</p>
+    <p class="home-hero__meta">
+      {% if cat %}<span class="home-hero__pill">{{ site.data.categories[cat] | default: cat }}</span>{% endif %}
+      <span class="home-hero__date">최근 글 · {{ latest.date | date: "%Y-%m-%d" }}</span>
+    </p>
+    <h1 class="home-hero__title">
+      <a href="{{ base_path }}{{ latest.url }}">{{ latest.title }}</a>
+    </h1>
+    {% if latest.excerpt %}
+      <p class="home-hero__desc">{{ latest.excerpt | strip_html | truncate: 150 }}</p>
+    {% endif %}
     <div class="home-hero__actions">
-      <a class="home-hero__btn home-hero__btn--primary" href="{{ base_path }}/portfolio/">포트폴리오 보기</a>
-      <a class="home-hero__btn home-hero__btn--ghost" href="{{ base_path }}/about/">소개</a>
+      <a class="home-hero__btn home-hero__btn--primary" href="{{ base_path }}{{ latest.url }}">읽어보기 →</a>
+      <a class="home-hero__btn home-hero__btn--ghost" href="{{ base_path }}/blog/">전체 글</a>
     </div>
   </div>
 </section>
+{% endif %}
