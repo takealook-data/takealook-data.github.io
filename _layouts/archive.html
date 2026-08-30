@@ -36,11 +36,23 @@ layout: default
       {% endunless %}
     {% endif %}
     {% if page.sidebar_blog %}
-    <div class="blog-layout">
+    {% comment %}
+      사이드바는 평소 화면 밖에 있는 드로어다. 손잡이(.sidebar-handle)는 항상 보인다 —
+      검색이 이 안에 들어 있어서, 손잡이가 없으면 검색 기능이 사실상 사라진다.
+      여는 경로: 손잡이 호버(데스크톱) · 손잡이 클릭/Enter(모든 기기) · 왼쪽 스와이프(터치)
+      닫는 경로: 드로어 밖으로 마우스 이탈 · 손잡이 재클릭 · 스크림 클릭 · ESC · 왼쪽 스와이프
+      동작은 assets/js/_main.js, 스타일은 _sass/_custom.scss §18.
+    {% endcomment %}
+    <div class="blog-layout" data-drawer>
       <div class="blog-layout__main">
         {{ content }}
       </div>
-      <aside class="blog-layout__sidebar">
+      <button type="button" class="sidebar-handle" aria-expanded="false" aria-controls="blog-sidebar" aria-label="검색·라벨 메뉴 열기">
+        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+      </button>
+      <div class="sidebar-scrim" data-drawer-scrim></div>
+      <aside class="blog-layout__sidebar" id="blog-sidebar">
         {% include blog-sidebar.html %}
       </aside>
     </div>
