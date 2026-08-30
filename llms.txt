@@ -3,6 +3,12 @@ permalink: /llms.txt
 sitemap: false
 layout: null
 ---
+{%- comment -%}
+  noindex: true 인 글은 모든 목록에서 뺀다. 본문이 아직 없는 글을 배급 채널에
+  광고하면 방문자를 빈 페이지로 보내게 된다(실측: 그렇게 외부 방문자 1명을 8초에 잃었다).
+  본문을 채우면 그 글의 noindex 한 줄만 지우면 된다.
+{%- endcomment -%}
+{%- assign published = site.posts | where_exp: "p", "p.noindex != true" -%}
 # takealook@data
 
 > 데이터를 톺아보는 CSM — Unchae Jeong(Customer Success Manager @ AB180)의 개인 블로그이자 포트폴리오. 광고 유입부터 전환·리텐션까지, 풀퍼널 마케팅 측정(모바일 어트리뷰션·Martech·CRM·프로덕트 분석)과 B2B SaaS 고객 성공, AI 자동화 워크플로우를 다룹니다.
@@ -19,19 +25,19 @@ layout: null
 
 ## 블로그
 
-{% for post in site.posts %}{% unless post.categories contains "essay" or post.categories contains "reading" or post.categories contains "portfolio" %}- [{{ post.title }}]({{ site.url }}{{ post.url }}): {{ post.excerpt | strip_html | strip_newlines | truncate: 120 }}
+{% for post in published %}{% unless post.categories contains "essay" or post.categories contains "reading" or post.categories contains "portfolio" %}- [{{ post.title }}]({{ site.url }}{{ post.url }}): {{ post.excerpt | strip_html | strip_newlines | truncate: 120 }}
 {% endunless %}{% endfor %}
 ## 포트폴리오
 
-{% assign portfolio_posts = site.posts | where_exp: "p", "p.categories contains 'portfolio'" %}{% for item in portfolio_posts %}- [{{ item.title }}]({{ site.url }}{{ item.url }}): {{ item.excerpt | strip_html | strip_newlines | truncate: 120 }}
+{% assign portfolio_posts = published | where_exp: "p", "p.categories contains 'portfolio'" %}{% for item in portfolio_posts %}- [{{ item.title }}]({{ site.url }}{{ item.url }}): {{ item.excerpt | strip_html | strip_newlines | truncate: 120 }}
 {% endfor %}
 ## 생각 (에세이)
 
-{% assign essay_posts = site.posts | where_exp: "p", "p.categories contains 'essay'" %}{% for item in essay_posts %}- [{{ item.title }}]({{ site.url }}{{ item.url }}): {{ item.excerpt | strip_html | strip_newlines | truncate: 120 }}
+{% assign essay_posts = published | where_exp: "p", "p.categories contains 'essay'" %}{% for item in essay_posts %}- [{{ item.title }}]({{ site.url }}{{ item.url }}): {{ item.excerpt | strip_html | strip_newlines | truncate: 120 }}
 {% endfor %}
 ## 독서
 
-{% assign reading_posts = site.posts | where_exp: "p", "p.categories contains 'reading'" %}{% for item in reading_posts %}- [{{ item.title }}]({{ site.url }}{{ item.url }}): {{ item.excerpt | strip_html | strip_newlines | truncate: 120 }}
+{% assign reading_posts = published | where_exp: "p", "p.categories contains 'reading'" %}{% for item in reading_posts %}- [{{ item.title }}]({{ site.url }}{{ item.url }}): {{ item.excerpt | strip_html | strip_newlines | truncate: 120 }}
 {% endfor %}
 ## Optional
 

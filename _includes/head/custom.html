@@ -2,6 +2,19 @@
 
 <!-- start custom head snippets -->
 
+{% comment %}
+  본문이 아직 없는 글은 색인에서 뺀다.
+
+  front matter에 `noindex: true`를 달면 이 meta와 함께 llms.txt·llms-full.txt·
+  rss.xml·feed.json·search.json·관련글에서 전부 빠진다(`sitemap: false`는 별도로 달 것).
+  본문을 채우면 그 두 줄만 지우면 원상복귀된다.
+
+  왜 하는가: 2026-08-30 실측에서 외부 방문자가 연 글 11건 중 1건이 본문 0줄인
+  페이지였다. 제목이 클릭을 만들었는데 실물이 없어 8초 만에 잃었다. 빈 페이지를
+  배급 채널에 계속 광고하면 그 사고가 반복된다.
+{% endcomment %}
+{% if page.noindex %}<meta name="robots" content="noindex, follow">{% endif %}
+
 <!-- 검색엔진 소유확인 (Naver Search Advisor) — 삭제 시 소유권 해제되므로 유지 -->
 <meta name="naver-site-verification" content="dc42fe8379a91e3165f5f389d275c28b51502d0e">
 

@@ -8,7 +8,8 @@ content_html은 전문 포함, src/href 상대경로는 절대 URL로 치환.
 {%- endcomment -%}
 {%- assign abs_src = 'src="' | append: site.url | append: site.baseurl | append: '/' -%}
 {%- assign abs_href = 'href="' | append: site.url | append: site.baseurl | append: '/' -%}
-{%- assign dated = site.posts -%}
+{%- comment -%} noindex: true 인 글(본문 미작성)은 피드에서 뺀다 {%- endcomment -%}
+{%- assign dated = site.posts | where_exp: "p", "p.noindex != true" -%}
 {
   "version": "https://jsonfeed.org/version/1.1",
   "title": {{ site.title | jsonify }},
