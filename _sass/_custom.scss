@@ -881,33 +881,13 @@ html[data-theme="dark"] .page__footer {
    Blog layout — 본문 + 사이드바 2컬럼 (page.sidebar_blog: true 전용)
    ========================================================================== */
 
+/* 사이드바는 2컬럼이 아니라 드로어다(§18). 본문이 폭을 온전히 쓴다.
+   DOM은 여전히 본문 우선이라 모바일 UX·SEO 순서도 유지된다. */
 .blog-layout {
-  display: flex;
-  gap: 40px;
-  align-items: flex-start;
+  display: block;
 
   &__main {
-    flex: 1 1 auto;
     min-width: 0;
-  }
-
-  &__sidebar {
-    flex: 0 0 240px;
-    position: sticky;
-    top: 80px;
-    /* DOM은 본문 우선(모바일 UX·SEO), 데스크톱 시각 순서만 왼쪽 배치 */
-    order: -1;
-  }
-
-  @media (max-width: 900px) {
-    flex-direction: column;
-
-    &__sidebar {
-      position: static;
-      flex-basis: auto;
-      width: 100%;
-      order: 0; /* 모바일: 피드 아래로 복귀 */
-    }
   }
 }
 
@@ -1628,4 +1608,146 @@ html[data-theme="dark"] {
 
     &:hover { background: #3c414b !important; color: #f2f4f6 !important; }
   }
+}
+
+/* ==========================================================================
+   18. 사이드바 드로어 — 검색·라벨·아카이브·추천 글을 화면 밖에 두고 손잡이로 꺼낸다.
+
+   손잡이는 항상 보인다. 검색이 이 안에 있어서, 아무 표시 없이 숨기면
+   검색 기능이 사실상 사라지기 때문이다(호버 존만 두는 안을 버린 이유).
+
+   여는 경로가 셋인 것도 같은 이유다 — 호버는 터치·키보드 사용자에게 없고,
+   스와이프는 마우스 사용자에게 없다. 클릭만이 모든 환경에 공통이다.
+   ========================================================================== */
+
+$drawer-w: 320px;
+
+.blog-layout__sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 60;
+  width: min(#{$drawer-w}, 86vw);
+  height: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 24px 20px 40px;
+  background: #ffffff;
+  border-right: 1px solid #e5e8eb;
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.10);
+  transform: translateX(-100%);
+  transition: transform 0.28s ease;
+  visibility: hidden;
+}
+
+.blog-layout.is-open .blog-layout__sidebar {
+  transform: translateX(0);
+  visibility: visible;
+}
+
+/* 손잡이 — 왼쪽 가장자리에 붙은 세로 알약. 열리면 드로어 폭만큼 밀려나
+   그대로 닫기 버튼이 된다(별도 X 버튼을 만들지 않는 이유). */
+.sidebar-handle {
+  position: fixed;
+  left: 0;
+  top: 50%;
+  z-index: 61;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  width: 34px;
+  height: 78px;
+  padding: 0;
+  border: 1px solid #e5e8eb;
+  border-left: none;
+  border-radius: 0 $radius-md $radius-md 0;
+  background: #ffffff;
+  color: #4e5968;
+  font-size: 0.8125rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.07);
+  transform: translateY(-50%);
+  transition: transform 0.28s ease, background-color 0.15s ease, color 0.15s ease;
+
+  &:hover {
+    background: #f2f4f6;
+    color: #191f28;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #0050ff;
+    outline-offset: 2px;
+  }
+}
+
+.blog-layout.is-open .sidebar-handle {
+  transform: translateY(-50%) translateX(min(#{$drawer-w}, 86vw));
+}
+
+/* 스크림은 드로어가 화면을 실제로 덮는 좁은 화면에서만 띄운다.
+   데스크톱은 호버로 열고 마우스가 벗어나면 닫히므로 배경을 어둡게 할 이유가 없다. */
+.sidebar-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 59;
+  background: rgba(0, 0, 0, 0.32);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s ease;
+}
+
+@media (max-width: 900px) {
+  .blog-layout.is-open .sidebar-scrim {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+/* 드로어가 열린 동안 배경이 따라 스크롤되지 않게 잠근다(좁은 화면 한정).
+   html의 overflow-x: clip과 함께 쓰이면 clip이 hidden으로 계산되지만,
+   드로어가 열린 동안에만이라 sticky TOC에 영향이 없다. */
+@media (max-width: 900px) {
+  html.is-drawer-locked {
+    overflow-y: hidden;
+  }
+}
+
+/* 드로어 안의 위젯은 카드 테두리를 덜어내고 세로로 흐르게 한다 */
+.blog-layout__sidebar .blog-sidebar__widget:first-child {
+  margin-top: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blog-layout__sidebar,
+  .sidebar-handle,
+  .sidebar-scrim {
+    transition: none;
+  }
+}
+
+/* ---- 다크모드 짝 ---- */
+
+html[data-theme="dark"] {
+  .blog-layout__sidebar {
+    background: #17171c !important;
+    border-right-color: #2c2e3a !important;
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.45) !important;
+  }
+
+  .sidebar-handle {
+    background: #1e2028 !important;
+    border-color: #2c2e3a !important;
+    color: #d1d6db !important;
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.4) !important;
+
+    &:hover {
+      background: #2c2e3a !important;
+      color: #f2f4f6 !important;
+    }
+  }
+
+  .sidebar-scrim { background: rgba(0, 0, 0, 0.5) !important; }
 }

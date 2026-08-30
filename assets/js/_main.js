@@ -188,3 +188,135 @@ $(document).ready(function () {
     if (items[i].className.indexOf("is-in") === -1) { io.observe(items[i]); }
   }
 })();
+
+/* ==========================================================================
+   사이드바 드로어 — 검색·라벨·아카이브를 화면 밖에 두고 손잡이로 꺼낸다.
+   스타일은 _sass/_custom.scss §18.
+
+   여는 경로가 셋인 이유: 호버는 터치·키보드 사용자에게 없고, 스와이프는 마우스
+   사용자에게 없다. 클릭만이 모든 환경에 공통이라 어느 하나도 뺄 수 없다.
+   ========================================================================== */
+(function () {
+  var layout = document.querySelector(".blog-layout[data-drawer]");
+  if (!layout) { return; }
+
+  var handle = layout.querySelector(".sidebar-handle");
+  var sidebar = layout.querySelector(".blog-layout__sidebar");
+  var scrim = layout.querySelector("[data-drawer-scrim]");
+  if (!handle || !sidebar) { return; }
+
+  var OPEN = "is-open";
+  var LOCK = "is-drawer-locked";
+  var closeTimer = null;
+  var root = document.documentElement;
+
+  /* 호버로 연 것과 클릭으로 연 것은 의미가 다르다.
+     호버 = 임시(마우스가 떠나면 닫힘) / 클릭 = 고정(떠나도 유지).
+     구분하지 않으면 호버로 열린 상태에서 손잡이를 누른 사용자가
+     "열려고 눌렀는데 닫혔다"를 겪는다. */
+  var pinned = false;
+
+  function isOpen() { return layout.classList.contains(OPEN); }
+
+  function open(moveFocus) {
+    clearTimeout(closeTimer);
+    layout.classList.add(OPEN);
+    handle.setAttribute("aria-expanded", "true");
+    handle.setAttribute("aria-label", "검색·라벨 메뉴 닫기");
+    root.classList.add(LOCK);
+    if (moveFocus) {
+      var first = sidebar.querySelector("input, a, button");
+      if (first) { first.focus(); }
+    }
+  }
+
+  function close() {
+    clearTimeout(closeTimer);
+    pinned = false;
+    layout.classList.remove(OPEN);
+    handle.setAttribute("aria-expanded", "false");
+    handle.setAttribute("aria-label", "검색·라벨 메뉴 열기");
+    root.classList.remove(LOCK);
+  }
+
+  /* 클릭·키보드 — 모든 환경 공통 경로. stopPropagation이 없으면 아래
+     document 클릭 핸들러가 같은 클릭을 받아 즉시 되닫는다.
+     호버로 이미 열려 있어도 첫 클릭은 "닫기"가 아니라 "고정"이다. */
+  handle.addEventListener("click", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    if (pinned) { close(); }
+    else { pinned = true; open(true); }
+  });
+
+  /* 호버 — 마우스가 있는 기기에서만 단다. 터치에서 hover를 흉내내는
+     브라우저가 있어 매체 질의로 걸러낸다. */
+  if (window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    var scheduleClose = function () {
+      /* 클릭으로 고정한 드로어는 마우스가 벗어나도 닫지 않는다. */
+      if (pinned) { return; }
+      /* 사이드바 안에 키보드 포커스가 있으면 닫지 않는다 —
+         검색어를 치는 중에 마우스가 벗어났다고 사라지면 안 된다. */
+      if (sidebar.contains(document.activeElement)) { return; }
+      clearTimeout(closeTimer);
+      closeTimer = setTimeout(close, 240);
+    };
+    var cancelClose = function () { clearTimeout(closeTimer); };
+
+    handle.addEventListener("mouseenter", function () { cancelClose(); open(false); });
+    handle.addEventListener("mouseleave", scheduleClose);
+    sidebar.addEventListener("mouseenter", cancelClose);
+    sidebar.addEventListener("mouseleave", scheduleClose);
+  }
+
+  if (scrim) {
+    scrim.addEventListener("click", close);
+  }
+
+  document.addEventListener("click", function (e) {
+    if (!isOpen()) { return; }
+    if (sidebar.contains(e.target) || handle.contains(e.target)) { return; }
+    close();
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if ((e.key === "Escape" || e.key === "Esc") && isOpen()) {
+      close();
+      handle.focus();
+    }
+  });
+
+  /* 스와이프.
+     iOS Safari는 화면 왼쪽 가장자리에서 시작한 스와이프를 "뒤로가기"로 가로챈다.
+     그래서 0~EDGE_IGNORE 구간에서 시작한 제스처는 아예 무시하고, 그보다 안쪽
+     ZONE_END까지에서 시작해 오른쪽으로 그은 경우에만 연다. */
+  var EDGE_IGNORE = 26;
+  var ZONE_END = 100;
+  var THRESHOLD = 45;
+  var sx = null, sy = null, tracking = false;
+
+  document.addEventListener("touchstart", function (e) {
+    if (e.touches.length !== 1) { tracking = false; return; }
+    var t = e.touches[0];
+    sx = t.clientX;
+    sy = t.clientY;
+    if (isOpen()) {
+      tracking = sidebar.contains(e.target);
+    } else {
+      tracking = sx > EDGE_IGNORE && sx < ZONE_END;
+    }
+  }, { passive: true });
+
+  document.addEventListener("touchmove", function (e) {
+    if (!tracking || sx === null || e.touches.length !== 1) { return; }
+    var t = e.touches[0];
+    var dx = t.clientX - sx;
+    var dy = t.clientY - sy;
+    /* 세로 의도가 더 크면 스크롤에 양보한다 */
+    if (Math.abs(dy) > Math.abs(dx)) { tracking = false; return; }
+    if (!isOpen() && dx > THRESHOLD) { open(false); tracking = false; }
+    else if (isOpen() && dx < -THRESHOLD) { close(); tracking = false; }
+  }, { passive: true });
+
+  document.addEventListener("touchend", function () { tracking = false; }, { passive: true });
+})();
