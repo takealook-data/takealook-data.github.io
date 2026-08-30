@@ -3,6 +3,8 @@
   파라미터:
     item       — 렌더링할 문서 (post 또는 컬렉션 문서)
     show_badge — "true"면 카드 상단에 컬렉션·카테고리 라벨 뱃지 표시 (통합 피드용)
+    show_tags  — "true"면 요약 아래에 태그 pill 표시 (주제 페이지용).
+                 홈은 이 값을 넘기지 않으므로 카드가 그대로 유지된다.
   카테고리 slug → 한글 라벨은 _data/categories.yml 에서 lookup
 {% endcomment %}
 {% assign item = include.item %}
@@ -25,13 +27,24 @@
   {% if item.excerpt %}
     <p class="archive__item-excerpt" itemprop="description">{{ item.excerpt | strip_html | truncate: 200 }}</p>
   {% endif %}
+  {% if include.show_tags == "true" and item.tags.size > 0 %}
+    <div class="archive__item-tags">
+      {% for tag in item.tags limit: 5 %}
+        <span class="archive__item-tag">{{ tag }}</span>
+      {% endfor %}
+    </div>
+  {% endif %}
   <div class="archive__item-meta">
     <span><i class="fa-regular fa-calendar-days" style="margin-right: 6px;"></i>{{ item.date | date: "%Y-%m-%d" }}</span>
     {% if item.read_time %}
       {% assign words = item.content | strip_html | number_of_words %}
       <span><i class="fa-regular fa-clock" style="margin-right: 6px;"></i>{{ words | divided_by: site.words_per_minute | at_least: 1 }} min read</span>
     {% endif %}
-    {% if item.categories.size > 0 and include.show_badge != "true" %}
+    {% comment %}
+      주제 페이지(show_tags)는 카테고리별로 묶여 있어 그룹 제목이 이미 카테고리를
+      말해준다. 카드 메타에 또 찍으면 같은 정보가 두 번 나온다.
+    {% endcomment %}
+    {% if item.categories.size > 0 and include.show_badge != "true" and include.show_tags != "true" %}
       <span><i class="fa-solid fa-folder-open" style="margin-right: 6px;"></i>{% for cat in item.categories %}{{ site.data.categories[cat] | default: cat }}{% unless forloop.last %}, {% endunless %}{% endfor %}</span>
     {% endif %}
   </div>

@@ -4,7 +4,7 @@ redirect_from:
   - /reading/lean-analytics/
   - /reading/2026-07-19-lean-analytics/
 categories:
-  - reading
+  - essay
 excerpt: "3년 전에 옮겨 적은 『린 분석』 노트를 다시 꺼냈습니다. 그때는 지표 목록만 보였는데, 지금은 그 목록을 왜 그 순서로 놓았는지가 보입니다."
 tags:
   - lean-analytics

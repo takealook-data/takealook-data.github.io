@@ -11,14 +11,11 @@ main:
   - title: "홈"
     url: /
 
-  - title: "라벨"
+  - title: "주제"
     url: /categories/
 
-  - title: "아카이브"
+  - title: "전체 글"
     url: /archive/
-
-  - title: "포트폴리오"
-    url: /portfolio/
 
   - title: "소개"
     url: /about/
