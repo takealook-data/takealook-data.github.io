@@ -33,7 +33,7 @@
     {% if nav_prev %}
       <a href="{{ base_path }}{{ nav_prev.url }}" class="pagination--pager" title="{{ nav_prev.title | markdownify | strip_html }}">
         <span class="post-pagination__dir">← 이전{% if nav_cat %} · {{ nav_label }}{% endif %}</span>
-        <span class="post-pagination__title">{{ nav_prev.title | markdownify | strip_html | truncate: 34 }}</span>
+        <span class="post-pagination__title">{{ nav_prev.title | markdownify | strip_html | truncate: 80 }}</span>
       </a>
     {% else %}
       <a href="#" class="pagination--pager disabled"><span class="post-pagination__dir">← 이전</span></a>
@@ -41,7 +41,7 @@
     {% if nav_next %}
       <a href="{{ base_path }}{{ nav_next.url }}" class="pagination--pager" title="{{ nav_next.title | markdownify | strip_html }}">
         <span class="post-pagination__dir">다음{% if nav_cat %} · {{ nav_label }}{% endif %} →</span>
-        <span class="post-pagination__title">{{ nav_next.title | markdownify | strip_html | truncate: 34 }}</span>
+        <span class="post-pagination__title">{{ nav_next.title | markdownify | strip_html | truncate: 80 }}</span>
       </a>
     {% else %}
       <a href="#" class="pagination--pager disabled"><span class="post-pagination__dir">다음 →</span></a>
