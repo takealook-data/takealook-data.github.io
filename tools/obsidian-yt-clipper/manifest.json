@@ -1,0 +1,42 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube → Obsidian Clipper",
+  "version": "0.1.0",
+  "description": "전용 재생목록을 큐로 삼아 YouTube 영상을 Obsidian 노트로 클리핑합니다.",
+  "minimum_chrome_version": "111",
+  "permissions": ["storage", "identity", "tabs", "downloads"],
+  "host_permissions": [
+    "https://www.youtube.com/*",
+    "https://www.googleapis.com/*",
+    "http://127.0.0.1/*"
+  ],
+  "oauth2": {
+    "client_id": "REPLACE_WITH_YOUR_CLIENT_ID.apps.googleusercontent.com",
+    "scopes": ["https://www.googleapis.com/auth/youtube.force-ssl"]
+  },
+  "background": {
+    "service_worker": "src/background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "src/popup/popup.html",
+    "default_title": "YouTube → Obsidian Clipper"
+  },
+  "options_page": "src/options/options.html",
+  "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "js": ["src/content/bridge.js"],
+      "world": "ISOLATED",
+      "run_at": "document_start",
+      "all_frames": false
+    },
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "js": ["src/content/page.js"],
+      "world": "MAIN",
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ]
+}

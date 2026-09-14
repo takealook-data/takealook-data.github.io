@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="options.css" />
+  <title>YouTube → Obsidian 설정</title>
+</head>
+<body>
+  <h1>YouTube → Obsidian 설정</h1>
+
+  <fieldset>
+    <legend>큐 재생목록</legend>
+    <p class="hint">
+      나중에 볼 동영상(WL)은 YouTube Data API로 읽거나 수정할 수 없습니다.
+      그래서 내가 소유한 일반 재생목록 하나를 클리핑 대기열로 씁니다.
+    </p>
+    <label>재생목록 이름
+      <input id="queuePlaylistTitle" type="text" placeholder="📥 Clip" />
+    </label>
+    <label>재생목록 선택
+      <select id="queuePlaylistId"><option value="">(이름으로 찾거나 새로 만들기)</option></select>
+    </label>
+    <button id="load-playlists" type="button">내 재생목록 불러오기</button>
+    <label class="check"><input id="removeAfterClip" type="checkbox" /> 클리핑 성공 시 큐에서 제거</label>
+    <label>일괄 처리 간격 (ms)
+      <input id="queueDelayMs" type="number" min="0" step="100" />
+    </label>
+  </fieldset>
+
+  <fieldset>
+    <legend>Obsidian 전달 방식</legend>
+    <label>방식
+      <select id="delivery">
+        <option value="local-rest">Local REST API 플러그인 (볼트에 바로 저장)</option>
+        <option value="download">다운로드 폴더에 .md 저장</option>
+        <option value="uri">obsidian:// URI (길이 제한 있음)</option>
+      </select>
+    </label>
+    <div data-when="local-rest">
+      <label>포트 <input id="localRestPort" type="number" min="1" max="65535" /></label>
+      <label>API Key <input id="localRestApiKey" type="password" autocomplete="off" /></label>
+      <button id="test-rest" type="button">연결 테스트</button>
+      <span id="rest-result" class="inline"></span>
+    </div>
+    <div data-when="uri">
+      <label>볼트 이름 <input id="vaultName" type="text" /></label>
+    </div>
+    <label>저장 폴더 <input id="noteFolder" type="text" placeholder="Clippings/YouTube" /></label>
+    <label>파일명 템플릿 <input id="filenameTemplate" type="text" /></label>
+  </fieldset>
+
+  <fieldset>
+    <legend>자막</legend>
+    <label>언어 우선순위 (쉼표 구분)
+      <input id="transcriptLangs" type="text" placeholder="ko, en" />
+    </label>
+    <label class="check"><input id="transcriptTimestamps" type="checkbox" /> 타임스탬프 링크 붙이기</label>
+    <label>문단 묶는 간격 (초, 0이면 줄마다)
+      <input id="transcriptChunkSeconds" type="number" min="0" step="5" />
+    </label>
+  </fieldset>
+
+  <fieldset>
+    <legend>노트 템플릿</legend>
+    <p class="hint">
+      사용 가능: {{title}} {{rawTitle}} {{safeTitle}} {{url}} {{shortUrl}} {{videoId}}
+      {{channel}} {{channelUrl}} {{published}} {{duration}} {{durationSeconds}} {{views}}
+      {{thumbnail}} {{description}} {{transcript}} {{transcriptLang}} {{clippedAt}} {{date}}
+    </p>
+    <textarea id="noteTemplate" rows="18" spellcheck="false"></textarea>
+    <button id="reset-template" type="button">기본 템플릿으로 되돌리기</button>
+  </fieldset>
+
+  <div class="footer">
+    <button id="save" type="button" class="primary">저장</button>
+    <button id="sign-out" type="button">Google 로그아웃</button>
+    <span id="status" class="inline"></span>
+  </div>
+
+  <script type="module" src="options.js"></script>
+</body>
+</html>
