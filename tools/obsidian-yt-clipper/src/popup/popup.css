@@ -1,0 +1,68 @@
+:root {
+  color-scheme: light dark;
+  --bg: #ffffff;
+  --fg: #14161a;
+  --muted: #6b7280;
+  --line: #e5e7eb;
+  --accent: #7c3aed;
+  --danger: #b91c1c;
+  --ok: #15803d;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1b1c20;
+    --fg: #e8e8ea;
+    --muted: #9aa0a6;
+    --line: #34363c;
+    --accent: #a78bfa;
+    --danger: #fca5a5;
+    --ok: #86efac;
+  }
+}
+
+body {
+  width: 360px;
+  margin: 0;
+  padding: 12px;
+  background: var(--bg);
+  color: var(--fg);
+  font: 13px/1.5 system-ui, -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+}
+
+header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+h1 { font-size: 14px; margin: 0; }
+h2 { font-size: 12px; margin: 0; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+a { color: var(--accent); font-size: 12px; text-decoration: none; }
+
+section { border-top: 1px solid var(--line); padding: 10px 0; }
+section:first-of-type { border-top: none; }
+.row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.actions { display: flex; gap: 6px; align-items: center; }
+.hint { color: var(--muted); font-size: 11px; margin: 6px 0 0; }
+
+button {
+  font: inherit;
+  padding: 5px 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--fg);
+  cursor: pointer;
+}
+button:hover:not(:disabled) { border-color: var(--accent); }
+button:disabled { opacity: .5; cursor: default; }
+button.primary { width: 100%; background: var(--accent); border-color: var(--accent); color: #fff; padding: 8px; font-weight: 600; }
+button.link { border: none; padding: 2px 4px; color: var(--accent); }
+
+.badge { background: var(--line); border-radius: 10px; padding: 0 7px; font-size: 11px; color: var(--fg); }
+
+.list { list-style: none; margin: 8px 0 0; padding: 0; max-height: 220px; overflow-y: auto; }
+.list li { display: flex; align-items: center; gap: 8px; padding: 5px 0; border-bottom: 1px solid var(--line); }
+.list li:last-child { border-bottom: none; }
+.list .title { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.list .channel { color: var(--muted); font-size: 11px; }
+.list .empty { color: var(--muted); justify-content: center; }
+
+.status { margin-top: 10px; padding: 8px; border-radius: 6px; background: var(--line); font-size: 12px; white-space: pre-wrap; }
+.status.error { color: var(--danger); }
+.status.ok { color: var(--ok); }

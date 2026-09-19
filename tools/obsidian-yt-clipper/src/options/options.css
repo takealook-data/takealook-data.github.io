@@ -1,0 +1,29 @@
+:root { color-scheme: light dark; --fg: #14161a; --muted: #6b7280; --line: #d7d9de; --accent: #7c3aed; --ok: #15803d; --danger: #b91c1c; }
+@media (prefers-color-scheme: dark) {
+  :root { --fg: #e8e8ea; --muted: #9aa0a6; --line: #3a3c42; --accent: #a78bfa; --ok: #86efac; --danger: #fca5a5; }
+}
+body {
+  max-width: 680px; margin: 0 auto; padding: 24px 16px; color: var(--fg);
+  font: 14px/1.6 system-ui, -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+}
+h1 { font-size: 18px; margin: 0 0 16px; }
+fieldset { border: 1px solid var(--line); border-radius: 8px; padding: 12px 16px 16px; margin: 0 0 16px; }
+legend { padding: 0 6px; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+label { display: block; margin: 10px 0; font-size: 13px; }
+label.check { display: flex; align-items: center; gap: 6px; }
+input[type="text"], input[type="password"], input[type="number"], select, textarea {
+  display: block; width: 100%; box-sizing: border-box; margin-top: 4px; padding: 6px 8px;
+  font: inherit; color: inherit; background: transparent;
+  border: 1px solid var(--line); border-radius: 6px;
+}
+label.check input { width: auto; margin: 0; }
+textarea { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; white-space: pre; }
+.hint { color: var(--muted); font-size: 12px; margin: 4px 0 8px; }
+button { font: inherit; padding: 6px 12px; border: 1px solid var(--line); border-radius: 6px; background: transparent; color: inherit; cursor: pointer; }
+button:hover { border-color: var(--accent); }
+button.primary { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+.footer { display: flex; align-items: center; gap: 10px; position: sticky; bottom: 0; padding: 12px 0; background: Canvas; }
+.inline { font-size: 12px; color: var(--muted); }
+.inline.ok { color: var(--ok); }
+.inline.error { color: var(--danger); }
+[hidden] { display: none !important; }

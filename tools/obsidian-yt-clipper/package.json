@@ -1,0 +1,10 @@
+{
+  "name": "obsidian-yt-clipper",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "YouTube 재생목록을 큐로 삼아 Obsidian 노트로 클리핑하는 Chrome 확장",
+  "scripts": {
+    "test": "node --test test/*.test.mjs"
+  }
+}

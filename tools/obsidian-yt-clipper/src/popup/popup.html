@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="popup.css" />
+  <title>YouTube → Obsidian</title>
+</head>
+<body>
+  <header>
+    <h1>YouTube → Obsidian</h1>
+    <a id="open-options" href="#">설정</a>
+  </header>
+
+  <section>
+    <button id="clip-current" class="primary">현재 영상 클리핑</button>
+  </section>
+
+  <section>
+    <div class="row">
+      <h2>큐 <span id="queue-count" class="badge">–</span></h2>
+      <div class="actions">
+        <button id="refresh-queue" class="link">새로고침</button>
+        <button id="process-queue">전체 처리</button>
+      </div>
+    </div>
+    <ul id="queue-list" class="list"><li class="empty">불러오는 중…</li></ul>
+  </section>
+
+  <section>
+    <div class="row">
+      <h2>나중에 볼 동영상</h2>
+      <button id="harvest-wl" class="link">불러오기</button>
+    </div>
+    <p class="hint">공식 API로는 접근이 막혀 있어 로그인한 탭에서 직접 읽어옵니다.</p>
+    <div id="wl-result" hidden>
+      <p id="wl-summary"></p>
+      <div class="actions">
+        <button id="wl-import">큐로 가져오기</button>
+        <button id="wl-export" class="link">마크다운으로 저장</button>
+      </div>
+    </div>
+  </section>
+
+  <div id="status" class="status" hidden></div>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>
